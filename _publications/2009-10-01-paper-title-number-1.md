@@ -1,5 +1,5 @@
 ---
-title: #"Paper Title Number 1"
+title: "Weihang Zhang, Yang Cui, Bowen Liu, Martin Loza, Sung-Joon Park, Kenta Nakai, HyGAnno: hybrid graph neural network–based cell type annotation for single-cell ATAC sequencing data, Briefings in Bioinformatics, Volume 25, Issue 3, May 2024, bbae152, https://doi.org/10.1093/bib/bbae152"
 collection: publications
 permalink: #/publication/2009-10-01-paper-title-number-1
 excerpt: 'Weihang Zhang, Yang Cui, Bowen Liu, Martin Loza, Sung-Joon Park, Kenta Nakai, HyGAnno: hybrid graph neural network–based cell type annotation for single-cell ATAC sequencing data, Briefings in Bioinformatics, Volume 25, Issue 3, May 2024, bbae152, https://doi.org/10.1093/bib/bbae152'
