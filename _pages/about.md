@@ -36,6 +36,6 @@ The University of Tokyo
 [Laboratory of Functional Analysis in Silico](https://fais.hgc.jp/)  
 Supervised by [Professor Kenta Nakai](https://www.hgc.jp/~knakai/)   
 
-**Fellowship**
+## Fellowship
 May 2024 - Present [SPRING GX Project](https://www.cis-trans.jp/spring_gx/index-e.html)
 
