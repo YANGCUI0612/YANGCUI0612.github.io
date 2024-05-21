@@ -5,12 +5,6 @@ permalink: /publications/
 author_profile: true
 ---
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
-
 {% include base_path %}
 
-{% for post in site.publications reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+Zhang, W., Cui, Y., Liu, B., Loza, M., Park, S. J., & Nakai, K. (2024). HyGAnno: hybrid graph neural network-based cell type annotation for single-cell ATAC sequencing data. Briefings in bioinformatics, 25(3), bbae152. [link](https://doi.org/10.1093/bib/bbae152)
