@@ -21,7 +21,7 @@ repository               : "YANGCUI0612/YANGCUI0612.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "photo.png"
+  avatar           : "profile.png"
   name             : "CUI YANG"
   pronouns         : # example: "she/her"  
   bio              : "A PhD student major in bioinformatics"
