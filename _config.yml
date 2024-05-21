@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "CUI YANG"
+title                    : "CUI YANG's Homepage"
 title_separator          : "-"
 name                     : &name "CUI YANG"
 description              : &description "PhD student from the University of Tokyo"
