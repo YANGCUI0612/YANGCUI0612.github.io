@@ -37,5 +37,5 @@ The University of Tokyo
 Supervised by [Professor Kenta Nakai](https://www.hgc.jp/~knakai/)   
 
 ## Fellowship
-May 2024 - Present   [SPRING GX Project](https://www.cis-trans.jp/spring_gx/index-e.html)
+May 2024 - Present&ensp;[SPRING GX Project](https://www.cis-trans.jp/spring_gx/index-e.html)
 
