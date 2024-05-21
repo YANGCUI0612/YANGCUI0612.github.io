@@ -1,7 +1,7 @@
 ---
 permalink: /
-title: "About me"
-excerpt: "About me"
+title: #"About me"
+excerpt: #"About me"
 author_profile: true
 redirect_from: 
   - /about/
@@ -15,3 +15,6 @@ I am a 3rd year PhD student in the [Laboratory of Functional Analysis in Silico]
 ## Research Interests
 
 My research interests include bioinformatics, oncology, immunology, and molecular biology. I am experienced in the analysis of bulk RNA-seq data, single-cell RNA-seq data, and spatial transcriptomic data.
+
+## Education
+  
