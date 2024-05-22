@@ -14,3 +14,6 @@ author_profile: true
 - Zeng, X., Gyoja, F., **Cui, Y.**, Loza, M., Kusakabe, T. G., & Nakai, K. (2023). Comparative single-cell transcriptomic analysis reveals key differentiation drivers and the potential origin of the vertebrate retina. bioRxiv, 2023-12. [[Link]](https://doi.org/10.1101/2023.12.03.569795)
   
 - Cui, Y., Wang, R., Zeng, X., **Cui, Y.**, Zhu, Z., Nakai, K., ... & Wei, L. (2024). DenoiseST: A dual-channel unsupervised deep learning-based denoising method to identify spatial domains and functionally variable genes in spatial transcriptomics. bioRxiv, 2024-03. [[Link]](https://doi.org/10.1101/2024.03.04.583438)
+
+## Poster Presention
+
