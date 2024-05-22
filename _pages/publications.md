@@ -15,7 +15,7 @@ author_profile: true
   
 - Cui, Y., Wang, R., Zeng, X., **Cui, Y.**, Zhu, Z., Nakai, K., ... & Wei, L. (2024). DenoiseST: A dual-channel unsupervised deep learning-based denoising method to identify spatial domains and functionally variable genes in spatial transcriptomics. bioRxiv, 2024-03. [[Link]](https://doi.org/10.1101/2024.03.04.583438)
 
-## Poster Presention
+# Poster Presention
 
 - **Cui, Y.**, Nakai, K., Unveiling a Distinct Immunological Characteristic and a Prognostic Prediction Model in Breast Cancer through Integrated Transcriptomic Analysis, Poster presented at: The 21th Awaji International Forum on Infection and Immunity, 2023. Sep3-6, Japan, Karuizawa.
 - **Cui, Y.**, Nakai, K., Computational Transcriptomic Analysis Identifies a Novel Immune-dysregulated TNBC Subtype Regulated by STAT3, Poster presented at: MBSJ2023, 2023. Dec.6-8, Japan, Kobe.
