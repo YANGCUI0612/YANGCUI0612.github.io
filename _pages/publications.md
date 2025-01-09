@@ -9,7 +9,7 @@ author_profile: true
 
 - Zhang, W., **Cui, Y.**, Liu, B., Loza, M., Park, S. J., & Nakai, K. (2024). HyGAnno: hybrid graph neural network–based cell type annotation for single-cell ATAC sequencing data. Briefings in Bioinformatics, 25(3), bbae152. [[Link]](https://doi.org/10.1093/bib/bbae152)
   
-- Yang, Y., **Cui, Y.**, Zeng, X., Zhang, Y., Loza, M., Park, S. J., & Nakai, K. (2023). STAIG: spatial transcriptomics analysis via image-aided graph contrastive learning for domain exploration and alignment-free integration. Nature Communications, accepted. #2023-12. [[Link]](https://doi.org/10.1101/2023.12.18.572279)
+- Yang, Y., **Cui, Y.**, Zeng, X., Zhang, Y., Loza, M., Park, S. J., & Nakai, K. (2023). STAIG: spatial transcriptomics analysis via image-aided graph contrastive learning for domain exploration and alignment-free integration. Nature Communications, accepted. <!-- 2023-12. [[Link]](https://doi.org/10.1101/2023.12.18.572279) -->
   
 - Zeng, X., Gyoja, F., **Cui, Y.**, Loza, M., Kusakabe, T. G., & Nakai, K. (2023). Comparative single-cell transcriptomic analysis reveals putative differentiation drivers and potential origin of vertebrate retina. NAR Genomics and Bioinformatics6(4), lqae149 (2024). [[Link]](https://doi.org/10.1093/nargab/lqae149)
   
