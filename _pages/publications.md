@@ -21,7 +21,7 @@ author_profile: true
 
 # Poster Presention
 
-- **Cui, Y.**, Nakai, K., Unveiling a Distinct Immunological Characteristic and a Prognostic Prediction Model in Breast Cancer through Integrated Transcriptomic Analysis, Poster presented at: The 21th Awaji International Forum on Infection and Immunity, 2023 Sep.3-6, Japan, Karuizawa.
+- **Cui, Y.**, Nakai, K., Unveiling a Distinct Immunological Characteristic and a Prognostic Prediction Model in Breast Cancer through Integrated Transcriptomic Analysis, Poster presented at: The 21st Awaji International Forum on Infection and Immunity, 2023 Sep.3-6, Japan, Karuizawa.
 - **Cui, Y.**, Nakai, K., Computational Transcriptomic Analysis Identifies a Novel Immune-dysregulated TNBC Subtype Regulated by STAT3, Poster presented at: MBSJ2023, 2023 Dec.6-8, Japan, Kobe.
 - **Cui, Y.**, Zhang, W., Zeng, X., Yang, Y., Park, S. J., & Nakai, K., Computational Transcriptomic Analysis Reveals MHC-II Expressing Tumor Cells Influence Immune Surveillance and Prognostic Outcomes in the Tumor Microenvironment of Triple-Negative Breast Cancer, Poster presented at: 1st Asia & Pacific Bioinformatics Joint Conference \(APBJC2024\), 2024 Oct22-25, Japan, Okinawa.
 
