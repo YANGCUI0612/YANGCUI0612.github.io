@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "CUI YANG's Homepage"
+title                    : "Personal Page"
 title_separator          : "-"
 name                     : &name "CUI YANG"
 description              : &description "PhD student from the University of Tokyo"
@@ -24,7 +24,7 @@ author:
   avatar           : "photo.png"
   name             : "CUI YANG"
   pronouns         : # example: "she/her"  
-  bio              : "A PhD student major in bioinformatics"
+  bio              : "A Ph.D student major in bioinformatics"
   location         : "Tokyo, Japan"
   employer         : "The University of Tokyo"
   uri              : # URL
