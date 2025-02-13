@@ -236,4 +236,19 @@ May 2024 - Present &ensp; [SPRING GX Fellowship (JST)](https://www.cis-trans.jp/
     }
 </style>
 
-<script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=700&t=n&d=gB5MK8VPfGZB-Ol1UKim258Aveo7uzWQzGAyBfnOXr8'></script>
+<div id="clustrmaps-container">
+  <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=700&t=n&d=gB5MK8VPfGZB-Ol1UKim258Aveo7uzWQzGAyBfnOXr8"></script>
+</div>
+/* 响应式容器 */
+#clustrmaps-container {
+  width: 100%;
+  max-width: 700px; /* 最大宽度与原参数一致，可根据需要修改 */
+  margin: 0 auto;
+  position: relative;
+}
+/* 如果生成的是 iframe，则让 iframe 自适应 */
+#clustrmaps-container iframe {
+  width: 100% !important;
+  max-width: none !important;
+}
+
