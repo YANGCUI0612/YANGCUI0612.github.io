@@ -13,58 +13,16 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
 <h3>Articles</h3>
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
 
-  <!-- 论文 1 -->
+  <!-- 论文 6 -->
   <tr>
     <td valign="top" width="80%">
-      <a href="https://doi.org/10.1093/bib/bbae152">
-        <papertitle_just>HyGAnno: hybrid graph neural network–based cell type annotation for single-cell ATAC sequencing data</papertitle_just>
+      <a href="https://doi.org/10.1038/s41467-025-56276-0">
+        <papertitle_just>STAIG: Spatial transcriptomics analysis via image-aided graph contrastive learning for domain exploration and alignment-free integration</papertitle_just>
       </a>
       <br>
-      Zhang, W., <strong>Cui, Y.</strong>, Liu, B., Loza, M., Park, S. J., &amp; Nakai, K. (2024)
+      Yang, Y., <strong>Cui, Y.</strong>, Zeng, X., Zhang, Y., Loza, M., Park, S. J., &amp; Nakai, K. (2025)
       <br>
-      <em>Briefings in Bioinformatics</em>, 25(3), bbae152. <br>
-      <p></p>
-    </td>
-  </tr>
-
-  <!-- 论文 2 -->
-  <tr>
-    <td valign="top" width="80%">
-      <a href="https://doi.org/10.1101/2024.03.04.583438">
-        <papertitle_just>DenoiseST: A dual-channel unsupervised deep learning-based denoising method to identify spatial domains and functionally variable genes in spatial transcriptomics</papertitle_just>
-      </a>
-      <br>
-      Cui, Y., Wang, R., Zeng, X., <strong>Cui, Y.</strong>, Zhu, Z., Nakai, K., ... &amp; Wei, L. (2024)
-      <br>
-      <em>Preprint</em>, 2024-03. <br>
-      <p></p>
-    </td>
-  </tr>
-
-  <!-- 论文 3 -->
-  <tr>
-    <td valign="top" width="80%">
-      <a href="http://dx.doi.org/10.2139/ssrn.4894131">
-        <papertitle_just>Diffusionst: A diffusion model-based framework for enhancing spatial transcriptomics data quality and identifying spatial domains</papertitle_just>
-      </a>
-      <br>
-      Cui, Y., <strong>Cui, Y.</strong>, Wang, R., Nakai, K., Ye, X., Sakurai, T., &amp; Wei, L. (2024)
-      <br>
-      <em>Preprint</em>, 2024-07. <br>
-      <p></p>
-    </td>
-  </tr>
-
-  <!-- 论文 4 -->
-  <tr>
-    <td valign="top" width="80%">
-      <a href="https://doi.org/10.3389/fimmu.2024.1497251">
-        <papertitle_just>Computational analysis of the functional impact of MHC-II-expressing triple-negative breast cancer</papertitle_just>
-      </a>
-      <br>
-      <strong>Cui, Y.</strong>, Zhang, W., Zeng, X., Yang, Y., Park, S. J., &amp; Nakai, K. (2024)
-      <br>
-      <em>Frontiers in Immunology</em>, 15, 1497251. <br>
+      <em>Nature Communications</em>, 16(1), 1067. <br>
       <p></p>
     </td>
   </tr>
@@ -83,16 +41,58 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
     </td>
   </tr>
 
-  <!-- 论文 6 -->
+  <!-- 论文 4 -->
   <tr>
     <td valign="top" width="80%">
-      <a href="https://doi.org/10.1038/s41467-025-56276-0">
-        <papertitle_just>STAIG: Spatial transcriptomics analysis via image-aided graph contrastive learning for domain exploration and alignment-free integration</papertitle_just>
+      <a href="https://doi.org/10.3389/fimmu.2024.1497251">
+        <papertitle_just>Computational analysis of the functional impact of MHC-II-expressing triple-negative breast cancer</papertitle_just>
       </a>
       <br>
-      Yang, Y., <strong>Cui, Y.</strong>, Zeng, X., Zhang, Y., Loza, M., Park, S. J., &amp; Nakai, K. (2025)
+      <strong>Cui, Y.</strong>, Zhang, W., Zeng, X., Yang, Y., Park, S. J., &amp; Nakai, K. (2024)
       <br>
-      <em>Nature Communications</em>, 16(1), 1067. <br>
+      <em>Frontiers in Immunology</em>, 15, 1497251. <br>
+      <p></p>
+    </td>
+  </tr>
+
+  <!-- 论文 3 -->
+  <tr>
+    <td valign="top" width="80%">
+      <a href="http://dx.doi.org/10.2139/ssrn.4894131">
+        <papertitle_just>Diffusionst: A diffusion model-based framework for enhancing spatial transcriptomics data quality and identifying spatial domains</papertitle_just>
+      </a>
+      <br>
+      Cui, Y., <strong>Cui, Y.</strong>, Wang, R., Nakai, K., Ye, X., Sakurai, T., &amp; Wei, L. (2024)
+      <br>
+      <em>Preprint</em>, 2024-07. <br>
+      <p></p>
+    </td>
+  </tr>
+
+  <!-- 论文 2 -->
+  <tr>
+    <td valign="top" width="80%">
+      <a href="https://doi.org/10.1101/2024.03.04.583438">
+        <papertitle_just>DenoiseST: A dual-channel unsupervised deep learning-based denoising method to identify spatial domains and functionally variable genes in spatial transcriptomics</papertitle_just>
+      </a>
+      <br>
+      Cui, Y., Wang, R., Zeng, X., <strong>Cui, Y.</strong>, Zhu, Z., Nakai, K., ... &amp; Wei, L. (2024)
+      <br>
+      <em>Preprint</em>, 2024-03. <br>
+      <p></p>
+    </td>
+  </tr>
+
+  <!-- 论文 1 -->
+  <tr>
+    <td valign="top" width="80%">
+      <a href="https://doi.org/10.1093/bib/bbae152">
+        <papertitle_just>HyGAnno: hybrid graph neural network–based cell type annotation for single-cell ATAC sequencing data</papertitle_just>
+      </a>
+      <br>
+      Zhang, W., <strong>Cui, Y.</strong>, Liu, B., Loza, M., Park, S. J., &amp; Nakai, K. (2024)
+      <br>
+      <em>Briefings in Bioinformatics</em>, 25(3), bbae152. <br>
       <p></p>
     </td>
   </tr>
