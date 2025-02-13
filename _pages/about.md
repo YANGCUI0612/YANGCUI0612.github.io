@@ -103,14 +103,14 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
 <h3>Posters</h3>
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
 
-  <!-- 海报 1 -->
+  <!-- 海报 3 -->
   <tr>
     <td valign="top" width="80%">
-      <papertitle_just>Unveiling a Distinct Immunological Characteristic and a Prognostic Prediction Model in Breast Cancer through Integrated Transcriptomic Analysis</papertitle_just>
+      <papertitle_just>Computational Transcriptomic Analysis Reveals MHC-II Expressing Tumor Cells Influence Immune Surveillance and Prognostic Outcomes in the Tumor Microenvironment of Triple-Negative Breast Cancer</papertitle_just>
       <br>
-      <strong>Cui, Y.</strong>, Nakai, K.
+      <strong>Cui, Y.</strong>, Zhang, W., Zeng, X., Yang, Y., Park, S. J., &amp; Nakai, K.
       <br>
-      Poster presented at: <em>The 21st Awaji International Forum on Infection and Immunity</em>, 2023 Sep.3-6, Japan, Karuizawa.
+      Poster presented at: <em>1st Asia &amp; Pacific Bioinformatics Joint Conference (APBJC2024)</em>, 2024 Oct22-25, Japan, Okinawa.
       <p></p>
     </td>
   </tr>
@@ -127,14 +127,14 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
     </td>
   </tr>
 
-  <!-- 海报 3 -->
+  <!-- 海报 1 -->
   <tr>
     <td valign="top" width="80%">
-      <papertitle_just>Computational Transcriptomic Analysis Reveals MHC-II Expressing Tumor Cells Influence Immune Surveillance and Prognostic Outcomes in the Tumor Microenvironment of Triple-Negative Breast Cancer</papertitle_just>
+      <papertitle_just>Unveiling a Distinct Immunological Characteristic and a Prognostic Prediction Model in Breast Cancer through Integrated Transcriptomic Analysis</papertitle_just>
       <br>
-      <strong>Cui, Y.</strong>, Zhang, W., Zeng, X., Yang, Y., Park, S. J., &amp; Nakai, K.
+      <strong>Cui, Y.</strong>, Nakai, K.
       <br>
-      Poster presented at: <em>1st Asia &amp; Pacific Bioinformatics Joint Conference (APBJC2024)</em>, 2024 Oct22-25, Japan, Okinawa.
+      Poster presented at: <em>The 21st Awaji International Forum on Infection and Immunity</em>, 2023 Sep.3-6, Japan, Karuizawa.
       <p></p>
     </td>
   </tr>
