@@ -15,7 +15,6 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
 
   <!-- 论文 1 -->
   <tr>
-    </td>
     <td valign="top" width="80%">
       <a href="https://doi.org/10.1093/bib/bbae152">
         <papertitle_just>HyGAnno: hybrid graph neural network–based cell type annotation for single-cell ATAC sequencing data</papertitle_just>
@@ -24,14 +23,12 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
       Zhang, W., <strong>Cui, Y.</strong>, Liu, B., Loza, M., Park, S. J., &amp; Nakai, K. (2024)
       <br>
       <em>Briefings in Bioinformatics</em>, 25(3), bbae152. <br>
-      <a href="https://doi.org/10.1093/bib/bbae152">PDF</a>
       <p></p>
     </td>
   </tr>
 
   <!-- 论文 2 -->
   <tr>
-    </td>
     <td valign="top" width="80%">
       <a href="https://doi.org/10.1101/2024.03.04.583438">
         <papertitle_just>DenoiseST: A dual-channel unsupervised deep learning-based denoising method to identify spatial domains and functionally variable genes in spatial transcriptomics</papertitle_just>
@@ -40,14 +37,12 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
       Cui, Y., Wang, R., Zeng, X., <strong>Cui, Y.</strong>, Zhu, Z., Nakai, K., ... &amp; Wei, L. (2024)
       <br>
       <em>Preprint</em>, 2024-03. <br>
-      <a href="https://doi.org/10.1101/2024.03.04.583438">PDF</a>
       <p></p>
     </td>
   </tr>
 
   <!-- 论文 3 -->
   <tr>
-    </td>
     <td valign="top" width="80%">
       <a href="http://dx.doi.org/10.2139/ssrn.4894131">
         <papertitle_just>Diffusionst: A diffusion model-based framework for enhancing spatial transcriptomics data quality and identifying spatial domains</papertitle_just>
@@ -56,14 +51,12 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
       Cui, Y., <strong>Cui, Y.</strong>, Wang, R., Nakai, K., Ye, X., Sakurai, T., &amp; Wei, L. (2024)
       <br>
       <em>Preprint</em>, 2024-07. <br>
-      <a href="http://dx.doi.org/10.2139/ssrn.4894131">PDF</a>
       <p></p>
     </td>
   </tr>
 
   <!-- 论文 4 -->
   <tr>
-    </td>
     <td valign="top" width="80%">
       <a href="https://doi.org/10.3389/fimmu.2024.1497251">
         <papertitle_just>Computational analysis of the functional impact of MHC-II-expressing triple-negative breast cancer</papertitle_just>
@@ -72,14 +65,12 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
       <strong>Cui, Y.</strong>, Zhang, W., Zeng, X., Yang, Y., Park, S. J., &amp; Nakai, K. (2024)
       <br>
       <em>Frontiers in Immunology</em>, 15, 1497251. <br>
-      <a href="https://doi.org/10.3389/fimmu.2024.1497251">PDF</a>
       <p></p>
     </td>
   </tr>
 
   <!-- 论文 5 -->
   <tr>
-    </td>
     <td valign="top" width="80%">
       <a href="https://doi.org/10.1093/nargab/lqae149">
         <papertitle_just>Comparative single-cell transcriptomic analysis reveals putative differentiation drivers and potential origin of vertebrate retina</papertitle_just>
@@ -88,14 +79,12 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
       Zeng, X., Gyoja, F., <strong>Cui, Y.</strong>, Loza, M., Kusakabe, T. G., &amp; Nakai, K. (2024)
       <br>
       <em>NAR Genomics and Bioinformatics6</em>(4), lqae149 (2024). <br>
-      <a href="https://doi.org/10.1093/nargab/lqae149">PDF</a>
       <p></p>
     </td>
   </tr>
 
   <!-- 论文 6 -->
   <tr>
-    </td>
     <td valign="top" width="80%">
       <a href="https://doi.org/10.1038/s41467-025-56276-0">
         <papertitle_just>STAIG: Spatial transcriptomics analysis via image-aided graph contrastive learning for domain exploration and alignment-free integration</papertitle_just>
@@ -104,7 +93,6 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
       Yang, Y., <strong>Cui, Y.</strong>, Zeng, X., Zhang, Y., Loza, M., Park, S. J., &amp; Nakai, K. (2025)
       <br>
       <em>Nature Communications</em>, 16(1), 1067. <br>
-      <a href="https://doi.org/10.1038/s41467-025-56276-0">PDF</a>
       <p></p>
     </td>
   </tr>
@@ -117,7 +105,6 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
 
   <!-- 海报 1 -->
   <tr>
-    </td>
     <td valign="top" width="80%">
       <papertitle_just>Unveiling a Distinct Immunological Characteristic and a Prognostic Prediction Model in Breast Cancer through Integrated Transcriptomic Analysis</papertitle_just>
       <br>
@@ -130,7 +117,6 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
 
   <!-- 海报 2 -->
   <tr>
-    </td>
     <td valign="top" width="80%">
       <papertitle_just>Computational Transcriptomic Analysis Identifies a Novel Immune-dysregulated TNBC Subtype Regulated by STAT3</papertitle_just>
       <br>
@@ -143,7 +129,6 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
 
   <!-- 海报 3 -->
   <tr>
-    </td>
     <td valign="top" width="80%">
       <papertitle_just>Computational Transcriptomic Analysis Reveals MHC-II Expressing Tumor Cells Influence Immune Surveillance and Prognostic Outcomes in the Tumor Microenvironment of Triple-Negative Breast Cancer</papertitle_just>
       <br>
