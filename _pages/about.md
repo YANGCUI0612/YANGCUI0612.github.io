@@ -61,7 +61,7 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
         <papertitle_just>Diffusionst: A diffusion model-based framework for enhancing spatial transcriptomics data quality and identifying spatial domains</papertitle_just>
       </a>
       <br>
-      Cui, Y., <strong>Cui, Y.</strong>, Wang, R., Nakai, K., Ye, X., Sakurai, T., &amp; Wei, L. (2024)
+      Cui, Y.*, <strong>Cui, Y.*</strong>, Wang, R., Nakai, K., Ye, X., Sakurai, T., &amp; Wei, L. (2024)
       <br>
       <em>Preprint</em>, 2024-07. <br>
       <p></p>
