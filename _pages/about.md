@@ -241,7 +241,7 @@ May 2024 - Present &ensp; [SPRING GX Fellowship (JST)](https://www.cis-trans.jp/
     margin: 0 auto;
     position: relative;
     }
-    /* 如果 ClustrMaps 生成的是 iframe，则覆盖其宽度 */
+
     #clustrmaps-container iframe {
       width: 100% !important;
       max-width: none !important;
