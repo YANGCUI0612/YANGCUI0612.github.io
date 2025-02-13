@@ -208,6 +208,9 @@ May 2024 - Present &ensp; [SPRING GX Fellowship (JST)](https://www.cis-trans.jp/
     h2 {
     font-size: 22px; /* 根据需要调整大小 */
     }
+    h3 {
+    font-size: 14px; /* 根据需要调整大小 */
+    }
     .one
     {
     width: 160px;
