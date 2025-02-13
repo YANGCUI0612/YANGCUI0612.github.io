@@ -10,7 +10,7 @@ redirect_from:
 I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https://fais.hgc.jp/) at the University of Tokyo, supervised by [Professor Kenta Nakai](https://www.hgc.jp/~knakai/). My research interests include bioinformatics, single-cell and spatial multi-omics, and oncology. I am seeking collaboration opportunities as well as postdoctoral positions. Feel free to reach out via [email](mailto:yangcui0612@gmail.com) for more details.
 
 ## Publications
-
+<h3>Articles</h3>
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
 
   <!-- 论文 1 -->
@@ -100,7 +100,7 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
 </table>
 
 <!-- 海报展示部分 -->
-<h3>Poster Presentation</h3>
+<h3>Posters</h3>
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
 
   <!-- 海报 1 -->
