@@ -181,30 +181,30 @@ May 2024 - Present &ensp; [SPRING GX Fellowship (JST)](https://www.cis-trans.jp/
     	border:none !important;
     }
     body,td,th,tr,p,a {
-    font-family: "ff-meta-serif-web-pro",, Lato, Verdana, Helvetica, sans-serif;
+    font-family: "ff-meta-serif-web-pro", Lato, Verdana, Helvetica, sans-serif;
     font-size: 14px
     }
     strong {
-    font-family: "ff-meta-serif-web-pro",, Lato, Verdana, Helvetica, sans-serif;
+    font-family: "ff-meta-serif-web-pro", Lato, Verdana, Helvetica, sans-serif;
     font-size: 14px;
     }
     heading {
-    font-family: "ff-meta-serif-web-pro",, Lato, Verdana, Helvetica, sans-serif;
+    font-family: "ff-meta-serif-web-pro", Lato, Verdana, Helvetica, sans-serif;
     font-size: 22px;
     }
     papertitle {
-    font-family: "ff-meta-serif-web-pro",, Lato, Verdana, Helvetica, sans-serif;
+    font-family: "ff-meta-serif-web-pro", Lato, Verdana, Helvetica, sans-serif;
     font-size: 14px;
     font-weight: 700
     }
     papertitle_just {
-    font-family: "ff-meta-serif-web-pro",, Lato, Verdana, Helvetica, sans-serif;
+    font-family: "ff-meta-serif-web-pro", Lato, Verdana, Helvetica, sans-serif;
     font-size: 14px;
     font-weight: 700;
     text-align: justify
     }
     name {
-    font-family: "ff-meta-serif-web-pro",, Lato, Verdana, Helvetica, sans-serif;
+    font-family: "ff-meta-serif-web-pro", Lato, Verdana, Helvetica, sans-serif;
     font-size: 32px;
     }
     .one
