@@ -12,8 +12,7 @@ I am a Ph.D. student in the [Laboratory of Functional Analysis in Silico](https:
 # Publications
 <h3>Articles</h3>
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="10">
-
-  <!-- 论文 6 -->
+<!-- 论文 6 -->
   <tr>
     <td valign="top" width="80%">
       <a href="https://doi.org/10.1038/s41467-025-56276-0">
