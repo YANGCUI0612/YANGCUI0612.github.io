@@ -165,7 +165,7 @@ East China University of Science and Technology
 
 ## 🏆 Award
 May 2024 - Present &ensp; [SPRING GX Fellowship (JST)](https://www.cis-trans.jp/spring_gx/index-e.html)
-<!--<style type="text/css">
+<style type="text/css">
     /* Color scheme stolen from Sergey Karayev */
     a {
     color: #1772d0;
@@ -248,7 +248,7 @@ May 2024 - Present &ensp; [SPRING GX Fellowship (JST)](https://www.cis-trans.jp/
     }
 </style>
 
-<div id="clustrmaps-container">
+<!--<div id="clustrmaps-container">
   <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=700&t=tt&d=gB5MK8VPfGZB-Ol1UKim258Aveo7uzWQzGAyBfnOXr8'></script>
-</div>
--->
+</div> -->
+
