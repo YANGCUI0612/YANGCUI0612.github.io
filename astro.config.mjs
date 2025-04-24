@@ -31,19 +31,8 @@ export default defineConfig({
   // Top-Level Options
   site: 'https://yangcui0612.github.io',
   base: '/astro-theme-pure',
-  trailingSlash: 'never',
 
-  // Adapter
-  // https://docs.astro.build/en/guides/deploy/
-  // 1. Vercel (serverless)
-  adapter: vercel(),
-  output: 'server',
-  // 2. Vercel (static)
-  // adapter: vercelStatic(),
-  // 3. Local (standalone)
-  // adapter: node({ mode: 'standalone' }),
-  // output: 'server',
-  // ---
+
 
   image: {
     service: {
