@@ -11,6 +11,7 @@ import UnoCSS from 'unocss/astro'
 // Others
 // import { visualizer } from 'rollup-plugin-visualizer'
 
+
 // Local integrations
 import { outputCopier } from './src/plugins/output-copier.ts'
 // Local rehype & remark plugins
@@ -30,7 +31,7 @@ import config from './src/site.config.ts'
 export default defineConfig({
   // Top-Level Options
   site: 'https://yangcui0612.github.io',
-  base: '/astro-theme-pure',
+  //base: '/astro-theme-pure',
 
 
 
@@ -97,7 +98,6 @@ export default defineConfig({
     }
   },
   experimental: {
-    svg: true,
     contentIntellisense: true
   },
   vite: {

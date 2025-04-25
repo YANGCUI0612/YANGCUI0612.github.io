@@ -9,8 +9,12 @@ import PageLayout from '@/layouts/BaseLayout.astro'
 import ProjectCard from '@/components/home/ProjectCard.astro'
 import Section from '@/components/home/Section.astro'
 import SkillLayout from '@/components/home/SkillLayout.astro'
-import avatar from '@/assets/avatar.png'
+import avatar from '@/assets/icon.png'
 import config from '@/site-config'
+import TMDULogo   from '@/assets/TMDU.png'
+import ECUSTLogo from '@/assets/ECUST.png'
+import UTLogo from '@/assets/UT.png'
+
 
 const languages = ['Html', 'JavaScript', 'CSS', 'Shell']
 const frontend = ['TypeScript', 'Vite', 'Webpack', 'Astro']
@@ -21,7 +25,7 @@ const allPosts = await getBlogCollection()
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 ---
 
-<PageLayout meta={{ title: 'Home' }} highlightColor='#659EB9'>
+<PageLayout meta={{ title: 'Home' }} highlightColor='#659EB966'>
   <main class='flex w-full flex-col items-center'>
     <section class='animate mb-10 flex flex-col items-center gap-y-7' id='content-header'>
       <Image
@@ -34,21 +38,88 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       <div class='flex flex-col items-center gap-y-4'>
         <h1 class='text-3xl font-bold'>{config.author}</h1>
         <div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
-          <Label title='China'>
+          <Label title='Tokyo'>
             <Icon name='location' class='size-5' slot='icon' />
           </Label>
           <Label
-            title='Source code'
-            as='a'
-            href='https://github.com/cworld1/astro-theme-pure'
-            target='_blank'
-          >
-            <Icon name='github' class='size-5' slot='icon' />
-          </Label>
+  title="ORCID"
+  as="a"
+  href="https://orcid.org/0009-0000-2110-6099"
+  target="_blank"
+>
+  <svg
+    slot="icon"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    class="w-5 h-5"
+  >
+    <!-- Icon from Simple Icons by Simple Icons Collaborators -->
+    <path
+      fill="currentColor"
+      d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12s12-5.372 12-12S18.628 0 12 0
+         M7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947a.95.95 0 0 1-.947-.947c0-.525.422-.947.947-.947
+         m-.722 3.038h1.444v10.041H6.647zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025
+         c0 2.578-2.016 5.025-5.325 5.025h-3.919zm1.444 1.303v7.444h2.297
+         c3.272 0 4.022-2.484 4.022-3.722c0-2.016-1.284-3.722-4.097-3.722z"
+    />
+  </svg>
+</Label>
+<Label
+  title="Google Scholar"
+  as="a"
+  href="https://scholar.google.com/citations?user=pcom3IEAAAAJ&hl=en&authuser=2"
+  target="_blank"
+>
+  <svg
+    slot="icon"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    class="w-5 h-5"
+  >
+    <!-- Icon from Akar Icons by Arturo Wibawa -->
+    <g fill="none">
+      <g clip-path="url(#akarIconsGoogleContainedFill0)">
+        <path
+          fill="currentColor"
+          fill-rule="evenodd"
+          d="M12 0C5.372 0 0 5.373 0 12s5.372 12 12 12c6.627 0 12-5.373 12-12S18.627 0 12 0m.14 19.018c-3.868 0-7-3.14-7-7.018s3.132-7.018 7-7.018c1.89 0 3.47.697 4.682 1.829l-1.974 1.978v-.004c-.735-.702-1.667-1.062-2.708-1.062c-2.31 0-4.187 1.956-4.187 4.273c0 2.315 1.877 4.277 4.187 4.277c2.096 0 3.522-1.202 3.816-2.852H12.14v-2.737h6.585q.134.704.135 1.474c0 4.01-2.677 6.86-6.72 6.86"
+          clip-rule="evenodd"
+        />
+      </g>
+      <defs>
+        <clipPath id="akarIconsGoogleContainedFill0">
+          <path fill="#fff" d="M0 0h24v24H0z"/>
+        </clipPath>
+      </defs>
+    </g>
+  </svg>
+</Label>
+
+<Label
+  title="Email"
+  as="a"
+  href="mailto:yangcui0612@gmail.com"
+  target="_blank"
+>
+  <svg
+    slot="icon"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    class="w-5 h-5"
+  >
+    <!-- Icon from Google Material Icons -->
+    <path
+      fill="currentColor"
+      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16
+         c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5l-8-5V6l8 5l8-5z"
+    />
+  </svg>
+</Label>
+
         </div>
       </div>
 
-      {/* Get template */}
+     <!--  {/* Get template */}
       <a
         href='https://github.com/cworld1/astro-theme-pure'
         target='_blank'
@@ -61,34 +132,176 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
           <span class='size-2 rounded-full bg-green-400'></span>
         </span>
         <p class='font-medium text-muted-foreground'>Get Template</p>
-      </a>
+      </a> -->
     </section>
 
     <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
       <Section title='About'>
-        <p class='text-muted-foreground'>Developer / Designer</p>
-        <p class='text-muted-foreground'>
-          Lorem ipsum dolor sit amet, vidit suscipit at mei. Quem denique mea id. Usu ei regione
-          indoctum dissentiunt, cu meliore fuisset mei, vel quod voluptua ne. Ex dicat impedit mel,
-          at eum oratio possit voluptatum.
+        <!-- <p class='text-muted-foreground'>Developer / Designer</p> -->
+        <p class='text-muted-foreground text-justify'>
+          Ph.D. in Bioinformatics from the University of Tokyo, supervised by Professor Kenta Nakai.
+          Research focuses on cancer biology, single-cell and spatial multi-omics. 
+          Interests include integrative analysis of cancer multi-omics data and the development of computational methods for studying tumor heterogeneity and microenvironmental dynamics.
         </p>
+        <!--
         <Button title='More about me' class='w-fit self-end' href='/about' style='ahead' />
+        -->
       </Section>
       {
-        allPostsByDate.length > 0 && (
-          <Section title='Posts'>
-            <ul class='flex flex-col gap-y-1.5 sm:gap-y-2'>
-              {allPostsByDate.map((p) => (
-                <li class='flex flex-col gap-x-2 sm:flex-row'>
-                  <PostPreview post={p} />
-                </li>
-              ))}
-            </ul>
-            <Button title='More posts' class='w-fit self-end' href='/blog' style='ahead' />
-          </Section>
-        )
-      }
+        <Section title="Publications">
+  <Card
+    as="a"
+    href="https://doi.org/10.1038/s41467-025-56276-0"
+    class="!pt-0 !pb-0 !gap-y-0"   // 彻底去掉 top-padding、bottom-padding、gap
+  >
+    <div class="pb-2">
+    <p class="font-bold">
+      STAIG: Spatial transcriptomics analysis via image-aided graph contrastive learning for domain exploration and alignment-free integration
+  </p>
+    <p>
+      Yang, Y., <strong>Cui, Y.</strong>, Zeng, X., Zhang, Y., Loza, M., Park, S. J., &amp; Nakai, K. (2025).
+    </p>
+    <p>
+      <em>Nature Communications, 16(1), 1067.</em>
+    </p>
+  </div>
+  </Card>
+  
+  <Card
+    as="a"
+    href="https://doi.org/10.1093/nargab/lqae149"
+    class="!pt-0 !pb-0 !gap-y-0"   // 彻底去掉 top-padding、bottom-padding、gap
+  >
+    <div class="pb-2">
+    <p class="font-bold">
+      Comparative single-cell transcriptomic analysis reveals putative differentiation drivers and potential origin of vertebrate retina
+  </p>
+    <p>
+      Zeng, X., Gyoja, F., <strong>Cui, Y.</strong>, Loza, M., Kusakabe, T. G., &amp; Nakai, K.
+    </p>
+    <p>
+      <em>NAR Genomics and Bioinformatics, 6(4), lqae149 (2024).</em>
+    </p>
+  </div>
+  </Card>
+  
+  <Card
+  as="a"
+  href="https://doi.org/10.3389/fimmu.2024.1497251"
+  class="!pt-0 !pb-0 !gap-y-0"
+>
+  <div class="pb-2">
+    <p class="font-bold">
+      Computational analysis of the functional impact of MHC-II-expressing triple-negative breast cancer
+    </p>
+    <p>
+      <strong>Cui, Y.</strong>, Zhang, W., Zeng, X., Yang, Y., Park, S. J., &amp; Nakai, K.
+    </p>
+    <p>
+      <em>Frontiers in Immunology, 15, 1497251 (2024).</em>
+    </p>
+  </div>
+</Card>
 
+<Card
+  as="a"
+  href="http://dx.doi.org/10.2139/ssrn.4894131"
+  class="!pt-0 !pb-0 !gap-y-0"
+>
+  <div class="pb-2">
+    <p class="font-bold">
+      Diffusionst: A diffusion model-based framework for enhancing spatial transcriptomics data quality and identifying spatial domains
+    </p>
+    <p>
+      Cui, Y.*, <strong>Cui, Y.*</strong>, Wang, R., Nakai, K., Ye, X., Sakurai, T., &amp; Wei, L.
+    </p>
+    <p>
+      <em>Preprint, July 2024.</em>
+    </p>
+  </div>
+</Card>
+
+<Card
+  as="a"
+  href="https://doi.org/10.1101/2024.03.04.583438"
+  class="!pt-0 !pb-0 !gap-y-0"
+>
+  <div class="pb-2">
+    <p class="font-bold">
+      DenoiseST: A dual-channel unsupervised deep learning-based denoising method to identify spatial domains and functionally variable genes in spatial transcriptomics
+    </p>
+    <p>
+      Cui, Y., Wang, R., Zeng, X., <strong>Cui, Y.</strong>, Zhu, Z., Nakai, K., … &amp; Wei, L.
+    </p>
+    <p>
+      <em>Preprint, March 2024.</em>
+    </p>
+  </div>
+</Card>
+
+<Card
+  as="a"
+  href="https://doi.org/10.1093/bib/bbae152"
+  class="!pt-0 !pb-0 !gap-y-0"
+>
+  <div class="pb-2">
+    <p class="font-bold">
+      HyGAnno: Hybrid graph neural network–based cell type annotation for single-cell ATAC sequencing data
+    </p>
+    <p>
+      Zhang, W., <strong>Cui, Y.</strong>, Liu, B., Loza, M., Park, S. J., &amp; Nakai, K.
+    </p>
+    <p>
+      <em>Briefings in Bioinformatics, 25(3), bbae152 (2024).</em>
+    </p>
+  </div>
+</Card>
+
+</Section>
+      }
+      
+      {<Section title="Posters">
+        <div class="text-base space-y-6">
+          <div>
+            <papertitle_just class="block font-semibold">
+              Computational Transcriptomic Analysis Reveals MHC-II Expressing Tumor Cells Influence Immune Surveillance and Prognostic Outcomes in the Tumor Microenvironment of Triple-Negative Breast Cancer
+            </papertitle_just>
+            <p class="mt-1">
+              <strong>Cui, Y.</strong>, Zhang, W., Zeng, X., Yang, Y., Park, S. J., &amp; Nakai, K.
+            </p>
+            <p class="mt-1 italic">
+              Presented at: 1st Asia &amp; Pacific Bioinformatics Joint Conference (APBJC2024),
+              <span class="whitespace-nowrap">Oct&nbsp;22-25,&nbsp;2024</span>, Okinawa, Japan.
+            </p>
+          </div>
+      
+          <div>
+            <papertitle_just class="block font-semibold">
+              Computational Transcriptomic Analysis Identifies a Novel Immune-dysregulated TNBC Subtype Regulated by STAT3
+            </papertitle_just>
+            <p class="mt-1">
+              <strong>Cui, Y.</strong>, Nakai, K.
+            </p>
+            <p class="mt-1 italic">
+              Presented at: The 46th Annual Meeting of the Molecular Biology Society of Japan (MBSJ2023), <span class="whitespace-nowrap">Dec 6-8, 2023</span>, Kobe, Japan.
+            </p>
+          </div>
+      
+          <div>
+            <papertitle_just class="block font-semibold">
+              Unveiling a Distinct Immunological Characteristic and a Prognostic Prediction Model in Breast Cancer through Integrated Transcriptomic Analysis
+            </papertitle_just>
+            <p class="mt-1">
+              <strong>Cui, Y.</strong>, Nakai, K.
+            </p>
+            <p class="mt-1 italic">
+              Presented at: The 21st Awaji International Forum on Infection and Immunity, 
+              <span class="whitespace-nowrap">Sep&nbsp;3-6,&nbsp;2023</span>, Karuizawa, Japan.
+            </p>
+          </div>
+        </div>
+      </Section>
+      }
       {
         /* <Section title='Experience'>
       <Card
@@ -118,27 +331,87 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       />
     </Section> */
       }
-      <Section title='Education'>
-        <Card
-          as='a'
-          heading='Lorem ipsum'
-          subheading='Lorem ipsum dolor sit amet, vidit suscipit at mei.'
-          date='August 2021 - July 2025'
-          href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-        >
-          {
-            /* <ul class='ms-4 list-disc text-muted-foreground'>
-          <li>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis recusandae, ut
-            molestiae laboriosam pariatur!
-          </li>
-          <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!</li>
-        </ul> */
-          }
-        </Card>
-      </Section>
+      <Section title="Education">
+        <div class="grid gap-6">
+          {/* University of Tokyo */}
+          <Card
+            as="a"
+            href="https://fais.hgc.jp/"
+            class="relative overflow-hidden rounded-2xl bg-gray-100 text-gray-900"
+          >
+                      {/* 水印校徽 */}
+                      <Image
+                src={UTLogo}
+                alt="UT logo"
+                class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-1/2 h-auto object-contain opacity-20"
+                loading="eager"
+              />
 
-      <Section title='Website List'>
+              <div class="relative pb-2">
+                <h3 class="text-2xl font-bold text-black">University of Tokyo</h3>
+                <p class="mt-2 mb-1 block font-semibold text-black">Ph.D. in Bioinformatics</p>
+                <p class="">Department of Computational Biology and Medical Sciences</p>
+                <p class="">Laboratory of Functional Analysis in Silico</p>
+                <p class="mt-2 text-sm text-black" >April 2022 – March 2025</p>
+              </div>
+            </Card>
+          </div>
+
+          <div class="grid gap-6">
+            {/* Tokyo Medical and Dental University */}
+            <Card
+              as="a"
+              href="https://www.tmd.ac.jp/imm/english/"
+              class="relative overflow-hidden rounded-2xl bg-gray-100 text-gray-900"
+            >
+                        {/* 水印校徽 */}
+                        <Image
+                  src={TMDULogo}
+                  alt="TMDU logo"
+                  class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-1/2 h-auto object-contain opacity-20"
+                  loading="eager"
+                />
+  
+                <div class="relative pb-2">
+                  <h3 class="text-2xl font-bold text-black">Tokyo Medical and Dental University</h3>
+                  <span class="block text-sm font-normal text-gray-500">
+                    (now Institute of Science Tokyo)</span>
+                  <p class="mt-2 mb-1 block font-semibold text-black">Master in Immunology</p>
+                  <p class="">Graduate School of Medical and Dental Sciences</p>
+                  <p class="">Department of Immunology</p>
+                  <p class="mt-2 text-sm text-black" >April 2020 – March 2022</p>
+                </div>
+              </Card>
+            </div>
+
+            <div class="grid gap-6">
+              {/* East China University of Science and Technology */}
+              <Card
+                as="a"
+                href="https://www.ecust.edu.cn/en/"
+                class="relative overflow-hidden rounded-2xl bg-gray-100 text-gray-900"
+              >
+                          {/* 水印校徽 */}
+                          <Image
+                    src={ECUSTLogo}
+                    alt="ECUST logo"
+                    class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-1/2 h-auto object-contain opacity-20"
+                    loading="eager"
+                  />
+    
+                  <div class="relative pb-2">
+                    <h3 class="text-2xl font-bold">East China University of Science and Technology</h3>
+                    <p class="mt-2 mb-1 block font-semibold text-black">Bachlor in Biotechnology</p>
+                    <p class="text-black">School of Bioengineering</p>
+                    <p class="text-black">Department of Biotechnology</p>
+                    <p class="mt-2 text-sm text-black" >September 2013 – June 2017</p>
+                  </div>
+                </Card>
+              </div>
+          </Section>
+
+
+      <!-- <Section title='Website List'>
         <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
           <ProjectCard
             href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
@@ -165,9 +438,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
             imagePath='/src/assets/projects/wen-qiao-g_w8I64FiO0-unsplash.jpg'
           />
         </div>
-      </Section>
+      </Section> -->
 
-      <Section title='Certifications'>
+      <!--  <Section title='Certifications'>
         <Card
           as='a'
           heading='Lorem ipsum'
@@ -175,7 +448,24 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
           date='July 2024'
           href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
         />
+      </Section>-->
+      
+      <Section title="Awards">
+        <p class="mb-0 leading-tight">
+          <a
+            href="https://www.cis-trans.jp/spring_gx/index-e.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:underline font-semibold"
+          >
+            SPRING&nbsp;GX&nbsp;Fellowship&nbsp;(JST)
+          </a>
+          <span class="ml-2 text-sm text-muted-foreground">May&nbsp;2024&nbsp;–&nbsp;Mar&nbsp;2025</span>
+        </p>
       </Section>
+      
+      
+      
 
       <Section title='Skills'>
         <SkillLayout title='Languages' skills={languages} />
@@ -183,6 +473,83 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         <SkillLayout title='Backend' skills={backend} />
       </Section>
     </div>
-    <Quote class='mt-12' />
+    <!-- <Quote class='mt-12' /> -->
+
+<!-- Busuanzi 脚本（只加载纯计数，不含评论） -->
+<div
+  class="mx-auto mt-10 flex items-center gap-x-2 rounded-full border
+         px-6 py-2 text-sm text-foreground bg-white/70 dark:bg-neutral-800/60
+         shadow"
+>
+  <!-- Busuanzi 脚本 -->
+  <script
+    async
+    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+  ></script>
+
+  <!-- 眼睛图标 -->
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-5 w-5 text-primary align-middle"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7" />
+    <circle cx="12" cy="12" r="3" />
+  </svg>
+
+  <!-- Visitor + 数字 -->
+  <span
+    id="busuanzi_container_page_pv"
+    class="flex items-center gap-x-1"
+  >
+    <span class="font-normal">Views</span>
+    <span
+      id="busuanzi_value_page_pv"
+      class="font-semibold"
+    >0</span>
+  </span>
+</div>
+
+
+
+     <!-- clustermap 组件 -->
+    <section class="mt-2 flex justify-center">
+      <!-- ① 容器：固定 400×210，圆角+阴影+溢出隐藏 -->
+      <div
+        class="w-[440px] h-[240px] rounded-xl shadow-lg overflow-hidden
+           flex items-center justify-center bg-white/80 dark:bg-neutral-800/60"
+      >
+        <!-- ② 原封不动的 ClustrMaps 脚本 -->
+        <script
+          type="text/javascript"
+          id="clustrmaps"
+          src="//cdn.clustrmaps.com/map_v2.js?cl=6bafea&w=400&t=n&d=gB5MK8VPfGZB-Ol1UKim258Aveo7uzWQzGAyBfnOXr8&co=ffffff&ct=000000&cmo=7099bc&cmn=1b69b7"        ></script>
+        
+      </div>
+    </section>
+    
+    <style>
+      /* ③ 给脚本插入的 <canvas> 做圆角、100% 填充容器 */
+      #clustrmaps-map canvas,
+      #clustrmaps-widget canvas {
+        width: 400px !important;
+        height: 210px !important;
+        border-radius: 0.75rem;      /* ≈ rounded-xl */
+        display: block;              /* 去掉底部空隙 */
+      }
+    </style>
+
+
+
+<script defer src="https://cloud.umami.is/script.js" data-website-id="5908ab36-0e00-4a65-bd16-372bc2837b3f"></script>
+
+
+
+
   </main>
 </PageLayout>
