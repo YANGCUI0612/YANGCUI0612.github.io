@@ -27,7 +27,7 @@ importers:
         specifier: ^3.5.1
         version: 3.5.6(typescript@5.8.3)
       astro:
-        specifier: ^5.1.9
+        specifier: ^5.7.5
         version: 5.7.5(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.3)(rollup@4.40.0)(terser@5.39.0)(typescript@5.8.3)(yaml@2.7.1)
       astro-pure:
         specifier: 1.2.5
