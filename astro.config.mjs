@@ -31,7 +31,7 @@ import config from './src/site.config.ts'
 export default defineConfig({
   // Top-Level Options
   site: 'https://yangcui0612.github.io',
-  //base: '/astro-theme-pure',
+  base: '/astro-theme-pure',
 
 
 
