@@ -51,6 +51,9 @@ importers:
         specifier: ^65.4.3
         version: 65.5.0(postcss@8.5.3)(vite@6.3.3(@types/node@22.13.14)(jiti@2.4.2)(lightningcss@1.29.3)(terser@5.39.0)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3))
     devDependencies:
+      '@astrojs/markdown-remark':
+        specifier: ^6.3.1
+        version: 6.3.1
       '@eslint/js':
         specifier: ^9.19.0
         version: 9.25.1
