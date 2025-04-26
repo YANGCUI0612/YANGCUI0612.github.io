@@ -9,7 +9,7 @@ import PageLayout from '@/layouts/BaseLayout.astro'
 import ProjectCard from '@/components/home/ProjectCard.astro'
 import Section from '@/components/home/Section.astro'
 import SkillLayout from '@/components/home/SkillLayout.astro'
-import avatar from '@/assets/icon.png'
+import avatar from '@/assets/icon2.png'
 import config from '@/site-config'
 import TMDULogo   from '@/assets/TMDU.png'
 import ECUSTLogo from '@/assets/ECUST.png'
@@ -147,6 +147,89 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         <Button title='More about me' class='w-fit self-end' href='/about' style='ahead' />
         -->
       </Section>
+
+      <Section title="Education">
+        <div class="grid gap-6">
+          {/* University of Tokyo */}
+          <Card
+            as="a"
+            href="https://fais.hgc.jp/"
+            class="relative overflow-hidden rounded-2xl bg-gray-100 text-gray-900"
+          >
+                      {/* 水印校徽 */}
+                      <Image
+                src={UTLogo}
+                alt="UT logo"
+                class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-1/2 h-auto object-contain opacity-20"
+                loading="eager"
+              />
+
+              <div class="relative pb-2">
+                <h3 class="text-2xl font-bold text-black">University of Tokyo</h3>
+                <p class="mt-2 mb-1 block font-semibold text-black">Ph.D. in Bioinformatics</p>
+                <p class="">Department of Computational Biology and Medical Sciences</p>
+                <p class="">Laboratory of Functional Analysis in Silico</p>
+                <p class="mt-2 text-sm text-black" >April 2022 – March 2025</p>
+              </div>
+            </Card>
+          </div>
+
+          <div class="grid gap-6">
+            {/* Tokyo Medical and Dental University */}
+            <Card
+              as="a"
+              href="https://www.tmd.ac.jp/imm/english/"
+              class="relative overflow-hidden rounded-2xl bg-gray-100 text-gray-900"
+            >
+                        {/* 水印校徽 */}
+                        <Image
+                  src={TMDULogo}
+                  alt="TMDU logo"
+                  class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-1/2 h-auto object-contain opacity-20"
+                  loading="eager"
+                />
+  
+                <div class="relative pb-2">
+                  <h3 class="text-2xl font-bold text-black">Tokyo Medical and Dental University</h3>
+                  <span class="block text-sm font-normal text-gray-500">
+                    (now Institute of Science Tokyo)</span>
+                  <p class="mt-2 mb-1 block font-semibold text-black">Master in Immunology</p>
+                  <p class="">Graduate School of Medical and Dental Sciences</p>
+                  <p class="">Department of Immunology</p>
+                  <p class="mt-2 text-sm text-black" >April 2020 – March 2022</p>
+                </div>
+              </Card>
+            </div>
+
+            <div class="grid gap-6">
+              {/* East China University of Science and Technology */}
+              <Card
+                as="a"
+                href="https://www.ecust.edu.cn/en/"
+                class="relative overflow-hidden rounded-2xl bg-gray-100 text-gray-900"
+              >
+                          {/* 水印校徽 */}
+                          <Image
+                    src={ECUSTLogo}
+                    alt="ECUST logo"
+                    class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-1/2 h-auto object-contain opacity-20"
+                    loading="eager"
+                  />
+    
+                  <div class="relative pb-2">
+                    <h3 class="text-2xl font-bold">East China University of Science and Technology</h3>
+                    <p class="mt-2 mb-1 block font-semibold text-black">Bachlor in Biotechnology</p>
+                    <p class="text-black">School of Bioengineering</p>
+                    <p class="text-black">Department of Biotechnology</p>
+                    <p class="mt-2 text-sm text-black" >September 2013 – June 2017</p>
+                  </div>
+                </Card>
+              </div>
+          </Section>
+
+
+
+
       {
         <Section title="Publications">
   <Card
@@ -331,85 +414,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       />
     </Section> */
       }
-      <Section title="Education">
-        <div class="grid gap-6">
-          {/* University of Tokyo */}
-          <Card
-            as="a"
-            href="https://fais.hgc.jp/"
-            class="relative overflow-hidden rounded-2xl bg-gray-100 text-gray-900"
-          >
-                      {/* 水印校徽 */}
-                      <Image
-                src={UTLogo}
-                alt="UT logo"
-                class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-1/2 h-auto object-contain opacity-20"
-                loading="eager"
-              />
-
-              <div class="relative pb-2">
-                <h3 class="text-2xl font-bold text-black">University of Tokyo</h3>
-                <p class="mt-2 mb-1 block font-semibold text-black">Ph.D. in Bioinformatics</p>
-                <p class="">Department of Computational Biology and Medical Sciences</p>
-                <p class="">Laboratory of Functional Analysis in Silico</p>
-                <p class="mt-2 text-sm text-black" >April 2022 – March 2025</p>
-              </div>
-            </Card>
-          </div>
-
-          <div class="grid gap-6">
-            {/* Tokyo Medical and Dental University */}
-            <Card
-              as="a"
-              href="https://www.tmd.ac.jp/imm/english/"
-              class="relative overflow-hidden rounded-2xl bg-gray-100 text-gray-900"
-            >
-                        {/* 水印校徽 */}
-                        <Image
-                  src={TMDULogo}
-                  alt="TMDU logo"
-                  class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-1/2 h-auto object-contain opacity-20"
-                  loading="eager"
-                />
-  
-                <div class="relative pb-2">
-                  <h3 class="text-2xl font-bold text-black">Tokyo Medical and Dental University</h3>
-                  <span class="block text-sm font-normal text-gray-500">
-                    (now Institute of Science Tokyo)</span>
-                  <p class="mt-2 mb-1 block font-semibold text-black">Master in Immunology</p>
-                  <p class="">Graduate School of Medical and Dental Sciences</p>
-                  <p class="">Department of Immunology</p>
-                  <p class="mt-2 text-sm text-black" >April 2020 – March 2022</p>
-                </div>
-              </Card>
-            </div>
-
-            <div class="grid gap-6">
-              {/* East China University of Science and Technology */}
-              <Card
-                as="a"
-                href="https://www.ecust.edu.cn/en/"
-                class="relative overflow-hidden rounded-2xl bg-gray-100 text-gray-900"
-              >
-                          {/* 水印校徽 */}
-                          <Image
-                    src={ECUSTLogo}
-                    alt="ECUST logo"
-                    class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-1/2 h-auto object-contain opacity-20"
-                    loading="eager"
-                  />
-    
-                  <div class="relative pb-2">
-                    <h3 class="text-2xl font-bold">East China University of Science and Technology</h3>
-                    <p class="mt-2 mb-1 block font-semibold text-black">Bachlor in Biotechnology</p>
-                    <p class="text-black">School of Bioengineering</p>
-                    <p class="text-black">Department of Biotechnology</p>
-                    <p class="mt-2 text-sm text-black" >September 2013 – June 2017</p>
-                  </div>
-                </Card>
-              </div>
-          </Section>
-
+      
 
       <!-- <Section title='Website List'>
         <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
