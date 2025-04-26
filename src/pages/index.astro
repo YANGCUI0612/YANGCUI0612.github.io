@@ -464,14 +464,25 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         </p>
       </Section>
       
-      
+      <Section title="Language">
+        <div class="flex flex-wrap justify-start gap-2">
+          {['Chinese','Japanese','English'].map(lang => (
+            <span
+              class="px-3 py-1 rounded-md border text-sm text-foreground bg-white/70
+                     dark:bg-neutral-800/60"
+            >
+              {lang}
+            </span>
+          ))}
+        </div>
+      </Section>
       
 
-      <Section title='Skills'>
+    <!-- <Section title='Skills'>
         <SkillLayout title='Languages' skills={languages} />
         <SkillLayout title='Frontend' skills={frontend} />
         <SkillLayout title='Backend' skills={backend} />
-      </Section>
+      </Section> -->
     </div>
     <!-- <Quote class='mt-12' /> -->
 
