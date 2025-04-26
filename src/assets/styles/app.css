@@ -73,3 +73,28 @@ a {
     color: hsl(var(--primary) / var(--un-text-opacity, 1));
   }
 }
+
+/* 整个下拉菜单内容都隐藏 */
+header-component #headerExpandConetent {
+  display: none !important;
+}
+
+/* 隐藏搜索图标（href="/search"）*/
+header-component a[href="/search"] {
+  display: none !important;
+}
+
+/* 隐藏手机端的汉堡菜单按钮 */
+header-component #toggleMenu {
+  display: none !important;
+}
+
+/* —— 让整个导航条“厚”一点 —— */
+header-component {
+  /* 上下各加 16px 的 padding —— 根据需要再调大或调小 */
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+
+  /* （可选）如果你还想要一条更粗的底边线： */
+  /* border-bottom: 2px solid hsl(var(--border) / var(--un-border-opacity)) !important; */
+}
