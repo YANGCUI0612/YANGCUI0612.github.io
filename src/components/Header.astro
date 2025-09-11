@@ -1,6 +1,6 @@
 ---
 export const hydrate = 'client:load'
-import config from 'virtual:config'
+import config from '@/site-config'
 
 import { Icon } from 'astro-pure/user'
 ---
@@ -16,18 +16,27 @@ import { Icon } from 'astro-pure/user'
     class='z-30 text-xl font-semibold group-[.not-top]:ms-2 sm:group-[.not-top]:ms-3'
     style='transition:margin-inline 0.3s'
     href='/'
-    aria-label='Brand'>{config.title}</a
+    aria-label='Brand'>Home</a
   >
 
   <div class='flex items-center gap-x-2'>
     {/* Menu links */}
     <div
-      id='headerExpandConetent'
-      class='end-0 start-0 top-12 grid border border-transparent group-[.not-top]:rounded-xl group-[.expanded]:opacity-100 dark:group-[.expanded.not-top]:bg-muted max-sm:absolute max-sm:opacity-0 max-sm:group-[.not-top]:border-border max-sm:group-[.expanded.not-top]:bg-background max-sm:group-[.not-top]:px-4 max-sm:group-[.not-top]:py-2 sm:grid-rows-1'
+      id='headerExpandContent'
+      class='end-0 start-0 top-12 grid border border-transparent group-[.not-top]:rounded-xl dark:group-[.expanded.not-top]:bg-muted max-sm:absolute max-sm:opacity-0 max-sm:group-[.not-top]:border-border max-sm:group-[.expanded.not-top]:bg-background max-sm:group-[.not-top]:px-4 max-sm:group-[.not-top]:py-2 sm:grid-rows-1 sm:opacity-100'
     >
       <div class='flex flex-col items-center justify-center overflow-hidden sm:flex-row'>
         {
-          config.header.menu.map((item) => (
+          (config?.header?.menu?.length
+            ? config.header.menu
+            : [
+                { title: 'Blog', link: '/blog' },
+                { title: 'Docs', link: '/docs' },
+                { title: 'Projects', link: '/projects' },
+                { title: 'Links', link: '/links' },
+                { title: 'About', link: '/about' }
+              ]
+          ).map((item) => (
             <a
               href={item.link}
               class='w-full flex-none grow py-2 text-right font-medium transition-none hover:text-primary sm:w-fit sm:px-3'
@@ -144,7 +153,7 @@ import { Icon } from 'astro-pure/user'
 
   /* header menu */
   @media (max-width: 640px) {
-    #headerExpandConetent {
+    #headerExpandContent {
       grid-template-rows: 0fr;
       transition:
         opacity 0.3s,
@@ -152,10 +161,10 @@ import { Icon } from 'astro-pure/user'
         border-color 0.15s,
         grid-template-rows 0.3s;
     }
-    .expanded #headerExpandConetent {
+    .expanded #headerExpandContent {
       grid-template-rows: 1fr;
     }
-    .expanded.not-top #headerExpandConetent {
+    .expanded.not-top #headerExpandContent {
       box-shadow:
         rgb(255, 255, 255) 0px 0px 0px 0px,
         rgba(24, 24, 27, 0.08) 0px 0px 0px 1px,
@@ -164,7 +173,7 @@ import { Icon } from 'astro-pure/user'
     }
 
     /* header component after */
-    header-component #headerExpandConetent::after {
+    header-component #headerExpandContent::after {
       box-sizing: content-box;
       content: '';
       position: absolute;
@@ -177,7 +186,7 @@ import { Icon } from 'astro-pure/user'
       opacity: 0;
       border-bottom: 1px solid transparent;
     }
-    header-component:not(.not-top) #headerExpandConetent::after {
+    header-component:not(.not-top) #headerExpandContent::after {
       visibility: visible;
       bottom: -1rem;
       opacity: 1;

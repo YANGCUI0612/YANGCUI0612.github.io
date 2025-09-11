@@ -1,6 +1,6 @@
 ---
 
-import { Footer, Header, ThemeProvider } from 'astro-pure/components/basic'
+import { Footer, ThemeProvider } from 'astro-pure/components/basic'
 import Footercui from '@/components/Footer.astro'
 import Headercui from '@/components/Header.astro'
 import ThemeProvidercui from '@/components/ThemeProvider.astro'
@@ -40,7 +40,7 @@ const {
       )
     }
     <div class='w-full max-w-[70rem] px-4 sm:px-7 lg:px-10'>
-      <Header />
+      <Headercui />
       <slot />
       <Footercui />
     </div>

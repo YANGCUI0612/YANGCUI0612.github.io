@@ -117,10 +117,19 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
   </svg>
 </Label>
 
+<Label
+  title="Resume"
+  as="a"
+  href="/Resume_YangCUI.pdf"
+  download="Resume_YangCUI.pdf"
+>
+  <span slot="icon" class="material-symbols-outlined align-middle text-[20px] leading-none">article_person</span>
+</Label>
+
         </div>
       </div>
 
-     <!--  {/* Get template */}
+     <!-- Get template
       <a
         href='https://github.com/cworld1/astro-theme-pure'
         target='_blank'
@@ -136,306 +145,48 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
       </a> -->
     </section>
 
-    <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
-      <Section title='About'>
-        <!-- <p class='text-muted-foreground'>Developer / Designer</p> -->
-        <p class='text-muted-foreground text-justify'>
-          Ph.D. in Bioinformatics from the University of Tokyo, supervised by Professor Kenta Nakai.
-          Research focuses on cancer biology, single-cell and spatial multi-omics. 
-          Interests include integrative analysis of cancer multi-omics data and the development of computational methods for studying tumor heterogeneity and microenvironmental dynamics.
+    <!-- Centered About block above main content -->
+    <section id='about' class='animate mb-6 w-full'>
+      <div class='mx-auto md:w-4/5 lg:w-5/6 flex flex-col items-center'>
+        <h2 class='text-xl font-semibold mb-3 w-full max-w-3xl mx-auto'>About</h2>
+        <p class='text-muted-foreground max-w-3xl mx-auto' style='text-align: justify; text-justify: inter-word;'>
+          I obtained my Ph.D. in Bioinformatics from the University of Tokyo, Department of Computational Biology and Medical Sciences, under the supervision of Professor Kenta Nakai. My research interests lie in cancer biology and computational biology, with a particular focus on the tumor microenvironment and spatial omics. During my Ph.D., I focused on dissecting the tumor microenvironment of triple-negative breast cancer (TNBC) through integrative multi-omics analysis. I am also actively involved in the development of computational tools for spatial transcriptomics analysis. My current work centers on building a computational framework to identify precancerous regions from spatial omics data.
         </p>
-        <!--
-        <Button title='More about me' class='w-fit self-end' href='/about' style='ahead' />
-        -->
-      </Section>
+      </div>
+    </section>
 
-      <Section title="Education">
-        <div class="grid gap-6">
-          {/* University of Tokyo */}
-          <Card
-            as="a"
-            href="https://fais.hgc.jp/"
-            class="relative overflow-hidden rounded-2xl bg-gray-100 text-gray-900"
-          >
-                      {/* 水印校徽 */}
-                      <Image
-                src={UTLogo}
-                alt="UT logo"
-                class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-1/2 h-auto object-contain opacity-20"
-                loading="eager"
-              />
-
-              <div class="relative pb-2">
-                <h3 class="text-2xl font-bold text-black">University of Tokyo</h3>
-                <p class="mt-2 mb-1 block font-semibold text-black">Ph.D. in Bioinformatics</p>
-                <p class="">Department of Computational Biology and Medical Sciences</p>
-                <p class="">Laboratory of Functional Analysis in Silico</p>
-                <p class="mt-2 text-sm text-black" >April 2022 – March 2025</p>
-              </div>
-            </Card>
-          </div>
-
-          <div class="grid gap-6">
-            {/* Tokyo Medical and Dental University */}
-            <Card
-              as="a"
-              href="https://www.tmd.ac.jp/imm/english/"
-              class="relative overflow-hidden rounded-2xl bg-gray-100 text-gray-900"
-            >
-                        {/* 水印校徽 */}
-                        <Image
-                  src={TMDULogo}
-                  alt="TMDU logo"
-                  class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-1/2 h-auto object-contain opacity-20"
-                  loading="eager"
-                />
-  
-                <div class="relative pb-2">
-                  <h3 class="text-2xl font-bold text-black">Tokyo Medical and Dental University</h3>
-                  <span class="block text-sm font-normal text-gray-500">
-                    (now Institute of Science Tokyo)</span>
-                  <p class="mt-2 mb-1 block font-semibold text-black">Master in Immunology</p>
-                  <p class="">Graduate School of Medical and Dental Sciences</p>
-                  <p class="">Department of Immunology</p>
-                  <p class="mt-2 text-sm text-black" >April 2020 – March 2022</p>
-                </div>
-              </Card>
-            </div>
-
-            <div class="grid gap-6">
-              {/* East China University of Science and Technology */}
-              <Card
-                as="a"
-                href="https://www.ecust.edu.cn/en/"
-                class="relative overflow-hidden rounded-2xl bg-gray-100 text-gray-900"
-              >
-                          {/* 水印校徽 */}
-                          <Image
-                    src={ECUSTLogo}
-                    alt="ECUST logo"
-                    class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-1/2 h-auto object-contain opacity-20"
-                    loading="eager"
-                  />
-    
-                  <div class="relative pb-2">
-                    <h3 class="text-2xl font-bold">East China University of Science and Technology</h3>
-                    <p class="mt-2 mb-1 block font-semibold text-black">Bachlor in Biotechnology</p>
-                    <p class="text-black">School of Bioengineering</p>
-                    <p class="text-black">Department of Biotechnology</p>
-                    <p class="mt-2 text-sm text-black" >September 2013 – June 2017</p>
-                  </div>
-                </Card>
-              </div>
-          </Section>
-
-
-
-
-      {
-        <Section title="Publications">
-
-<Card
-    as="a"
-    href="https://academic.oup.com/bib/article/26/4/bbaf390/8222511"
-    class="!pt-0 !pb-0 !gap-y-0"   // 彻底去掉 top-padding、bottom-padding、gap
-  >
-    <div class="pb-2">
-    <p class="font-bold">
-      DiffusionST: a deep generative diffusion model-based framework for enhancing spatial transcriptomics data quality and identifying spatial domains
-  </p>
-    <p>
-      Cui, Y.*, <strong>Cui, Y.*</strong>, Wang, R., Zhu, Z., Zeng, X., Nakai, K., Cui, F., Zhang, Z., Shi, H., Chen, Y., Ye, X., Sakurai, T., & Wei, L. (2025).
-    </p>
-    <p>
-      <em>Briefings in bioinformatics, 26(4), bbaf390.</em>
-    </p>
-  </div>
-  </Card>
-
-<Card
-    as="a"
-    href="https://www.sciencedirect.com/science/article/abs/pii/S1046202325000659?via%3Dihub"
-    class="!pt-0 !pb-0 !gap-y-0"   // 彻底去掉 top-padding、bottom-padding、gap
-  >
-    <div class="pb-2">
-    <p class="font-bold">
-      OmniClust: A versatile clustering toolkit for single-cell and spatial transcriptomics data
-  </p>
-    <p>
-      Cui, Y.*, <strong>Cui, Y.*</strong>, Ding, Y., Nakai, K., Wei, L., Le, Y., Ye, X., & Sakurai, T. (2025).
-    </p>
-    <p>
-      <em>Methods, 238, 84–94.</em>
-    </p>
-  </div>
-  </Card>
-
-  <Card
-    as="a"
-    href="https://doi.org/10.1038/s41467-025-56276-0"
-    class="!pt-0 !pb-0 !gap-y-0"   // 彻底去掉 top-padding、bottom-padding、gap
-  >
-    <div class="pb-2">
-    <p class="font-bold">
-      STAIG: Spatial transcriptomics analysis via image-aided graph contrastive learning for domain exploration and alignment-free integration
-  </p>
-    <p>
-      Yang, Y., <strong>Cui, Y.</strong>, Zeng, X., Zhang, Y., Loza, M., Park, S. J., &amp; Nakai, K. (2025).
-    </p>
-    <p>
-      <em>Nature Communications, 16(1), 1067.</em>
-    </p>
-  </div>
-  </Card>
-  
-  <Card
-    as="a"
-    href="https://doi.org/10.1093/nargab/lqae149"
-    class="!pt-0 !pb-0 !gap-y-0"   // 彻底去掉 top-padding、bottom-padding、gap
-  >
-    <div class="pb-2">
-    <p class="font-bold">
-      Comparative single-cell transcriptomic analysis reveals putative differentiation drivers and potential origin of vertebrate retina
-  </p>
-    <p>
-      Zeng, X., Gyoja, F., <strong>Cui, Y.</strong>, Loza, M., Kusakabe, T. G., &amp; Nakai, K. (2024).
-    </p>
-    <p>
-      <em>NAR Genomics and Bioinformatics, 6(4), lqae149.</em>
-    </p>
-  </div>
-  </Card>
-  
-  <Card
-  as="a"
-  href="https://doi.org/10.3389/fimmu.2024.1497251"
-  class="!pt-0 !pb-0 !gap-y-0"
->
-  <div class="pb-2">
-    <p class="font-bold">
-      Computational analysis of the functional impact of MHC-II-expressing triple-negative breast cancer
-    </p>
-    <p>
-      <strong>Cui, Y.</strong>, Zhang, W., Zeng, X., Yang, Y., Park, S. J., &amp; Nakai, K. (2024).
-    </p>
-    <p>
-      <em>Frontiers in Immunology, 15, 1497251.</em>
-    </p>
-  </div>
-</Card>
-
-<Card
-  as="a"
-  href="https://doi.org/10.1101/2024.03.04.583438"
-  class="!pt-0 !pb-0 !gap-y-0"
->
-  <div class="pb-2">
-    <p class="font-bold">
-      DenoiseST: A dual-channel unsupervised deep learning-based denoising method to identify spatial domains and functionally variable genes in spatial transcriptomics
-    </p>
-    <p>
-      Cui, Y., Wang, R., Zeng, X., <strong>Cui, Y.</strong>, Zhu, Z., Nakai, K., … &amp; Wei, L. (2024).
-    </p>
-    <p>
-      <em>Preprint.</em>
-    </p>
-  </div>
-</Card>
-
-<Card
-  as="a"
-  href="https://doi.org/10.1093/bib/bbae152"
-  class="!pt-0 !pb-0 !gap-y-0"
->
-  <div class="pb-2">
-    <p class="font-bold">
-      HyGAnno: Hybrid graph neural network–based cell type annotation for single-cell ATAC sequencing data
-    </p>
-    <p>
-      Zhang, W., <strong>Cui, Y.</strong>, Liu, B., Loza, M., Park, S. J., &amp; Nakai, K. (2024).
-    </p>
-    <p>
-      <em>Briefings in Bioinformatics, 25(3), bbae152.</em>
-    </p>
-  </div>
-</Card>
-
-</Section>
-      }
-      
-      {<Section title="Posters">
-        <div class="text-base space-y-6">
-          <div>
-            <papertitle_just class="block font-semibold">
-              Computational Transcriptomic Analysis Reveals MHC-II Expressing Tumor Cells Influence Immune Surveillance and Prognostic Outcomes in the Tumor Microenvironment of Triple-Negative Breast Cancer
-            </papertitle_just>
-            <p class="mt-1">
-              <strong>Cui, Y.</strong>, Zhang, W., Zeng, X., Yang, Y., Park, S. J., &amp; Nakai, K.
+    <!-- Research Interests block under About -->
+    <section id='research-interests' class='animate mb-8 w-full'>
+      <div class='mx-auto md:w-4/5 lg:w-5/6'>
+        <h2 class='text-xl font-semibold mb-3 w-full max-w-3xl mx-auto'>Research Interests</h2>
+        <div class='w-full max-w-3xl mx-auto' style='text-align: justify; text-justify: inter-word;'>
+          <h3 class='text-base sm:text-lg font-semibold'>Tumor Microenvironment and Spatial Omics</h3>
+          <div class='space-y-3'>
+            <img
+              src="/images/Spatial.png"
+              alt="Tumor microenvironment and spatial omics overview"
+              class="float-left mr-4 mb-2 w-40 sm:w-56 h-auto rounded-xl border"
+              loading="lazy"
+            />
+            <p>
+              Our understanding of cancer has evolved beyond viewing it as a disease driven solely by malignant cells. Tumors operate within a complex tumor microenvironment (TME), consisting of immune cells, stromal cells and extracellular matrix components, which collectively influence tumor progression, metastasis, and immune evasion. Tumor cells can reshape the surrounding environment to promote their survival—for example, by inducing epithelial-mesenchymal transition (EMT), remodeling the extracellular matrix to enhance invasiveness and metastatic potential. They can also suppress key immune signals such as chemokines (e.g., CXCL9) and interleukins (e.g., IL-2), thereby inhibiting immune cell recruitment and activation. Even when immune cells are recruited, tumor cells can inhibit their function by expressing immune checkpoint molecules like PD-L1 and CTLA-4. The TME also contributes to the conversion of CD4⁺ T cells into regulatory T cells (Tregs), polarizes macrophages towards an M2-like phenotype, and drives CD8⁺ T cell exhaustion. Meanwhile, stromal cells such as fibroblasts within the TME can differentiate into cancer-associated fibroblasts (CAFs), which further support tumor growth and immune evasion.
             </p>
-            <p class="mt-1 italic">
-              Presented at: 1st Asia &amp; Pacific Bioinformatics Joint Conference (APBJC2024),
-              <span class="whitespace-nowrap">Oct&nbsp;22-25,&nbsp;2024</span>, Okinawa, Japan.
+            <p>
+              To fully understand the TME, it is essential to elucidate the molecular profile of cancer. Large-scale bulk profiling projects, such as The Cancer Genome Atlas (TCGA), have established the foundation for understanding molecular landscape of cancer. The emergence of single-cell omics has further advanced our understanding by revealing the cellular heterogeneity within tumors. Moreover, it has enabled the development of deconvolution methods (e.g., CIBERSORT) that retrospectively infer cell-type information from bulk datasets like TCGA, enhancing their biological interpretability. More recently, spatial omics has introduced a crucial missing dimension: spatial context. This allows us to investigate how tumor cells interact with their neighbors, how immune cells are spatially organized, and how niches within tumors drive differential responses to therapy.
             </p>
-          </div>
-      
-          <div>
-            <papertitle_just class="block font-semibold">
-              Computational Transcriptomic Analysis Identifies a Novel Immune-dysregulated TNBC Subtype Regulated by STAT3
-            </papertitle_just>
-            <p class="mt-1">
-              <strong>Cui, Y.</strong>, Nakai, K.
+            <p>
+              My current research focuses on leveraging spatial omics technologies-including transcriptomics, epigenomics, and proteomics—to dissect the TME at unprecedented resolution. I aim to understand how tumor cells evolve within the TME, how they influence and are influenced by surrounding cells, and how these interactions shape therapeutic outcomes. Understanding these spatial interactions is particularly important in the context of immunotherapy, where patient responses remain highly variable. Given that only ~15% of patients benefit from PD-L1 blockade therapy, unraveling the spatial features of the TME may hold the key to identifying predictive biomarkers and guiding next-generation treatment strategies.
             </p>
-            <p class="mt-1 italic">
-              Presented at: The 46th Annual Meeting of the Molecular Biology Society of Japan (MBSJ2023), <span class="whitespace-nowrap">Dec 6-8, 2023</span>, Kobe, Japan.
-            </p>
-          </div>
-      
-          <div>
-            <papertitle_just class="block font-semibold">
-              Unveiling a Distinct Immunological Characteristic and a Prognostic Prediction Model in Breast Cancer through Integrated Transcriptomic Analysis
-            </papertitle_just>
-            <p class="mt-1">
-              <strong>Cui, Y.</strong>, Nakai, K.
-            </p>
-            <p class="mt-1 italic">
-              Presented at: The 21st Awaji International Forum on Infection and Immunity, 
-              <span class="whitespace-nowrap">Sep&nbsp;3-6,&nbsp;2023</span>, Karuizawa, Japan.
-            </p>
+            <div class='clear-both'></div>
           </div>
         </div>
-      </Section>
-      }
-      {
-        /* <Section title='Experience'>
-      <Card
-        heading='Lorem Ipsum'
-        subheading='Sit amet consectetur'
-        date='Dec 2022 - Nov 2023'
-        imagePath='/src/assets/about-astro.png'
-        altText='Lorem, ipsum dolor sit'
-        imageClass='h-12 w-auto md:-start-16'
-      >
-        <ul class='ms-4 list-disc text-muted-foreground'>
-          <li>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore debitis recusandae, ut
-            molestiae laboriosam pariatur!
+      </div>
+    </section>
 
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, pariatur!</li>
-          </li>
-        </ul>
-      </Card>
-      <Card
-        heading='Lorem Ipsum'
-        subheading='Sit amet consectetur'
-        date='Dec 2022 - Nov 2023'
-        imagePath='/src/assets/about-astro.png'
-        altText='Lorem, ipsum dolor sit'
-        imageClass='h-12 w-auto md:-start-16'
-      />
-    </Section> */
-      }
+    <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
+
       
-
+      
       <!-- <Section title='Website List'>
         <div class='grid grid-cols-1 gap-3 sm:grid-cols-2'>
           <ProjectCard
@@ -475,32 +226,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
         />
       </Section>-->
       
-      <Section title="Awards">
-        <p class="mb-0 leading-tight">
-          <a
-            href="https://www.cis-trans.jp/spring_gx/index-e.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:underline font-semibold"
-          >
-            SPRING&nbsp;GX&nbsp;Fellowship&nbsp;(JST)
-          </a>
-          <span class="ml-2 text-sm text-muted-foreground">May&nbsp;2024&nbsp;–&nbsp;Mar&nbsp;2025</span>
-        </p>
-      </Section>
       
-      <Section title="Language">
-        <div class="flex flex-wrap justify-start gap-2">
-          {['Chinese','Japanese','English'].map(lang => (
-            <span
-              class="px-3 py-1 rounded-md border text-sm text-foreground bg-white/70
-                     dark:bg-neutral-800/60"
-            >
-              {lang}
-            </span>
-          ))}
-        </div>
-      </Section>
       
 
     <!-- <Section title='Skills'>

@@ -26,7 +26,7 @@
     "@playform/compress": "^0.1.7",
     "@unocss/reset": "^65.4.3",
     "@waline/client": "^3.5.1",
-    "astro": "^5.7.5",
+    "astro": "^5.13.7",
     "astro-pure": "1.2.5",
     "hast-util-select": "^6.0.4",
     "katex": "^0.16.21",

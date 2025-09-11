@@ -101,6 +101,12 @@ export default defineConfig({
     contentIntellisense: true
   },
   vite: {
+    optimizeDeps: {
+      exclude: ['astro-pure']
+    },
+    ssr: {
+      noExternal: ['astro-pure']
+    },
     plugins: [
       //   visualizer({
       //     emitFile: true,

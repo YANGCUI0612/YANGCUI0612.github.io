@@ -1,0 +1,346 @@
+---
+import PageLayout from '@/layouts/CommonPage.astro'
+import { Label } from 'astro-pure/user'
+
+interface PubItem {
+  title: string
+  authors: string
+  venue: string
+  year: number
+  doi?: string
+  url?: string
+  code?: string
+  abstract?: string
+  logo?: any
+}
+
+const headings = [
+  { depth: 2, slug: 'peer-reviewed', text: 'Peer-reviewed' },
+  { depth: 2, slug: 'preprints', text: 'Preprints' },
+  { depth: 2, slug: 'posters', text: 'Posters' }
+]
+
+// TODO: 按你的实际论文替换下方示例即可；也可以迁移到 content 集合
+const peerReviewed: PubItem[] = [
+  {
+    title:
+      'DiffusionST: a deep generative diffusion model-based framework for enhancing spatial transcriptomics data quality and identifying spatial domains',
+    authors:
+      'Cui, Y.*, <u>Cui, Y.*</u>, Wang, R., Zhu, Z., Zeng, X., Nakai, K., Cui, F., Zhang, Z., Shi, H., Chen, Y., Ye, X., Sakurai, T., & Wei, L.',
+    venue: 'Briefings in Bioinformatics',
+    year: 2025,
+    logo: '/images/journals/briefings-in-bioinformatics.gif',
+    url: 'https://academic.oup.com/bib/article/26/4/bbaf390/8222511',
+    abstract: `
+
+    Abstract
+Recent advancements in spatial transcriptomics (ST) technology have generated substantial volumes of spatial transcriptome data. However, the quality of this data is often compromised due to the limitations of current sequencing technologies. To address this issue, DiffusionST proposes a method for imputing ST data and clustering the imputed data. The method employs a graph convolutional network model combined with a newly designed loss function, denoising data using the zero-inflated negative binomial distribution, and data enhancement through a diffusion model to improve clustering accuracy. DiffusionST demonstrates superior clustering accuracy compared to eight of the most popular ST clustering algorithms. DiffusionST also excels in data imputation when compared to five single-cell RNA sequencing imputation algorithms. Additionally, DiffusionST’s robustness against noise is quantitatively validated by manually introducing random dropout noise into the dataset, where our model significantly enhances the quality of ST data. Moreover, DiffusionST is well-suited for high-resolution ST data and has been demonstrated, through survival analysis and cell–cell communication studies, to dissect spatial domains within breast cancer tissues. These findings provide strong evidence of DiffusionST’s efficacy in handling ST data especially with strong noise, making it a valuable tool in this field.
+    `
+  },
+  {
+    title:
+      'OmniClust: A versatile clustering toolkit for single-cell and spatial transcriptomics data',
+    authors:
+      'Cui, Y.*, <u>Cui, Y.*</u>, Ding, Y., Nakai, K., Wei, L., Le, Y., Ye, X., & Sakurai, T.',
+    venue: 'Methods',
+    year: 2025,
+    logo: '/images/journals/methods.jpg',
+    url: 'https://www.sciencedirect.com/science/article/abs/pii/S1046202325000659?via%3Dihub',
+    abstract: `
+    Abstract
+In recent years, RNA transcriptome sequencing technology has been continuously evolving, ranging from single-cell transcriptomics to spatial transcriptomics. Although these technologies are all based on RNA sequencing, each sequencing technology has its own unique characteristics, and there is an urgent need to develop an algorithmic toolkit that integrates both sequencing techniques. To address this, we have developed OmniClust, a toolkit based on single-cell RNA sequencing (scRNA-seq) and spatial transcriptomics data. OmniClust employs deep learning algorithms for feature learning and clustering of spatial transcriptomics data, while utilizing machine learning algorithms for clustering scRNA-seq data. OmniClust was tested on 12 spatial transcriptomics benchmark datasets, demonstrating high clustering accuracy across multiple clustering evaluation metrics. It was also evaluated on four scRNA-seq benchmark datasets, achieving high clustering accuracy based on various clustering evaluation metrics. Furthermore, we applied OmniClust to downstream analyses of spatial transcriptomics and single-cell RNA breast cancer data, showcasing its potential to uncover and interpret the biological significance of cancer transcriptome data. In summary, OmniClust is a clustering tool designed for both single-cell transcriptomics and spatial transcriptomics data, demonstrating outstanding performance.
+
+    `
+  },
+  {
+    title:
+      'STAIG: Spatial transcriptomics analysis via image-aided graph contrastive learning for domain exploration and alignment-free integration',
+    authors: 'Yang, Y., <u>Cui, Y.</u>, Zeng, X., Zhang, Y., Loza, M., Park, S. J., & Nakai, K.',
+    venue: 'Nature Communications',
+    year: 2025,
+    logo: '/images/journals/nature-communications.jpg',
+    url: 'https://www.nature.com/articles/s41467-025-56276-0',
+    abstract: `
+    Abstract
+Spatial transcriptomics is an essential application for investigating cellular structures and interactions and requires multimodal information to precisely study spatial domains. Here, we propose STAIG, a deep-learning model that integrates gene expression, spatial coordinates, and histological images using graph-contrastive learning coupled with high-performance feature extraction. STAIG can integrate tissue slices without prealignment and remove batch effects. Moreover, it is designed to accept data acquired from various platforms, with or without histological images. By performing extensive benchmarks, we demonstrate the capability of STAIG to recognize spatial regions with high precision and uncover new insights into tumor microenvironments, highlighting its promising potential in deciphering spatial biological intricates.
+    `
+  },
+  {
+    title:
+      'Comparative single-cell transcriptomic analysis reveals putative differentiation drivers and potential origin of vertebrate retina',
+    authors: 'Zeng, X., Gyoja, F., <u>Cui, Y.</u>, Loza, M., Kusakabe, T. G., & Nakai, K.',
+    venue: 'NAR Genomics and Bioinformatics',
+    year: 2024,
+    logo: '/images/journals/nar-genomics-and-bioinformatics.png',
+    url: 'https://doi.org/10.1093/nargab/lqae149',
+    abstract: `
+    Abstract
+Despite known single-cell expression profiles in vertebrate retinas, understanding of their developmental and evolutionary expression patterns among homologous cell classes remains limited. We examined and compared approximately 240 000 retinal cells from four species and found significant similarities among homologous cell classes, indicating inherent regulatory patterns. To understand these shared patterns, we constructed gene regulatory networks for each developmental stage for three of these species. We identified 690 regulons governed by 530 regulators across three species, along with 10 common cell class-specific regulators and 16 highly preserved regulons. RNA velocity analysis pinpointed conserved putative driver genes and regulators to retinal cell differentiation in both mouse and zebrafish. Investigation of the origins of retinal cells by examining conserved expression patterns between vertebrate retinal cells and invertebrate Ciona intestinalis photoreceptor-related cells implied functional similarities in light transduction mechanisms. Our findings offer insights into the evolutionarily conserved regulatory frameworks and differentiation drivers of vertebrate retinal cells.
+    `
+  },
+  {
+    title:
+      'Computational analysis of the functional impact of MHC-II-expressing triple-negative breast cancer',
+    authors: '<u>Cui, Y.</u>, Zhang, W., Zeng, X., Yang, Y., Park, S. J., & Nakai, K.',
+    venue: 'Frontiers in Immunology',
+    year: 2024,
+    logo: '/images/journals/frontiers-in-immunology.png',
+    url: 'https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2024.1497251/full',
+    abstract: `
+    Abstract
+    The tumor microenvironment (TME) plays a crucial role in tumor progression and immunoregulation. Major histocompatibility complex class II (MHC-II) is essential for immune surveillance within the TME. While MHC-II genes are typically expressed by professional antigen-presenting cells, they are also expressed in tumor cells, potentially facilitating antitumor immune responses. To understand the role of MHC-II-expressing tumor cells, we analyzed triple-negative breast cancer (TNBC), an aggressive subtype with poor prognosis and limited treatment options, using public bulk RNA-seq, single-cell RNA-seq, and spatial transcriptomics datasets. Our analysis revealed a distinct tumor subpopulation that upregulates MHC-II genes and actively interacts with immune cells. We implicated that this subpopulation is preferentially present in proximity to regions in immune infiltration of TNBC patient cohorts with a better prognosis, suggesting the functional importance of MHC-II-expressing tumor cells in modulating the immune landscape and influencing patient survival outcomes. Remarkably, we identified a prognostic signature comprising 40 significant genes in the MHC-II-expressing tumors in which machine leaning models with the signature successfully predicted patient survival outcomes and the degree of immune infiltration. This study advances our understanding of the immunological basis of cancer progression and suggests promising new directions for therapeutic strategies.
+    `
+  },
+  {
+    title:
+      'HyGAnno: hybrid graph neural network–based cell type annotation for single-cell ATAC sequencing data',
+    authors: 'Zhang, W., <u>Cui, Y.</u>, Liu, B., Loza, M., Park, S. J., & Nakai, K.',
+    venue: 'Briefings in Bioinformatics',
+    year: 2024,
+    logo: '/images/journals/briefings-in-bioinformatics.gif',
+    url: 'https://academic.oup.com/bib/article/25/3/bbae152/7641197?login=false',
+    abstract: `
+    Abstract
+Reliable cell type annotations are crucial for investigating cellular heterogeneity in single-cell omics data. Although various computational approaches have been proposed for single-cell RNA sequencing (scRNA-seq) annotation, high-quality cell labels are still lacking in single-cell sequencing assay for transposase-accessible chromatin (scATAC-seq) data, because of extreme sparsity and inconsistent chromatin accessibility between datasets. Here, we present a novel automated cell annotation method that transfers cell type information from a well-labeled scRNA-seq reference to an unlabeled scATAC-seq target, via a parallel graph neural network, in a semi-supervised manner. Unlike existing methods that utilize only gene expression or gene activity features, HyGAnno leverages genome-wide accessibility peak features to facilitate the training process. In addition, HyGAnno reconstructs a reference–target cell graph to detect cells with low prediction reliability, according to their specific graph connectivity patterns. HyGAnno was assessed across various datasets, showcasing its strengths in precise cell annotation, generating interpretable cell embeddings, robustness to noisy reference data and adaptability to tumor tissues.
+    `
+  }
+]
+
+const preprints: PubItem[] = [
+  // TEMPLATE: 复制以下块，填写字段后去掉注释即可
+  {
+    title: 'DenoiseST: A dual-channel unsupervised deep learning-based denoising method to identify spatial domains and functionally variable genes in spatial transcriptomics',
+    authors: 'Cui, Y., Wang, R., Zeng, X., <u>Cui, Y.</u>, Zhu, Z., Nakai, K., Ye, X., Sakurai, T. & Wei, L.',
+    venue: 'bioRxiv', // e.g. 'bioRxiv' / 'arXiv'
+    year: 2024,
+    logo: '/images/journals/biorxiv.png',
+    doi: '', // 可选，例如 '10.1101/xxxxxx'
+    url: 'https://www.biorxiv.org/content/10.1101/2024.03.04.583438v1', // 可选，若填写将用于标题后的 [Link]
+    code: '', // 可选，项目地址
+    abstract: `Abstract
+Spatial transcriptomics provides a unique opportunity for understanding cellular organization and function in a spatial context. However, spatial transcriptome exists the problem of dropout noise, exposing a major challenge for accurate downstream data analysis. Here, we proposed DenoiseST, a dual-channel unsupervised adaptive deep learning-based denoising method for data imputing, clustering, and identifying functionally variable genes in spatial transcriptomics. To leverage spatial information and gene expression profiles, we proposed a dual-channel joint learning strategy with graph convolutional networks to sufficiently explore both linear and nonlinear representation embeddings in an unsupervised manner, enhancing the discriminative information learning ability from the global perspectives of data distributions. In particular, DenoiseST enables the adaptively fitting of different gene distributions to the clustered domains and employs tissue-level spatial information to accurately identify functionally variable genes with different spatial resolutions, revealing their enrichment in corresponding gene pathways. Extensive validations on a total of 18 real spatial transcriptome datasets show that DenoiseST obtains excellent performance and results on brain tissue datasets indicate it outperforms the state-of-the-art methods when handling artificial dropout noise with a remarkable margin of ∼15%, demonstrating its effectiveness and robustness. Case study results demonstrate that when applied to identify biological structural regions on human breast cancer spatial transcriptomic datasets, DenoiseST successfully detected biologically significant immune-related structural regions, which are subsequently validated through Gene Ontology (GO), cell-cell communication, and survival analysis. In conclusion, we expect that DenoiseST is a novel and efficient method for spatial transcriptome analysis, offering unique insights into spatial organization and function.` // 可选，支持多行，可直接粘贴摘要
+  }
+  // {
+  //   title: '',
+  //   authors: '',
+  //   venue: '',
+  //   year: 2025,
+  //   doi: '',
+  //   url: '',
+  //   code: '',
+  //   abstract: ''
+  // }
+]
+
+// 将摘要首部的“Abstract”去掉，只保留正文
+function abstractBody(text?: string) {
+  if (!text) return ''
+  return text.trim().replace(/^Abstract\s*:?\s*/i, '').trim()
+}
+
+// 获取论文链接（优先 url，其次 doi）
+function paperHref(p: PubItem) {
+  if (p.url) return p.url
+  if (p.doi) return `https://doi.org/${p.doi}`
+  return ''
+}
+
+// 简易行内格式化：支持 **粗体**、__下划线__，并允许 <u>...</u>
+function formatInline(text?: string) {
+  if (!text) return ''
+  const escape = (s: string) =>
+    s
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;')
+
+  let out = escape(text)
+  // 允许 <u> 安全标签
+  out = out.replace(/&lt;u&gt;/g, '<u>').replace(/&lt;\/u&gt;/g, '</u>')
+  // **bold**
+  out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+  // __underline__
+  out = out.replace(/__([^_]+)__/g, '<u>$1</u>')
+  // 换行符 -> <br />
+  out = out.replace(/\n/g, '<br />')
+  return out
+}
+
+// 生成期刊缩写徽标
+function abbr(venue: string) {
+  const v = venue.toLowerCase()
+  if (v.includes('briefings') && v.includes('bio')) return 'BB'
+  if (v.startsWith('methods')) return 'Methods'
+  if (v.includes('nature') && v.includes('communications')) return 'NC'
+  if (v.includes('nar') || v.includes('genomics and bioinformatics')) return 'NAR'
+  if (v.includes('frontiers') && v.includes('immunology')) return 'FI'
+  return venue
+}
+---
+
+<PageLayout title='Publications' {headings}>
+  
+
+  <h2 id='peer-reviewed'>Peer-reviewed</h2>
+  {peerReviewed.length === 0 && (
+    <p class='text-sm text-muted-foreground'>暂时没有条目，可在此页面内补充数组数据。</p>
+  )}
+  <div class='grid gap-1'>
+    {
+      peerReviewed
+        .sort((a, b) => b.year - a.year)
+        .map((p) => (
+          <details class='group border-b border-border/60 py-2 last:border-b-0'>
+            <summary class='flex items-start gap-3 cursor-pointer list-none flex-wrap'>
+              <div class='flex items-center gap-3 min-w-0 flex-1'>
+                {
+                  p.logo ? (
+                    <img src={p.logo} alt={abbr(p.venue)} class='shrink-0 self-center w-16 h-auto object-contain rounded-md' />
+                  ) : (
+                    <span class='inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-foreground text-[10px] font-bold'>
+                      {abbr(p.venue)}
+                    </span>
+                  )
+                }
+                <div class='min-w-0 max-w-full md:max-w-[65ch]'>
+                  <p class='m-0 font-medium leading-snug break-words text-foreground text-justify' style='text-align: justify; text-justify: inter-word;'>
+                    {p.title}
+                    {paperHref(p) && (
+                      <a
+                        href={paperHref(p)}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        class='ms-2 text-muted-foreground hover:font-semibold'
+                        title='Open paper'
+                      >
+                        [Link]
+                      </a>
+                    )}
+                  </p>
+                  <p class='m-0 text-xs italic tracking-wide text-muted-foreground break-words mt-1'>{p.venue}</p>
+                  <p class='m-0 text-xs text-muted-foreground break-words mt-1 font-light' set:html={formatInline(p.authors)} />
+                </div>
+              </div>
+              <span class='ms-auto text-muted-foreground transition-transform duration-200 group-open:rotate-180 shrink-0 self-end'>⌄</span>
+            </summary>
+            <div class='mt-2 ps-11'>
+              {p.abstract && (
+                <div class='mt-2'>
+                  <div class='font-semibold'>Abstract</div>
+                  <p class='mt-1 leading-relaxed' style='text-align: justify; text-justify: inter-word;'>
+                    {abstractBody(p.abstract)}
+                  </p>
+                </div>
+              )}
+              <div class='mt-2 flex flex-wrap gap-2'>
+                {p.doi && <Label as='a' href={`https://doi.org/${p.doi}`} target='_blank' title='DOI' />}
+                {p.code && <Label as='a' href={p.code} target='_blank' title='Code' />}
+              </div>
+            </div>
+          </details>
+        ))
+    }
+  </div>
+
+  <h2 id='preprints' class='mt-6'>Preprints</h2>
+  {preprints.length === 0 && (
+    <p class='text-sm text-muted-foreground'>暂时没有条目，可在此页面内补充数组数据。</p>
+  )}
+  <div class='grid gap-1'>
+    {
+      preprints
+        .sort((a, b) => b.year - a.year)
+        .map((p) => (
+          <details class='group border-b border-border/60 py-2 last:border-b-0'>
+            <summary class='flex items-start gap-3 cursor-pointer list-none flex-wrap'>
+              <div class='flex items-center gap-3 min-w-0 flex-1'>
+                {
+                  p.logo ? (
+                    <img src={p.logo} alt={abbr(p.venue)} class='shrink-0 self-center w-16 h-auto object-contain rounded-md' />
+                  ) : (
+                    <span class='inline-flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-foreground text-[10px] font-bold'>
+                      {abbr(p.venue)}
+                    </span>
+                  )
+                }
+                <div class='min-w-0 max-w-full md:max-w-[65ch]'>
+                  <p class='m-0 font-medium leading-snug break-words text-foreground text-justify' style='text-align: justify; text-justify: inter-word;'>
+                    {p.title}
+                    {paperHref(p) && (
+                      <a
+                        href={paperHref(p)}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        class='ms-2 text-muted-foreground hover:font-semibold'
+                        title='Open paper'
+                      >
+                        [Link]
+                      </a>
+                    )}
+                  </p>
+                  <p class='m-0 text-xs italic tracking-wide text-muted-foreground break-words mt-1'>{p.venue}</p>
+                  <p class='m-0 text-xs text-muted-foreground break-words mt-1 font-light' set:html={formatInline(p.authors)} />
+                </div>
+              </div>
+              <span class='ms-auto text-muted-foreground transition-transform duration-200 group-open:rotate-180 shrink-0 self-end'>⌄</span>
+            </summary>
+            <div class='mt-2 ps-11'>
+              {p.abstract && (
+                <div class='mt-2'>
+                  <div class='font-semibold'>Abstract</div>
+                  <p class='mt-1 leading-relaxed' style='text-align: justify; text-justify: inter-word;'>
+                    {abstractBody(p.abstract)}
+                  </p>
+                </div>
+              )}
+              <div class='mt-2 flex flex-wrap gap-2'>
+                {p.doi && <Label as='a' href={`https://doi.org/${p.doi}`} target='_blank' title='DOI' />}
+                {p.code && <Label as='a' href={p.code} target='_blank' title='Code' />}
+              </div>
+            </div>
+          </details>
+        ))
+    }
+  </div>
+
+  <h2 id='posters' class='mt-6'>Posters</h2>
+  <div class='text-base space-y-6'>
+    <div>
+      <p class='m-0 font-medium leading-snug break-words text-foreground text-justify' style='text-align: justify; text-justify: inter-word;'>
+        Computational Transcriptomic Analysis Reveals MHC-II Expressing Tumor Cells Influence Immune Surveillance and Prognostic Outcomes in the Tumor Microenvironment of Triple-Negative Breast Cancer
+      </p>
+      <p class='m-0 text-xs text-muted-foreground break-words mt-1 font-light'>
+        <u>Cui, Y.</u>, Zhang, W., Zeng, X., Yang, Y., Park, S. J., &amp; Nakai, K.
+      </p>
+      <p class='m-0 text-xs italic tracking-wide text-muted-foreground break-words mt-1 font-light'>
+        1st Asia &amp; Pacific Bioinformatics Joint Conference (APBJC2024), <span class='whitespace-nowrap'>Oct&nbsp;22-25,&nbsp;2024</span>, Okinawa, Japan.
+      </p>
+    </div>
+
+    <div>
+      <p class='m-0 font-medium leading-snug break-words text-foreground text-justify' style='text-align: justify; text-justify: inter-word;'>
+        Computational Transcriptomic Analysis Identifies a Novel Immune-dysregulated TNBC Subtype Regulated by STAT3
+      </p>
+      <p class='m-0 text-xs text-muted-foreground break-words mt-1 font-light'>
+        <u>Cui, Y.</u>, Nakai, K.
+      </p>
+      <p class='m-0 text-xs italic tracking-wide text-muted-foreground break-words mt-1 font-light'>
+        The 47th Annual Meeting of the Molecular Biology Society of Japan (MBSJ2024), <span class='whitespace-nowrap'>Dec&nbsp;4-7,&nbsp;2024</span>, Kobe, Japan.
+      </p>
+    </div>
+
+    <div>
+      <p class='m-0 font-medium leading-snug break-words text-foreground text-justify' style='text-align: justify; text-justify: inter-word;'>
+        Unveiling a Distinct Immunological Characteristic and a Prognostic Prediction Model in Breast Cancer through Integrated Transcriptomic Analysis
+      </p>
+      <p class='m-0 text-xs text-muted-foreground break-words mt-1 font-light'>
+        <u>Cui, Y.</u>, Nakai, K.
+      </p>
+      <p class='m-0 text-xs italic tracking-wide text-muted-foreground break-words mt-1 font-light'>
+        The 21st Awaji International Forum on Infection and Immunity, <span class='whitespace-nowrap'>Sep&nbsp;3-6,&nbsp;2023</span>, Karuizawa, Japan.
+      </p>
+    </div>
+  </div>
+</PageLayout>

@@ -1,0 +1,48 @@
+---
+import PageLayout from '@/layouts/CommonPage.astro'
+import { Card, Button } from 'astro-pure/user'
+
+const headings = [
+  { depth: 2, slug: 'spatial', text: 'Spatial Transcriptomics' },
+  { depth: 2, slug: 'single-cell', text: 'Single-cell' },
+  { depth: 2, slug: 'tutorials', text: 'Tutorials & Packages' }
+]
+---
+
+<PageLayout title='Playbook' {headings} info='/playbook'>
+  <p class='text-muted-foreground'>Pipelines, protocols, and notes with reproducible steps.</p>
+
+  <h2 id='spatial'>Spatial Transcriptomics</h2>
+  <div class='grid gap-4'>
+    <Card>
+      <p class='font-medium'>[示例] ST 分析流程（Visium/Slide-seq 等）</p>
+      <p class='text-sm text-muted-foreground'>数据预处理、配准、降维聚类、空间可视化与差异分析。</p>
+      <div class='mt-2'>
+        <Button title='查看流程' href='#' style='ahead' />
+      </div>
+    </Card>
+  </div>
+
+  <h2 id='single-cell' class='mt-6'>Single-cell</h2>
+  <div class='grid gap-4'>
+    <Card>
+      <p class='font-medium'>[示例] scRNA-seq 标准流程（QC → 整合 → 注释）</p>
+      <p class='text-sm text-muted-foreground'>Scanpy/Seurat 工作流与常见坑位记录。</p>
+      <div class='mt-2'>
+        <Button title='查看流程' href='#' style='ahead' />
+      </div>
+    </Card>
+  </div>
+
+  <h2 id='tutorials' class='mt-6'>Tutorials & Packages</h2>
+  <div class='grid gap-4'>
+    <Card>
+      <p class='font-medium'>[示例] 包/工具使用教程集合</p>
+      <p class='text-sm text-muted-foreground'>如空间配准、批次校正、差异表达、富集分析等。</p>
+      <div class='mt-2'>
+        <Button title='查看教程' href='#' style='ahead' />
+      </div>
+    </Card>
+  </div>
+</PageLayout>
+
