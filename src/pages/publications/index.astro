@@ -24,6 +24,20 @@ const headings = [
 const peerReviewed: PubItem[] = [
   {
     title:
+      'DiffuScope: A diffusion-regularized autoencoder for spatial transcriptomic clustering',
+    authors:
+      'Shi, H., Ding, Y., <u>Cui, Y.</u>, Wang, R., Li, Y., Ao, C., Guo, R., Zhang, W., Peng, T., Le, Y., Cui, Y., & Wei, L.',
+    venue: 'Computational Biology and Chemistry',
+    year: 2025,
+    logo: '/images/journals/Computational_Biology_and_Chemistry.jpg',
+    url: 'https://www.sciencedirect.com/science/article/abs/pii/S1476927125004074',
+    abstract: `
+    Abstract
+In recent years, the rapid advancement of spatial transcriptomics technologies has led to the public availability of a large and diverse collection of datasets spanning multiple species, organs, and tissue types. These datasets exhibit substantial biological and technical heterogeneity, highlighting the urgent need for a generalizable clustering algorithm capable of adapting to such diversity. To address this challenge, we propose DiffuScope, a clustering framework based on Graph Convolutional Variational Autoencoders (GC-VAE). DiffuScope leverages self-supervised learning to extract informative latent representations from spatial transcriptomics data and incorporates two complementary loss functions — Reconstruction Loss and Diffusion Consistency Loss — to enhance feature learning, thereby improving clustering accuracy and cross-dataset generalization. We systematically and fairly benchmark DiffuScope against several state-of-the-art spatial transcriptomics clustering methods across 12 publicly available datasets. In addition, we assess the robustness of the proposed model by introducing random dropout noise into the spatial expression data. Finally, we apply DiffuScope to breast cancer and gastric cancer spatial transcriptomics datasets, demonstrating its ability to effectively delineate spatial domains and uncover biologically meaningful tissue structures.
+    `
+  },
+  {
+    title:
       'DiffusionST: a deep generative diffusion model-based framework for enhancing spatial transcriptomics data quality and identifying spatial domains',
     authors:
       'Cui, Y.*, <u>Cui, Y.*</u>, Wang, R., Zhu, Z., Zeng, X., Nakai, K., Cui, F., Zhang, Z., Shi, H., Chen, Y., Ye, X., Sakurai, T., & Wei, L.',
@@ -50,19 +64,6 @@ Recent advancements in spatial transcriptomics (ST) technology have generated su
     Abstract
 In recent years, RNA transcriptome sequencing technology has been continuously evolving, ranging from single-cell transcriptomics to spatial transcriptomics. Although these technologies are all based on RNA sequencing, each sequencing technology has its own unique characteristics, and there is an urgent need to develop an algorithmic toolkit that integrates both sequencing techniques. To address this, we have developed OmniClust, a toolkit based on single-cell RNA sequencing (scRNA-seq) and spatial transcriptomics data. OmniClust employs deep learning algorithms for feature learning and clustering of spatial transcriptomics data, while utilizing machine learning algorithms for clustering scRNA-seq data. OmniClust was tested on 12 spatial transcriptomics benchmark datasets, demonstrating high clustering accuracy across multiple clustering evaluation metrics. It was also evaluated on four scRNA-seq benchmark datasets, achieving high clustering accuracy based on various clustering evaluation metrics. Furthermore, we applied OmniClust to downstream analyses of spatial transcriptomics and single-cell RNA breast cancer data, showcasing its potential to uncover and interpret the biological significance of cancer transcriptome data. In summary, OmniClust is a clustering tool designed for both single-cell transcriptomics and spatial transcriptomics data, demonstrating outstanding performance.
 
-    `
-  },
-  {
-    title:
-      'DiffuScope: A diffusion-regularized autoencoder for spatial transcriptomic clustering',
-    authors:
-      'Shi, H., Ding, Y., <u>Cui, Y.</u>, Wang, R., Li, Y., Ao, C., Guo, R., Zhang, W., Peng, T., Le, Y., Cui, Y., & Wei, L.',
-    venue: 'Computational Biology and Chemistry',
-    year: 2025,
-    logo: '/images/journals/Computational_Biology_and_Chemistry.jpg',
-    abstract: `
-    Abstract
-In recent years, the rapid advancement of spatial transcriptomics technologies has led to the public availability of a large and diverse collection of datasets spanning multiple species, organs, and tissue types. These datasets exhibit substantial biological and technical heterogeneity, highlighting the urgent need for a generalizable clustering algorithm capable of adapting to such diversity. To address this challenge, we propose DiffuScope, a clustering framework based on Graph Convolutional Variational Autoencoders (GC-VAE). DiffuScope leverages self-supervised learning to extract informative latent representations from spatial transcriptomics data and incorporates two complementary loss functions — Reconstruction Loss and Diffusion Consistency Loss — to enhance feature learning, thereby improving clustering accuracy and cross-dataset generalization. We systematically and fairly benchmark DiffuScope against several state-of-the-art spatial transcriptomics clustering methods across 12 publicly available datasets. In addition, we assess the robustness of the proposed model by introducing random dropout noise into the spatial expression data. Finally, we apply DiffuScope to breast cancer and gastric cancer spatial transcriptomics datasets, demonstrating its ability to effectively delineate spatial domains and uncover biologically meaningful tissue structures.
     `
   },
   {
