@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yang Cui — Computational Biology</title>
+  <meta name="description" content="Yang Cui, Ph.D. in Bioinformatics at The University of Tokyo. Research in spatial transcriptomics, single-cell genomics, and cancer biology.">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XTSHEZS1WX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-XTSHEZS1WX');</script>
+  <!-- Busuanzi visitor counter -->
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300;400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════
+       CUSTOM PROPERTIES
+       ═══════════════════════════════════════ */
+    :root {
+      --bg: #FDF6EC;
+      --bg-card: #FBF0E0;
+      --bg-card-alt: #F7EBD8;
+      --text: #1A1A2E;
+      --text-muted: #4A4A5E;
+      --text-light: #7A7A8E;
+      --coral: #E8927C;
+      --rose: #C98BAF;
+      --teal: #5B9A8B;
+      --neon-pink: #FF6B9D;
+      --neon-cyan: #00D4FF;
+      --neon-pink-glow: rgba(255,107,157,0.4);
+      --neon-cyan-glow: rgba(0,212,255,0.3);
+      --gradient-sunset: linear-gradient(135deg, #E8927C 0%, #C98BAF 50%, #7EC8C8 100%);
+      --gradient-sunset-soft: linear-gradient(135deg, rgba(232,146,124,0.15) 0%, rgba(201,139,175,0.12) 50%, rgba(91,154,139,0.08) 100%);
+      --shadow-sm: 0 2px 8px rgba(26,26,46,0.06);
+      --shadow-md: 0 4px 20px rgba(26,26,46,0.08);
+      --shadow-lg: 0 8px 40px rgba(26,26,46,0.12);
+      --shadow-glow-pink: 0 0 20px rgba(255,107,157,0.3), 0 0 40px rgba(255,107,157,0.1);
+      --shadow-glow-cyan: 0 0 20px rgba(0,212,255,0.3), 0 0 40px rgba(0,212,255,0.1);
+      --radius: 12px;
+      --radius-sm: 6px;
+      --font-body: 'Space Grotesk', system-ui, sans-serif;
+      --font-display: 'Zen Maru Gothic', sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+      --section-gap: 5rem;
+      --content-w: 780px;
+      --content-w-wide: 960px;
+      --ease: 0.35s cubic-bezier(0.4,0,0.2,1);
+      --scanline-opacity: 0.04;
+    }
+    [data-theme="dark"] {
+      --bg: #141420;
+      --bg-card: #1E1E30;
+      --bg-card-alt: #252540;
+      --text: #F0E8D8;
+      --text-muted: #B0A8C0;
+      --text-light: #8880A0;
+      --coral: #F0A090;
+      --rose: #D8A0C4;
+      --teal: #70B8A8;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.4);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
+      --gradient-sunset-soft: linear-gradient(135deg, rgba(232,146,124,0.08) 0%, rgba(201,139,175,0.06) 50%, rgba(91,154,139,0.05) 100%);
+      --scanline-opacity: 0.06;
+    }
+
+    /* ═══════════════════════════════════════
+       RESET & BASE
+       ═══════════════════════════════════════ */
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth;font-size:16px;-webkit-font-smoothing:antialiased}
+    body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;transition:background var(--ease),color var(--ease)}
+    ::selection{background:rgba(201,139,175,0.3);color:var(--text)}
+    a{color:var(--teal);text-decoration:none;transition:color var(--ease)}
+    a:hover{color:var(--coral)}
+    a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+    img{max-width:100%;display:block}
+
+    /* ═══════════════════════════════════════
+       TYPOGRAPHY
+       ═══════════════════════════════════════ */
+    .section-title{
+      font-family:var(--font-display);font-weight:700;font-size:2rem;
+      color:var(--text);margin-bottom:2.5rem;position:relative;display:inline-block;
+    }
+    .section-title::after{
+      content:'';position:absolute;bottom:-8px;left:0;width:100%;height:3px;
+      background:var(--gradient-sunset);border-radius:2px;
+    }
+
+    /* ═══════════════════════════════════════
+       LAYOUT
+       ═══════════════════════════════════════ */
+    .container{width:100%;max-width:var(--content-w);margin:0 auto;padding:0 1.5rem}
+    .container--wide{max-width:var(--content-w-wide)}
+    section{padding:var(--section-gap) 0;position:relative}
+
+    /* Scroll reveal */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    .section-divider{width:60px;height:3px;background:var(--gradient-sunset);margin:0 auto;border-radius:2px}
+
+    /* Parallax stars */
+    .parallax-star{
+      position:absolute;width:4px;height:4px;background:var(--coral);
+      opacity:0.25;border-radius:50%;pointer-events:none;
+    }
+
+    /* ═══════════════════════════════════════
+       THEME TOGGLE (Retro TV Knob)
+       ═══════════════════════════════════════ */
+    .theme-toggle{
+      position:fixed;top:1.5rem;right:1.5rem;z-index:1000;
+      width:48px;height:48px;border-radius:50%;border:3px solid var(--text);
+      background:var(--bg-card);cursor:pointer;display:flex;align-items:center;justify-content:center;
+      transition:all var(--ease);box-shadow:var(--shadow-md),inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .theme-toggle::before{
+      content:'';width:3px;height:14px;background:var(--text);border-radius:2px;
+      transition:transform var(--ease);transform:rotate(0deg);transform-origin:center bottom;
+    }
+    [data-theme="dark"] .theme-toggle::before{transform:rotate(180deg)}
+    .theme-toggle:hover{box-shadow:var(--shadow-glow-pink);border-color:var(--neon-pink)}
+    .knob-label{
+      position:absolute;font-size:0.55rem;font-family:var(--font-mono);
+      text-transform:uppercase;letter-spacing:0.05em;color:var(--text-muted);white-space:nowrap;
+    }
+    .knob-label--on{top:-1.2rem;right:0}
+    .knob-label--off{bottom:-1.2rem;right:0}
+
+    /* ═══════════════════════════════════════
+       NOW PLAYING WIDGET
+       ═══════════════════════════════════════ */
+    .now-playing{
+      position:fixed;bottom:1.5rem;right:1.5rem;z-index:999;
+      background:var(--bg-card);border:1px solid rgba(201,139,175,0.25);
+      border-radius:var(--radius);padding:0.6rem 0.8rem;
+      display:flex;align-items:center;gap:0.5rem;
+      box-shadow:var(--shadow-md);max-width:280px;transition:all var(--ease);cursor:default;
+    }
+    .now-playing:hover{box-shadow:var(--shadow-glow-pink);border-color:var(--neon-pink)}
+    .play-btn{
+      width:28px;height:28px;border-radius:50%;border:1.5px solid var(--coral);
+      background:transparent;color:var(--coral);cursor:pointer;
+      display:flex;align-items:center;justify-content:center;font-size:0.7rem;
+      transition:all var(--ease);flex-shrink:0;padding:0;line-height:1;
+    }
+    .play-btn:hover{background:var(--coral);color:var(--bg)}
+    .eq-bars{display:flex;align-items:flex-end;gap:2px;height:16px;flex-shrink:0}
+    .eq-bar{width:3px;background:var(--coral);border-radius:1px;animation:eqBounce 1.2s ease-in-out infinite}
+    .eq-bar:nth-child(1){height:8px;animation-delay:0s}
+    .eq-bar:nth-child(2){height:14px;animation-delay:0.15s}
+    .eq-bar:nth-child(3){height:6px;animation-delay:0.3s}
+    .eq-bar:nth-child(4){height:12px;animation-delay:0.45s}
+    @keyframes eqBounce{0%,100%{transform:scaleY(0.4)}50%{transform:scaleY(1)}}
+    .eq-bars.paused .eq-bar{animation-play-state:paused;transform:scaleY(0.4)}
+    .player-content{overflow:hidden;flex:1;min-width:0}
+    .track-info{overflow:hidden;white-space:nowrap}
+    .track-label{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-light);font-family:var(--font-mono)}
+    .track-name{font-size:0.75rem;color:var(--text-muted);transition:opacity 0.3s;text-overflow:ellipsis;overflow:hidden}
+    .progress-wrap{
+      width:100%;height:3px;background:rgba(201,139,175,0.15);border-radius:2px;
+      margin-top:0.35rem;cursor:pointer;position:relative;overflow:hidden;
+    }
+    .progress-fill{height:100%;background:var(--gradient-sunset);border-radius:2px;width:0%;transition:width 0.1s linear}
+
+    /* ═══════════════════════════════════════
+       STICKY NAV
+       ═══════════════════════════════════════ */
+    .top-nav{
+      position:fixed;top:0;left:0;right:0;z-index:900;padding:0.8rem 0;
+      background:rgba(253,246,236,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(26,26,46,0.06);
+      transform:translateY(-100%);transition:transform var(--ease),background var(--ease);
+    }
+    .top-nav.visible{transform:translateY(0)}
+    [data-theme="dark"] .top-nav{background:rgba(20,20,32,0.88);border-bottom-color:rgba(255,255,255,0.06)}
+    .top-nav .container{display:flex;align-items:center;justify-content:space-between}
+    .nav-name{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--text)}
+    .nav-links{display:flex;gap:1.5rem;list-style:none}
+    .nav-links a{font-size:0.85rem;color:var(--text-muted);font-weight:500;position:relative}
+    .nav-links a::after{
+      content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;
+      background:var(--gradient-sunset);transition:width var(--ease);
+    }
+    .nav-links a:hover::after{width:100%}
+
+    /* ═══════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════ */
+    #hero{min-height:100vh;display:flex;align-items:center;padding:6rem 0 4rem;position:relative;overflow:hidden}
+    #hero::before{
+      content:'';position:absolute;top:-30%;right:-20%;width:600px;height:600px;
+      background:radial-gradient(circle,rgba(232,146,124,0.12) 0%,rgba(201,139,175,0.06) 40%,transparent 70%);
+      pointer-events:none;animation:heroGlow 8s ease-in-out infinite alternate;
+    }
+    @keyframes heroGlow{0%{transform:translate(0,0) scale(1);opacity:0.7}100%{transform:translate(-40px,30px) scale(1.1);opacity:1}}
+
+    .hero-layout{display:flex;align-items:center;gap:4rem}
+    .hero-text{flex:1}
+    .hero-greeting{font-family:var(--font-mono);font-size:0.85rem;color:var(--teal);margin-bottom:0.5rem;letter-spacing:0.05em}
+    .hero-name{
+      font-family:var(--font-display);font-size:3.2rem;font-weight:900;line-height:1.2;margin-bottom:0.75rem;
+      color:var(--text);
+      position:relative;z-index:10;
+    }
+    .hero-title{font-size:1.15rem;color:var(--text-muted);margin-bottom:1rem;font-weight:400}
+    .hero-affiliation{font-size:0.9rem;color:var(--text-light);margin-bottom:1.5rem}
+    .hero-affiliation a{color:var(--coral);font-weight:500}
+    .hero-bio{font-size:1rem;color:var(--text-muted);max-width:500px;line-height:1.8;margin-bottom:2rem;text-align:justify}
+    .hero-links{display:flex;gap:0.75rem;flex-wrap:wrap}
+    .hero-link{
+      display:inline-flex;align-items:center;gap:0.5rem;
+      padding:0.55rem 1.2rem;border:1.5px solid var(--text);border-radius:99px;
+      font-size:0.85rem;font-weight:500;color:var(--text);transition:all var(--ease);
+    }
+    .hero-link:hover{background:var(--text);color:var(--bg);box-shadow:var(--shadow-glow-cyan);border-color:var(--neon-cyan)}
+    .hero-link svg{width:16px;height:16px;fill:currentColor}
+
+    /* Avatar */
+    .hero-avatar{position:relative;flex-shrink:0}
+    .avatar-frame{
+      width:220px;height:260px;border-radius:var(--radius);overflow:hidden;position:relative;
+      background:var(--gradient-sunset-soft);border:2px solid rgba(26,26,46,0.08);box-shadow:var(--shadow-lg);
+    }
+    .pixel-portrait{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+    .pixel-grid{width:120px;height:140px;image-rendering:pixelated}
+    .avatar-photo{width:68%;height:auto;object-fit:contain;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;image-rendering:pixelated}
+    /* CRT scanlines */
+    .avatar-frame::after{
+      content:'';position:absolute;inset:0;
+      background:repeating-linear-gradient(0deg,transparent 0px,transparent 2px,rgba(0,0,0,var(--scanline-opacity)) 2px,rgba(0,0,0,var(--scanline-opacity)) 4px);
+      pointer-events:none;z-index:2;
+    }
+    .avatar-frame::before{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(180deg,transparent 0%,rgba(255,255,255,0.03) 50%,transparent 100%);
+      z-index:3;pointer-events:none;animation:crtFlicker 4s linear infinite;
+    }
+    @keyframes crtFlicker{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}
+
+    /* Cassette tape */
+    .cassette{
+      position:absolute;bottom:-30px;right:-40px;width:100px;height:64px;
+      background:var(--bg-card);border:2px solid var(--text);border-radius:6px;
+      transform:rotate(-12deg);animation:cassetteDrift 6s ease-in-out infinite alternate;z-index:10;
+    }
+    @keyframes cassetteDrift{0%{transform:rotate(-12deg) translateY(0)}100%{transform:rotate(-8deg) translateY(-6px)}}
+    .cassette-label{
+      position:absolute;top:6px;left:8px;right:8px;height:20px;background:var(--coral);border-radius:2px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .cassette-label span{font-family:var(--font-mono);font-size:0.45rem;color:white;text-transform:uppercase;letter-spacing:0.1em;font-weight:700}
+    .cassette-window{
+      position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+      width:56px;height:22px;background:rgba(26,26,46,0.1);border-radius:3px;
+      border:1.5px solid var(--text);display:flex;align-items:center;justify-content:center;gap:18px;
+    }
+    .cassette-reel{
+      width:14px;height:14px;border:2px solid var(--text);border-radius:50%;
+      position:relative;animation:reelSpin 3s linear infinite;
+    }
+    .cassette-reel::after{
+      content:'';position:absolute;top:50%;left:50%;width:4px;height:4px;
+      background:var(--text);border-radius:50%;transform:translate(-50%,-50%);
+    }
+    @keyframes reelSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+    /* ═══════════════════════════════════════
+       PUBLICATIONS
+       ═══════════════════════════════════════ */
+    #publications{background:var(--gradient-sunset-soft)}
+    .timeline{position:relative;padding-left:2.5rem}
+    .timeline::before{
+      content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;
+      background:linear-gradient(to bottom,var(--coral),var(--rose),var(--teal));border-radius:1px;
+    }
+    .timeline-year{
+      font-family:var(--font-display);font-weight:700;font-size:1.3rem;color:var(--coral);
+      margin-bottom:1rem;margin-top:2.5rem;position:relative;
+    }
+    .timeline-year:first-child{margin-top:0}
+    .timeline-year::before{
+      content:'';position:absolute;left:-2.5rem;top:50%;transform:translate(2px,-50%);
+      width:14px;height:14px;border-radius:50%;background:var(--coral);
+      border:3px solid var(--bg);box-shadow:0 0 0 2px var(--coral);
+    }
+    .pub-card{
+      background:var(--bg-card);border-radius:var(--radius);padding:1.25rem 1.5rem;
+      margin-bottom:1rem;box-shadow:var(--shadow-sm);cursor:pointer;
+      transition:all var(--ease);position:relative;overflow:hidden;
+    }
+    /* Paper texture */
+    .pub-card::before{
+      content:'';position:absolute;inset:0;opacity:0.015;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    }
+    .pub-card:hover{box-shadow:var(--shadow-md);transform:translateX(4px)}
+    .pub-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+    .pub-title{font-weight:600;font-size:1rem;color:var(--text);line-height:1.5}
+    .pub-venue{font-size:0.85rem;color:var(--teal);font-weight:500;margin-top:0.3rem}
+    .pub-authors{font-size:0.85rem;color:var(--text-muted);margin-top:0.3rem}
+    .pub-expand-icon{
+      flex-shrink:0;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--text-light);
+      display:flex;align-items:center;justify-content:center;
+      transition:transform var(--ease);font-size:0.7rem;color:var(--text-light);
+    }
+    .pub-card.expanded .pub-expand-icon{transform:rotate(180deg)}
+    .pub-details{max-height:0;overflow:hidden;transition:max-height 0.4s ease,margin 0.3s ease}
+    .pub-card.expanded .pub-details{max-height:500px;margin-top:1rem}
+    .pub-abstract{
+      font-size:0.88rem;color:var(--text-muted);line-height:1.7;
+      padding-top:1rem;border-top:1px solid rgba(26,26,46,0.06);
+    }
+    .pub-actions{display:flex;gap:0.5rem;margin-top:0.75rem}
+    .pub-action-btn{
+      font-family:var(--font-mono);font-size:0.72rem;padding:0.35rem 0.75rem;
+      border:1.5px solid var(--text-light);border-radius:99px;background:transparent;
+      color:var(--text-muted);cursor:pointer;transition:all var(--ease);
+      display:inline-flex;align-items:center;gap:0.35rem;
+    }
+    .pub-action-btn:hover{border-color:var(--teal);color:var(--teal);background:rgba(91,154,139,0.08)}
+    .author-note{font-size:0.72rem;color:var(--rose);font-style:italic;display:block;margin-top:0.2rem}
+    .pub-tag-inline{display:inline-block;font-family:var(--font-mono);font-size:0.62rem;padding:0.1rem 0.45rem;background:rgba(232,146,124,0.15);color:var(--coral);border-radius:3px;border:1px solid rgba(232,146,124,0.25);font-weight:600;letter-spacing:0.04em;vertical-align:middle;margin-left:0.4rem;text-transform:uppercase}
+    .pub-abstract{font-size:0.88rem;color:var(--text-muted);line-height:1.7;padding:0.75rem 0;border-top:1px solid rgba(26,26,46,0.06);margin-top:0.5rem}
+    [data-theme="dark"] .pub-abstract{border-top-color:rgba(255,255,255,0.1)}
+    .pub-action-btn .copy-check{display:none;color:var(--teal)}
+    .pub-action-btn.copied .copy-check{display:inline;animation:pixelPop 0.4s ease}
+    .pub-action-btn.copied .copy-icon{display:none}
+    @keyframes pixelPop{0%{transform:scale(0)}60%{transform:scale(1.4)}100%{transform:scale(1)}}
+
+    /* ═══════════════════════════════════════
+       EDUCATION
+       ═══════════════════════════════════════ */
+    #education{background:var(--gradient-sunset-soft)}
+    .edu-logo-watermark{
+      position:absolute;right:12px;top:50%;transform:translateY(-50%);
+      width:50%;height:auto;opacity:0.18;pointer-events:none;
+      object-fit:contain;transition:opacity var(--ease);
+    }
+    .pub-card:hover .edu-logo-watermark{opacity:0.24}
+    [data-theme="dark"] .edu-logo-watermark{opacity:0.10;filter:brightness(1.5)}
+    [data-theme="dark"] .pub-card:hover .edu-logo-watermark{opacity:0.16}
+
+    /* ═══════════════════════════════════════
+       PROJECTS
+       ═══════════════════════════════════════ */
+    .project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+    .project-card{
+      background:var(--bg-card);border-radius:var(--radius);padding:1.5rem;
+      box-shadow:var(--shadow-sm);transition:all var(--ease);position:relative;
+      overflow:hidden;cursor:default;border:1.5px solid transparent;
+    }
+    .project-card:hover{box-shadow:var(--shadow-lg);border-color:var(--neon-cyan);transform:translateY(-4px)}
+    .project-card:hover .card-glow{opacity:1}
+    .card-glow{
+      position:absolute;inset:-1px;border-radius:var(--radius);background:var(--gradient-sunset);
+      opacity:0;z-index:-1;filter:blur(12px);transition:opacity var(--ease);
+    }
+    .project-icon{
+      width:48px;height:48px;border-radius:var(--radius-sm);background:var(--gradient-sunset-soft);
+      display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+      margin-bottom:1rem;border:1.5px solid rgba(26,26,46,0.06);
+    }
+    .project-name{font-weight:600;font-size:1.05rem;margin-bottom:0.5rem;color:var(--text)}
+    .project-desc{font-size:0.88rem;color:var(--text-muted);line-height:1.6;margin-bottom:1rem}
+    .project-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+    .tag{
+      font-family:var(--font-mono);font-size:0.68rem;padding:0.25rem 0.55rem;
+      background:rgba(91,154,139,0.1);color:var(--teal);border-radius:4px;
+      border:1px solid rgba(91,154,139,0.2);font-weight:500;
+    }
+
+    /* ═══════════════════════════════════════
+       BLOG
+       ═══════════════════════════════════════ */
+    .blog-entry{
+      background:var(--bg-card);border-radius:var(--radius);padding:2rem 1.5rem 1.5rem;
+      margin-bottom:1.5rem;position:relative;box-shadow:var(--shadow-sm);
+      overflow:hidden;transition:box-shadow var(--ease);
+    }
+    .blog-entry:hover{box-shadow:var(--shadow-md)}
+    /* Torn edge */
+    .blog-entry::before{
+      content:'';position:absolute;top:-1px;left:0;right:0;height:12px;background:var(--bg);
+      clip-path:polygon(0% 0%,100% 0%,100% 40%,98% 70%,96% 50%,93% 80%,90% 55%,87% 75%,84% 45%,81% 70%,78% 50%,75% 85%,72% 55%,69% 75%,66% 45%,63% 70%,60% 50%,57% 80%,54% 55%,51% 75%,48% 40%,45% 70%,42% 50%,39% 85%,36% 55%,33% 70%,30% 45%,27% 75%,24% 50%,21% 80%,18% 55%,15% 70%,12% 45%,9% 75%,6% 50%,3% 70%,0% 55%);
+    }
+    /* Ruled lines */
+    .blog-body{
+      background-image:repeating-linear-gradient(transparent 0px,transparent 27px,rgba(26,26,46,0.05) 27px,rgba(26,26,46,0.05) 28px);
+      padding:4px 0;line-height:28px;
+    }
+    .blog-meta{display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;font-size:0.82rem;color:var(--text-light);font-family:var(--font-mono)}
+    .blog-date{color:var(--coral);font-weight:500}
+    .blog-category{padding:0.15rem 0.5rem;background:rgba(201,139,175,0.12);color:var(--rose);border-radius:4px;font-size:0.72rem}
+    .blog-title{font-family:var(--font-display);font-size:1.3rem;font-weight:700;margin-bottom:0.75rem;color:var(--text)}
+    .blog-excerpt{font-size:0.92rem;color:var(--text-muted);line-height:28px}
+    .blog-read-more{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;font-size:0.85rem;font-weight:500;color:var(--teal)}
+    .blog-read-more:hover{color:var(--coral)}
+    .blog-read-more .arrow{transition:transform var(--ease)}
+    .blog-read-more:hover .arrow{transform:translateX(4px)}
+
+    /* Retro terminal */
+    .code-block{
+      background:#0D0D1A;border-radius:var(--radius-sm);padding:1.25rem;margin:1rem 0;
+      overflow-x:auto;position:relative;border:1px solid rgba(255,255,255,0.06);
+    }
+    .code-block::before{content:'● ● ●';display:block;margin-bottom:0.75rem;font-size:0.5rem;letter-spacing:4px;color:rgba(255,255,255,0.2)}
+    .code-block code{font-family:var(--font-mono);font-size:0.82rem;color:#5BDC96;line-height:1.7;display:block}
+    .code-block .kw{color:#FF6B9D}
+    .code-block .str{color:#FFD700}
+    .code-block .cm{color:#5A6A7A;font-style:italic}
+    .code-block .fn{color:#00D4FF}
+    .code-cursor{display:inline-block;width:8px;height:16px;background:#5BDC96;animation:cursorBlink 1s step-end infinite;vertical-align:text-bottom;margin-left:2px}
+    @keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
+
+    /* Konami overlay */
+    .konami-overlay{
+      position:fixed;inset:0;z-index:9999;
+      background:linear-gradient(135deg,#1A1A2E 0%,#2D1B4E 50%,#1A1A2E 100%);
+      display:none;align-items:center;justify-content:center;flex-direction:column;gap:2rem;cursor:pointer;
+    }
+    .konami-overlay.active{display:flex;animation:konamiIn 0.5s ease}
+    @keyframes konamiIn{from{opacity:0}to{opacity:1}}
+    .konami-text{
+      font-family:var(--font-display);font-size:2.5rem;font-weight:900;
+      background:linear-gradient(90deg,#FF6B9D,#FFD700,#00D4FF,#FF6B9D);
+      background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      background-clip:text;animation:rainbowShift 3s linear infinite;
+    }
+    @keyframes rainbowShift{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+    .konami-sub{font-family:var(--font-mono);font-size:0.85rem;color:rgba(255,255,255,0.5)}
+    .music-note{position:absolute;font-size:1.5rem;opacity:0;animation:noteFloat 4s ease-in-out infinite}
+    @keyframes noteFloat{0%{opacity:0;transform:translateY(100vh) rotate(0deg)}20%{opacity:0.7}80%{opacity:0.7}100%{opacity:0;transform:translateY(-100px) rotate(360deg)}}
+
+    /* ═══════════════════════════════════════
+       INSERT COIN / CITY POP JUKEBOX
+       ═══════════════════════════════════════ */
+    .coin-section{text-align:center;padding:3rem 0 4rem;overflow:visible}
+    /* Jukebox Carousel Wrapper */
+    .jukebox-carousel-wrap{
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      -webkit-user-select:none;user-select:none;
+    }
+    .jukebox-carousel{
+      position:relative;width:800px;height:480px;
+      perspective:1200px;
+    }
+    .jukebox-arrow{
+      background:none;border:none;cursor:pointer;
+      font-size:1.4rem;color:var(--text-light);padding:6px 10px;
+      transition:color 0.3s ease;flex-shrink:0;z-index:5;
+    }
+    .jukebox-arrow:hover{color:var(--coral)}
+    /* All jukebox machines on the cylinder */
+    .coin-machine{
+      --coin-accent:var(--coral);
+      width:480px;height:445px;padding:2.5rem 2rem 2rem;
+      position:absolute;left:50%;top:50%;
+      background:var(--bg-card);border:2px solid var(--coin-accent);border-radius:var(--radius);
+      box-shadow:var(--shadow-md);overflow:visible;
+      text-align:center;
+      transition:transform 0.6s cubic-bezier(0.4,0,0.2,1),opacity 0.6s ease,filter 0.6s ease;
+    }
+    .coin-machine::before{
+      content:'';position:absolute;inset:0;border-radius:var(--radius);
+      background:repeating-linear-gradient(0deg,transparent 0px,transparent 3px,rgba(128,128,128,0.03) 3px,rgba(128,128,128,0.03) 4px);
+      pointer-events:none;overflow:hidden;
+    }
+    /* Per-genre accent colors */
+    .coin-machine[data-genre="citypop"]{--coin-accent:#E8927C}
+    .coin-machine[data-genre="jpoprock"]{--coin-accent:#FF6B9D}
+    .coin-machine[data-genre="anime"]{--coin-accent:#00B4D8}
+    /* Carousel positions — CoverFlow style */
+    .coin-machine.pos-center{
+      transform:translate(-50%,-50%) translateZ(0);
+      z-index:3;opacity:1;
+    }
+    .coin-machine.pos-left{
+      transform:translate(-50%,-50%) translateX(-280px) rotateY(40deg) translateZ(-120px);
+      z-index:1;opacity:0.72;filter:brightness(0.9);cursor:pointer;
+    }
+    .coin-machine.pos-right{
+      transform:translate(-50%,-50%) translateX(280px) rotateY(-40deg) translateZ(-120px);
+      z-index:1;opacity:0.72;filter:brightness(0.9);cursor:pointer;
+    }
+    .coin-machine.pos-left .coin-btn,.coin-machine.pos-right .coin-btn{pointer-events:none;opacity:0.5}
+    .coin-header{display:flex;align-items:center;justify-content:center;gap:0.75rem;margin-bottom:0.3rem}
+    .coin-title-text{
+      font-family:var(--font-mono);font-size:1rem;font-weight:700;
+      letter-spacing:0.2em;color:var(--coin-accent);text-transform:uppercase;
+      transition:color 0.4s ease;
+    }
+    .coin-pixel-star{color:var(--coin-accent);font-size:0.9rem;animation:coinStarPulse 2s ease-in-out infinite alternate;transition:color 0.4s ease}
+    @keyframes coinStarPulse{0%{opacity:0.4;transform:scale(0.8)}100%{opacity:1;transform:scale(1.2)}}
+    .coin-subtitle{
+      font-family:var(--font-mono);font-size:0.72rem;color:var(--text-light);
+      letter-spacing:0.15em;margin-bottom:1.2rem;transition:opacity 0.3s ease;
+    }
+    .coin-deco{display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-bottom:1.5rem}
+    .coin-deco-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--coin-accent),transparent);transition:background 0.4s ease}
+    .coin-deco-diamond{width:5px;height:5px;background:var(--coin-accent);transform:rotate(45deg);opacity:0.5;transition:background 0.4s ease}
+    .coin-btn{
+      display:inline-block;font-family:var(--font-mono);font-size:0.95rem;
+      padding:14px 40px;border:2px solid var(--coin-accent);color:var(--coin-accent);
+      background:transparent;border-radius:4px;cursor:pointer;
+      letter-spacing:0.15em;text-transform:uppercase;
+      transition:all var(--ease);position:relative;overflow:hidden;
+      animation:coinBtnBounce 2s ease-in-out infinite;
+    }
+    .coin-btn::before{
+      content:'';position:absolute;top:50%;left:50%;width:0;height:0;
+      background:var(--coin-accent);border-radius:50%;transform:translate(-50%,-50%);
+      transition:width 0.6s ease,height 0.6s ease;opacity:0.12;
+    }
+    .coin-btn::after{
+      content:'';position:absolute;inset:-4px;border-radius:6px;
+      border:2px solid var(--coin-accent);opacity:0;
+      animation:coinBtnPulseRing 2.5s ease-out infinite;
+    }
+    .coin-btn:hover{background:var(--coin-accent);color:var(--bg);box-shadow:0 0 20px color-mix(in srgb,var(--coin-accent) 40%,transparent),0 0 40px color-mix(in srgb,var(--coin-accent) 15%,transparent);animation:none}
+    .coin-btn:hover::before{width:300px;height:300px}
+    .coin-btn:hover::after{animation:none;opacity:0}
+    .coin-btn:active{transform:scale(0.96);animation:none}
+    .coin-btn.has-played{animation:none}
+    .coin-btn.has-played::after{animation:none;opacity:0}
+    @keyframes coinBtnBounce{0%,100%{transform:translateY(0)}15%{transform:translateY(-5px)}30%{transform:translateY(0)}45%{transform:translateY(-3px)}60%{transform:translateY(0)}}
+    @keyframes coinBtnPulseRing{0%{opacity:0.6;inset:-4px}70%{opacity:0;inset:-18px}100%{opacity:0;inset:-18px}}
+    .coin-hint{
+      font-family:var(--font-mono);font-size:0.6rem;color:var(--coin-accent);
+      letter-spacing:0.2em;margin-bottom:0.6rem;opacity:0.7;
+      animation:coinHintFade 2.5s ease-in-out infinite;
+    }
+    .coin-machine.has-played .coin-hint{animation:none;opacity:0.4}
+    @keyframes coinHintFade{0%,100%{opacity:0.4}50%{opacity:0.9}}
+    .coin-counter{
+      margin-top:0.75rem;font-family:var(--font-mono);font-size:0.65rem;
+      color:var(--text-light);letter-spacing:0.1em;
+    }
+    .coin-result{
+      margin-top:1.5rem;min-height:80px;display:flex;align-items:center;justify-content:center;
+      opacity:0;transform:translateY(12px) scale(0.97);transition:all 0.45s cubic-bezier(0.4,0,0.2,1);
+    }
+    .coin-result.show{opacity:1;transform:translateY(0) scale(1)}
+    .coin-result-inner{
+      font-size:0.92rem;color:var(--text-muted);line-height:1.6;
+      padding:20px 24px;background:var(--bg-card-alt);border-radius:var(--radius-sm);
+      border-left:3px solid var(--coin-accent);max-width:480px;text-align:left;width:100%;
+      position:relative;display:flex;align-items:center;gap:16px;transition:border-color 0.4s ease;
+    }
+    .coin-vinyl{
+      width:42px;height:42px;border-radius:50%;flex-shrink:0;
+      background:conic-gradient(from 0deg,#1a1a2e,#2a2a3e,#1a1a2e,#2a2a3e,#1a1a2e);
+      position:relative;box-shadow:0 0 0 2px var(--coin-accent);transition:box-shadow 0.4s ease;
+    }
+    .coin-vinyl.spinning{animation:vinylSpin 16s linear infinite}
+    .coin-vinyl::after{
+      content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      width:10px;height:10px;border-radius:50%;background:var(--coin-accent);transition:background 0.4s ease;
+    }
+    .coin-vinyl::before{
+      content:'';position:absolute;inset:6px;border-radius:50%;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+    [data-theme="dark"] .coin-vinyl{
+      background:conic-gradient(from 0deg,#0a0a14,#1a1a2e,#0a0a14,#1a1a2e,#0a0a14);
+    }
+    @keyframes vinylSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    .coin-track-info{flex:1;min-width:0}
+    .coin-result-inner .song-title{font-weight:600;color:var(--text);display:block;margin-bottom:2px;font-size:0.95rem}
+    .coin-result-inner .song-artist{color:var(--coin-accent);font-size:0.82rem;display:block;transition:color 0.4s ease}
+    .coin-result-inner .song-number{
+      font-family:var(--font-mono);font-size:0.6rem;color:var(--text-light);
+      margin-top:4px;display:block;letter-spacing:0.05em;
+    }
+    .coin-pixel-border{
+      position:absolute;top:-4px;left:-4px;right:-4px;bottom:-4px;
+      border:2px dashed color-mix(in srgb,var(--coin-accent) 20%,transparent);border-radius:calc(var(--radius) + 4px);
+      pointer-events:none;transition:border-color 0.4s ease;
+    }
+    .coin-play-btn{
+      display:inline-flex;align-items:center;gap:4px;
+      font-family:var(--font-mono);font-size:0.68rem;color:var(--bg);
+      background:var(--coin-accent);letter-spacing:0.05em;padding:4px 14px;border:none;
+      border-radius:99px;cursor:pointer;transition:all var(--ease);
+    }
+    .coin-play-btn:hover{box-shadow:0 0 12px color-mix(in srgb,var(--coin-accent) 50%,transparent);transform:scale(1.05)}
+    .coin-open-link{
+      display:inline-flex;align-items:center;gap:4px;
+      font-family:var(--font-mono);font-size:0.68rem;color:var(--coin-accent);
+      letter-spacing:0.05em;padding:3px 10px;border:1px solid var(--coin-accent);
+      border-radius:99px;transition:all var(--ease);text-decoration:none;
+    }
+    .coin-open-link:hover{background:var(--coin-accent);color:var(--bg)}
+    .coin-actions{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:6px}
+    .coin-loading-hint{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-light);letter-spacing:0.05em}
+    .coin-vinyl.has-art{background-size:cover!important;background-position:center!important}
+    .coin-vinyl.has-art::before{display:none}
+    .coin-yt-wrap{
+      margin-top:12px;border-radius:8px;overflow:hidden;
+      max-width:100%;aspect-ratio:16/9;display:none;
+    }
+    .coin-yt-wrap.active{display:block}
+    .coin-yt-wrap iframe{width:100%;height:100%;border:none;border-radius:8px}
+    /* ClustrMaps & Visitor Stats */
+    .visitor-card{
+      max-width:440px;margin:0 auto 2rem;padding:1.5rem;
+      background:var(--bg-card);border:1px solid var(--border);
+      border-radius:var(--radius);box-shadow:0 4px 20px rgba(0,0,0,0.06);
+      text-align:center;position:relative;
+    }
+    .visitor-counter{
+      display:inline-flex;align-items:center;gap:6px;
+      font-family:var(--font-mono);font-size:0.78rem;color:var(--text-muted);
+      margin-bottom:1rem;padding:5px 14px;
+      background:var(--bg-card-alt);border-radius:99px;
+      border:1px solid var(--border);
+    }
+    .visitor-counter svg{width:16px;height:16px;color:var(--coral);flex-shrink:0}
+    .visitor-counter-num{font-weight:600;color:var(--text);min-width:1.5em}
+    .visitor-map-wrap{
+      border-radius:var(--radius-sm);overflow:hidden;
+      border:1px solid var(--border);background:var(--bg);
+    }
+    #clustrmaps-map canvas,#clustrmaps-widget canvas{max-width:100%!important;height:auto!important;display:block}
+
+    /* ═══════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════ */
+    footer{position:relative;padding:3rem 0 0;overflow:hidden}
+    .footer-content{text-align:center;padding-bottom:2rem;position:relative;z-index:2}
+    .footer-copy{font-size:0.78rem;color:var(--text-light);font-family:var(--font-mono)}
+
+    /* Skyline */
+    .skyline-wrap{position:relative;width:100%;height:120px;overflow:hidden;margin-top:1rem}
+    .skyline-sky{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,transparent 0%,rgba(232,146,124,0.15) 30%,rgba(201,139,175,0.2) 60%,rgba(126,200,200,0.15) 100%);
+    }
+    [data-theme="dark"] .skyline-sky{
+      background:linear-gradient(180deg,transparent 0%,rgba(232,146,124,0.08) 30%,rgba(201,139,175,0.1) 60%,rgba(91,154,139,0.08) 100%);
+    }
+    .cloud{position:absolute;background:rgba(255,255,255,0.3);border-radius:20px;animation:cloudDrift linear infinite}
+    [data-theme="dark"] .cloud{background:rgba(255,255,255,0.06)}
+    .cloud-1{width:60px;height:20px;top:15px;animation-duration:30s;left:-80px}
+    .cloud-2{width:45px;height:15px;top:30px;animation-duration:40s;left:-60px;animation-delay:-15s}
+    .cloud-3{width:70px;height:18px;top:8px;animation-duration:35s;left:-90px;animation-delay:-8s}
+    @keyframes cloudDrift{from{transform:translateX(-100px)}to{transform:translateX(calc(100vw + 100px))}}
+    .skyline-buildings{position:absolute;bottom:0;left:0;right:0;height:80px;display:flex;align-items:flex-end;justify-content:center;gap:2px}
+    .bldg{background:var(--text);opacity:0.2;flex-shrink:0;position:relative;border-radius:2px 2px 0 0}
+    [data-theme="dark"] .bldg{opacity:0.15}
+    .bldg .win{position:absolute;width:3px;height:3px;background:var(--coral);opacity:0.6;border-radius:1px}
+    .tokyo-tower{width:8px;background:var(--coral)!important;opacity:0.3!important}
+    .tokyo-tower::before{content:'';position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:2px;height:8px;background:var(--coral)}
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════ */
+    @media(max-width:768px){
+      :root{--section-gap:4rem}
+      .hero-layout{flex-direction:column-reverse;gap:2.5rem;text-align:center}
+      .hero-name{font-size:2.2rem}
+      .hero-bio{margin:0 auto 2rem}
+      .hero-links{justify-content:center}
+      .avatar-frame{width:180px;height:210px}
+      .cassette{right:-20px;bottom:-25px;width:80px;height:52px}
+      .project-grid{grid-template-columns:1fr}
+      .section-title{font-size:1.6rem}
+      .now-playing{bottom:1rem;right:1rem;max-width:220px;padding:0.5rem 0.75rem}
+      .theme-toggle{top:1rem;right:1rem;width:42px;height:42px}
+      .top-nav .nav-links{gap:1rem}
+      .top-nav .nav-links a{font-size:0.78rem}
+    }
+    @media(max-width:480px){
+      .hero-name{font-size:1.8rem}
+      .hero-links{flex-direction:column;align-items:center}
+      .pub-card{padding:1rem}
+      .now-playing{display:none}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
+      .reveal{opacity:1;transform:none}
+      html{scroll-behavior:auto}
+    }
+  </style>
+</head>
+<body>
+  <!-- Konami overlay -->
+  <div class="konami-overlay" id="konamiOverlay" role="dialog" aria-label="Easter egg activated">
+    <div class="konami-text">City Pop Mode Activated</div>
+    <div class="konami-sub">click anywhere to exit</div>
+  </div>
+
+  <!-- Theme toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+    <span class="knob-label knob-label--on">day</span>
+    <span class="knob-label knob-label--off">nite</span>
+  </button>
+
+  <!-- Music player removed — playback integrated into City Pop Jukebox -->
+
+  <!-- Sticky nav -->
+  <nav class="top-nav" id="topNav" aria-label="Main navigation">
+    <div class="container container--wide">
+      <span class="nav-name">Yang Cui</span>
+      <ul class="nav-links">
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#conferences">Conferences</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <header id="hero">
+    <div class="container container--wide">
+      <div class="hero-layout">
+        <div class="hero-text reveal">
+          <p class="hero-greeting">// hello world</p>
+          <h1 class="hero-name">Yang Cui</h1>
+          <p class="hero-title">Ph.D. in Bioinformatics</p>
+          <p class="hero-affiliation"><a href="https://www.cbms.k.u-tokyo.ac.jp/">Department of Computational Biology and Medical Sciences</a> · University of Tokyo</p>
+          <p class="hero-bio">I obtained my Ph.D. in Bioinformatics from the University of Tokyo under the supervision of <a href="https://fais.hgc.jp/" target="_blank" rel="noopener">Professor Kenta Nakai</a>. My research interests lie in cancer biology and computational biology, with a particular focus on the tumor microenvironment and spatial omics. My current work centers on building computational frameworks for spatial transcriptomics analysis and identifying precancerous regions from spatial omics data.</p>
+          <div class="hero-links">
+            <a href="https://orcid.org/0009-0000-2110-6099" class="hero-link" target="_blank" rel="noopener">
+              <svg viewBox="0 0 256 256" fill="currentColor"><path fill-rule="evenodd" d="M256 128c0 70.7-57.3 128-128 128S0 198.7 0 128 57.3 0 128 0s128 57.3 128 128zM70.9 186.2h15.4V79.1H70.9v107.1zM78.3 64.6c5.5 0 9.9 4.5 9.9 9.9 0 5.5-4.4 9.9-9.9 9.9-5.5 0-9.9-4.4-9.9-9.9 0-5.5 4.4-9.9 9.9-9.9zM108.9 79.1h42.6c39.8 0 57.6 28.7 57.6 53.9 0 25.5-17.8 53.2-57.6 53.2h-42.6V79.1zm15.4 93.3h24.5c34.9 0 44.3-22.6 44.3-39.7 0-17.7-9.4-39.8-44.3-39.8h-24.5v79.5z"/></svg>
+              ORCID
+            </a>
+            <a href="https://scholar.google.com/citations?user=pcom3IEAAAAJ" class="hero-link" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><defs><mask id="sM"><circle cx="12" cy="12" r="12" fill="white"/><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="black" transform="translate(3.6,3.6) scale(0.7)"/></mask></defs><circle cx="12" cy="12" r="12" mask="url(#sM)"/></svg>
+              Google Scholar
+            </a>
+            <a href="mailto:yangcui0612@gmail.com" class="hero-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" fill="none"/><path d="M22 7l-10 7L2 7" fill="none"/></svg>
+              Email
+            </a>
+          </div>
+        </div>
+        <div class="hero-avatar reveal">
+          <div class="avatar-frame">
+            <img src="images/avatar.png" alt="Yang Cui" class="avatar-photo">
+          </div>
+          <div class="cassette" aria-hidden="true">
+            <div class="cassette-label"><span>City Pop Mix '87</span></div>
+            <div class="cassette-window"><div class="cassette-reel"></div><div class="cassette-reel"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="parallax-star" style="top:15%;left:10%;width:5px;height:5px;background:var(--coral)" aria-hidden="true"></div>
+    <div class="parallax-star" style="top:25%;right:15%;width:3px;height:3px;background:var(--rose)" aria-hidden="true"></div>
+    <div class="parallax-star" style="top:70%;left:5%;width:4px;height:4px;background:var(--teal)" aria-hidden="true"></div>
+    <div class="parallax-star" style="top:60%;right:8%;width:6px;height:6px;background:var(--coral);opacity:0.15" aria-hidden="true"></div>
+  </header>
+
+  <main>
+    <!-- ═══ PUBLICATIONS ═══ -->
+    <section id="publications">
+      <div class="container">
+        <h2 class="section-title reveal">Publications</h2>
+        <div class="timeline">
+          <div class="timeline-year reveal">2025</div>
+
+          <article class="pub-card reveal" tabindex="0" role="button" aria-expanded="false">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">OmniTFT: Omni Target Forecasting for Vital Signs and Laboratory Result Trajectories in Multi Center ICU Data <span class="pub-tag-inline">Preprint</span></div>
+                <div class="pub-venue">arXiv, 2025</div>
+                <div class="pub-authors">Wanzhe Xu, Yutong Dai, Yitao Yang, Martin Loza, Weihang Zhang, <strong>Yang Cui</strong>, Xin Zeng, Sung-Joon Park, Kenta Nakai</div>
+              </div>
+              <div class="pub-expand-icon" aria-hidden="true">▼</div>
+            </div>
+            <div class="pub-details">
+              <p class="pub-abstract">A deep learning framework based on Temporal Fusion Transformers for jointly forecasting high-frequency vital signs and sparsely sampled laboratory results in ICU settings, implementing novel strategies including sliding window equalized sampling, frequency-aware embedding shrinkage, hierarchical variable selection, and attention calibration across multi-center ICU datasets.</p>
+              <div class="pub-actions">
+                <a href="https://arxiv.org/abs/2511.19485" class="pub-action-btn" target="_blank" rel="noopener">arXiv</a>
+                <button class="pub-action-btn bibtex-btn" data-bibtex="@article{xu2025omnitft,&#10;  title={OmniTFT: Omni Target Forecasting for Vital Signs and Laboratory Result Trajectories in Multi Center ICU Data},&#10;  author={Xu, Wanzhe and Dai, Yutong and Yang, Yitao and Loza, Martin and Zhang, Weihang and Cui, Yang and Zeng, Xin and Park, Sung-Joon and Nakai, Kenta},&#10;  journal={arXiv preprint arXiv:2511.19485},&#10;  year={2025}&#10;}"><span class="copy-icon">BibTeX</span><span class="copy-check">✓ copied</span></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal" tabindex="0" role="button" aria-expanded="false">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">DiffuScope: A Diffusion-Regularized Autoencoder for Spatial Transcriptomic Clustering</div>
+                <div class="pub-venue">Computational Biology and Chemistry, 120, 108746, 2025</div>
+                <div class="pub-authors">Hua Shi, Yi Ding, <strong>Yang Cui</strong>, Ruheng Wang, Yan Li, Chunyan Ao, Ruihua Guo, Weihang Zhang, Tao Peng, Yuying Le, Yaxuan Cui, Leyi Wei</div>
+              </div>
+              <div class="pub-expand-icon" aria-hidden="true">▼</div>
+            </div>
+            <div class="pub-details">
+              <p class="pub-abstract">A spatial transcriptomic clustering method leveraging graph convolutional variational autoencoders with self-supervised learning to extract informative latent representations, combined with dual loss functions for robust clustering across diverse tissue datasets.</p>
+              <div class="pub-actions">
+                <a href="https://doi.org/10.1016/j.compbiolchem.2025.108746" class="pub-action-btn" target="_blank" rel="noopener">Paper</a>
+                <a href="https://github.com/cuiyaxuan/DiffuScope" class="pub-action-btn" target="_blank" rel="noopener">Code</a>
+                <button class="pub-action-btn bibtex-btn" data-bibtex="@article{shi2025diffuscope,&#10;  title={DiffuScope: A diffusion-regularized autoencoder for spatial transcriptomic clustering},&#10;  author={Shi, Hua and Ding, Yi and Cui, Yang and Wang, Ruheng and Li, Yan and Ao, Chunyan and Guo, Ruihua and Zhang, Weihang and Peng, Tao and Le, Yuying and Cui, Yaxuan and Wei, Leyi},&#10;  journal={Computational Biology and Chemistry},&#10;  volume={120},&#10;  pages={108746},&#10;  year={2025},&#10;  doi={10.1016/j.compbiolchem.2025.108746}&#10;}"><span class="copy-icon">BibTeX</span><span class="copy-check">✓ copied</span></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal" tabindex="0" role="button" aria-expanded="false">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">DiffusionST: A Deep Generative Diffusion Model-Based Framework for Enhancing Spatial Transcriptomics Data Quality and Identifying Spatial Domains</div>
+                <div class="pub-venue">Briefings in Bioinformatics, 26(4), bbaf390, 2025</div>
+                <div class="pub-authors">Yaxuan Cui*, <strong>Yang Cui</strong>*, Ruheng Wang, Zheyong Zhu, Xin Zeng, Kenta Nakai, Feifei Cui, Zilong Zhang, Hua Shi, Yan Chen, Xiucai Ye, Tetsuya Sakurai, Leyi Wei<span class="author-note">* Equal contribution</span></div>
+              </div>
+              <div class="pub-expand-icon" aria-hidden="true">▼</div>
+            </div>
+            <div class="pub-details">
+              <p class="pub-abstract">A framework combining graph convolutional networks with diffusion-based generative models to enhance spatial transcriptomics data quality, enabling improved spatial domain identification and gene imputation even in noise-laden datasets.</p>
+              <div class="pub-actions">
+                <a href="https://academic.oup.com/bib/article/26/4/bbaf390/8222511" class="pub-action-btn" target="_blank" rel="noopener">Paper</a>
+                <a href="https://github.com/cuiyaxuan/DiffusionST" class="pub-action-btn" target="_blank" rel="noopener">Code</a>
+                <button class="pub-action-btn bibtex-btn" data-bibtex="@article{cui2025diffusionst,&#10;  title={DiffusionST: a deep generative diffusion model-based framework for enhancing spatial transcriptomics data quality and identifying spatial domains},&#10;  author={Cui, Yaxuan and Cui, Yang and Wang, Ruheng and Zhu, Zheyong and Zeng, Xin and Nakai, Kenta and Cui, Feifei and Zhang, Zilong and Shi, Hua and Chen, Yan and Ye, Xiucai and Sakurai, Tetsuya and Wei, Leyi},&#10;  journal={Briefings in Bioinformatics},&#10;  volume={26},&#10;  number={4},&#10;  pages={bbaf390},&#10;  year={2025},&#10;  doi={10.1093/bib/bbaf390}&#10;}"><span class="copy-icon">BibTeX</span><span class="copy-check">✓ copied</span></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal" tabindex="0" role="button" aria-expanded="false">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">OmniClust: A Versatile Clustering Toolkit for Single-Cell and Spatial Transcriptomics Data</div>
+                <div class="pub-venue">Methods, 238, 84–94, 2025</div>
+                <div class="pub-authors">Yaxuan Cui*, <strong>Yang Cui</strong>*, Yi Ding, Kenta Nakai, Leyi Wei, Yuyin Le, Xiucai Ye, Tetsuya Sakurai<span class="author-note">* Equal contribution</span></div>
+              </div>
+              <div class="pub-expand-icon" aria-hidden="true">▼</div>
+            </div>
+            <div class="pub-details">
+              <p class="pub-abstract">A comprehensive clustering toolkit integrating deep learning and machine learning algorithms for versatile analysis of both single-cell RNA-seq and spatial transcriptomics data, providing a unified framework for diverse clustering tasks.</p>
+              <div class="pub-actions">
+                <a href="https://doi.org/10.1016/j.ymeth.2025.03.007" class="pub-action-btn" target="_blank" rel="noopener">Paper</a>
+                <a href="https://github.com/cuiyaxuan/OmniClust" class="pub-action-btn" target="_blank" rel="noopener">Code</a>
+                <button class="pub-action-btn bibtex-btn" data-bibtex="@article{cui2025omniclust,&#10;  title={OmniClust: A versatile clustering toolkit for single-cell and spatial transcriptomics data},&#10;  author={Cui, Yaxuan and Cui, Yang and Ding, Yi and Nakai, Kenta and Wei, Leyi and Le, Yuyin and Ye, Xiucai and Sakurai, Tetsuya},&#10;  journal={Methods},&#10;  volume={238},&#10;  pages={84--94},&#10;  year={2025},&#10;  doi={10.1016/j.ymeth.2025.03.007}&#10;}"><span class="copy-icon">BibTeX</span><span class="copy-check">✓ copied</span></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal" tabindex="0" role="button" aria-expanded="false">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">STAIG: Spatial Transcriptomics Analysis via Image-Aided Graph Contrastive Learning for Domain Exploration and Alignment-Free Integration</div>
+                <div class="pub-venue">Nature Communications, 16, 1067, 2025</div>
+                <div class="pub-authors">Yitao Yang, <strong>Yang Cui</strong>, Xin Zeng, Yubo Zhang, Martin Loza, Sung-Joon Park, Kenta Nakai</div>
+              </div>
+              <div class="pub-expand-icon" aria-hidden="true">▼</div>
+            </div>
+            <div class="pub-details">
+              <p class="pub-abstract">A deep learning framework that integrates gene expression, spatial coordinates, and histological images through graph contrastive learning, enabling accurate spatial domain identification and alignment-free multi-sample integration for spatial transcriptomics data.</p>
+              <div class="pub-actions">
+                <a href="https://www.nature.com/articles/s41467-025-56276-0" class="pub-action-btn" target="_blank" rel="noopener">Paper</a>
+                <a href="https://github.com/y-itao/STAIG" class="pub-action-btn" target="_blank" rel="noopener">Code</a>
+                <button class="pub-action-btn bibtex-btn" data-bibtex="@article{yang2025staig,&#10;  title={STAIG: Spatial transcriptomics analysis via image-aided graph contrastive learning for domain exploration and alignment-free integration},&#10;  author={Yang, Yitao and Cui, Yang and Zeng, Xin and Zhang, Yubo and Loza, Martin and Park, Sung-Joon and Nakai, Kenta},&#10;  journal={Nature Communications},&#10;  volume={16},&#10;  pages={1067},&#10;  year={2025},&#10;  doi={10.1038/s41467-025-56276-0}&#10;}"><span class="copy-icon">BibTeX</span><span class="copy-check">✓ copied</span></button>
+              </div>
+            </div>
+          </article>
+
+          <div class="timeline-year reveal">2024</div>
+
+          <article class="pub-card reveal" tabindex="0" role="button" aria-expanded="false">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">Comparative Single-Cell Transcriptomic Analysis Reveals Putative Differentiation Drivers and Potential Origin of Vertebrate Retina</div>
+                <div class="pub-venue">NAR Genomics and Bioinformatics, 6(4), lqae149, 2024</div>
+                <div class="pub-authors">Xin Zeng, Fuki Gyoja, <strong>Yang Cui</strong>, Martin Loza, Takehiro G. Kusakabe, Kenta Nakai</div>
+              </div>
+              <div class="pub-expand-icon" aria-hidden="true">▼</div>
+            </div>
+            <div class="pub-details">
+              <p class="pub-abstract">A large-scale comparative analysis of approximately 240,000 retinal cells across vertebrate species, identifying 690 regulons governed by 530 regulators and revealing conserved differentiation drivers underlying retinal development and evolution.</p>
+              <div class="pub-actions">
+                <a href="https://doi.org/10.1093/nargab/lqae149" class="pub-action-btn" target="_blank" rel="noopener">Paper</a>
+                <a href="https://github.com/xzengComBio/VertebrateRetina_scRNAseq" class="pub-action-btn" target="_blank" rel="noopener">Code</a>
+                <button class="pub-action-btn bibtex-btn" data-bibtex="@article{zeng2024comparative,&#10;  title={Comparative single-cell transcriptomic analysis reveals putative differentiation drivers and potential origin of vertebrate retina},&#10;  author={Zeng, Xin and Gyoja, Fuki and Cui, Yang and Loza, Martin and Kusakabe, Takehiro G and Nakai, Kenta},&#10;  journal={NAR Genomics and Bioinformatics},&#10;  volume={6},&#10;  number={4},&#10;  pages={lqae149},&#10;  year={2024},&#10;  doi={10.1093/nargab/lqae149}&#10;}"><span class="copy-icon">BibTeX</span><span class="copy-check">✓ copied</span></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal" tabindex="0" role="button" aria-expanded="false">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">Computational Analysis of the Functional Impact of MHC-II-Expressing Triple-Negative Breast Cancer</div>
+                <div class="pub-venue">Frontiers in Immunology, 15, 1497251, 2024</div>
+                <div class="pub-authors"><strong>Yang Cui</strong>, Weihang Zhang, Xin Zeng, Yitao Yang, Sung-Joon Park, Kenta Nakai</div>
+              </div>
+              <div class="pub-expand-icon" aria-hidden="true">▼</div>
+            </div>
+            <div class="pub-details">
+              <p class="pub-abstract">A computational study revealing an MHC-II-expressing tumor subpopulation in triple-negative breast cancer with active interactions with immune cells, and establishing a prognostic signature comprising 40 significant genes for clinical outcome prediction.</p>
+              <div class="pub-actions">
+                <a href="https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2024.1497251/full" class="pub-action-btn" target="_blank" rel="noopener">Paper</a>
+                <button class="pub-action-btn bibtex-btn" data-bibtex="@article{cui2024computational,&#10;  title={Computational analysis of the functional impact of MHC-II-expressing triple-negative breast cancer},&#10;  author={Cui, Yang and Zhang, Weihang and Zeng, Xin and Yang, Yitao and Park, Sung-Joon and Nakai, Kenta},&#10;  journal={Frontiers in Immunology},&#10;  volume={15},&#10;  pages={1497251},&#10;  year={2024},&#10;  doi={10.3389/fimmu.2024.1497251}&#10;}"><span class="copy-icon">BibTeX</span><span class="copy-check">✓ copied</span></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal" tabindex="0" role="button" aria-expanded="false">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">HyGAnno: Hybrid Graph Neural Network–Based Cell Type Annotation for Single-Cell ATAC Sequencing Data</div>
+                <div class="pub-venue">Briefings in Bioinformatics, 25(3), bbae152, 2024</div>
+                <div class="pub-authors">Weihang Zhang, <strong>Yang Cui</strong>, Bowen Liu, Martin Loza, Sung-Joon Park, Kenta Nakai</div>
+              </div>
+              <div class="pub-expand-icon" aria-hidden="true">▼</div>
+            </div>
+            <div class="pub-details">
+              <p class="pub-abstract">An automated cell type annotation method utilizing a parallel graph neural network architecture to leverage genome-wide accessibility peak features for accurate and scalable scATAC-seq cell type identification.</p>
+              <div class="pub-actions">
+                <a href="https://academic.oup.com/bib/article/25/3/bbae152/7641197" class="pub-action-btn" target="_blank" rel="noopener">Paper</a>
+                <a href="https://github.com/WeihangZJP/HyGAnno" class="pub-action-btn" target="_blank" rel="noopener">Code</a>
+                <button class="pub-action-btn bibtex-btn" data-bibtex="@article{zhang2024hyganno,&#10;  title={HyGAnno: hybrid graph neural network--based cell type annotation for single-cell ATAC sequencing data},&#10;  author={Zhang, Weihang and Cui, Yang and Liu, Bowen and Loza, Martin and Park, Sung-Joon and Nakai, Kenta},&#10;  journal={Briefings in Bioinformatics},&#10;  volume={25},&#10;  number={3},&#10;  pages={bbae152},&#10;  year={2024},&#10;  doi={10.1093/bib/bbae152}&#10;}"><span class="copy-icon">BibTeX</span><span class="copy-check">✓ copied</span></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal" tabindex="0" role="button" aria-expanded="false">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">DenoiseST: A Dual-Channel Unsupervised Deep Learning-Based Denoising Method to Identify Spatial Domains and Functionally Variable Genes in Spatial Transcriptomics <span class="pub-tag-inline">Preprint</span></div>
+                <div class="pub-venue">bioRxiv, 2024</div>
+                <div class="pub-authors">Yaxuan Cui, Ruheng Wang, Xin Zeng, <strong>Yang Cui</strong>, Zheyong Zhu, Kenta Nakai, Xiucai Ye, Tetsuya Sakurai, Leyi Wei</div>
+              </div>
+              <div class="pub-expand-icon" aria-hidden="true">▼</div>
+            </div>
+            <div class="pub-details">
+              <p class="pub-abstract">An unsupervised adaptive denoising method utilizing a dual-channel joint learning strategy with graph convolutional networks, designed to identify spatial domains and functionally variable genes from noisy spatial transcriptomics data.</p>
+              <div class="pub-actions">
+                <a href="https://www.biorxiv.org/content/10.1101/2024.03.04.583438v1" class="pub-action-btn" target="_blank" rel="noopener">bioRxiv</a>
+                <button class="pub-action-btn bibtex-btn" data-bibtex="@article{cui2024denoisest,&#10;  title={DenoiseST: a dual-channel unsupervised deep learning-based denoising method to identify spatial domains and functionally variable genes in spatial transcriptomics},&#10;  author={Cui, Yaxuan and Wang, Ruheng and Zeng, Xin and Cui, Yang and Zhu, Zheyong and Nakai, Kenta and Ye, Xiucai and Sakurai, Tetsuya and Wei, Leyi},&#10;  journal={bioRxiv},&#10;  year={2024},&#10;  doi={10.1101/2024.03.04.583438}&#10;}"><span class="copy-icon">BibTeX</span><span class="copy-check">✓ copied</span></button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ EDUCATION ═══ -->
+    <section id="education">
+      <div class="container">
+        <h2 class="section-title reveal">Education</h2>
+        <div class="timeline">
+          <div class="timeline-year reveal">2022 – 2025</div>
+          <article class="pub-card reveal" style="overflow:hidden;position:relative">
+            <img src="https://yangcui0612.github.io/_astro/UT.DgNYpU04_1MdUV1.webp" alt="" class="edu-logo-watermark" loading="lazy">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">Ph.D. in Bioinformatics</div>
+                <div class="pub-venue"><a href="https://www.u-tokyo.ac.jp/en/" target="_blank" rel="noopener">University of Tokyo</a></div>
+                <div class="pub-authors">Department of Computational Biology and Medical Sciences<br><a href="https://fais.hgc.jp/" target="_blank" rel="noopener">Laboratory of Functional Analysis in Silico</a><br>Supervisor: Prof. Kenta Nakai</div>
+              </div>
+            </div>
+          </article>
+
+          <div class="timeline-year reveal">2020 – 2022</div>
+          <article class="pub-card reveal" style="overflow:hidden;position:relative">
+            <img src="https://yangcui0612.github.io/_astro/TMDU.DUteIfNX_1i6JKt.webp" alt="" class="edu-logo-watermark" loading="lazy">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">Master in Immunology</div>
+                <div class="pub-venue"><a href="https://www.tmd.ac.jp/english/" target="_blank" rel="noopener">Tokyo Medical and Dental University</a> (now Institute of Science Tokyo)</div>
+                <div class="pub-authors">Graduate School of Medical and Dental Sciences<br><a href="https://www.tmd.ac.jp/imm/english/" target="_blank" rel="noopener">Department of Immunology</a><br>Supervisor: Prof. Takeshi Tsubata</div>
+              </div>
+            </div>
+          </article>
+
+          <div class="timeline-year reveal">2013 – 2017</div>
+          <article class="pub-card reveal" style="overflow:hidden;position:relative">
+            <img src="https://yangcui0612.github.io/_astro/ECUST.CFmnwdkH_Z1iXYjv.webp" alt="" class="edu-logo-watermark" loading="lazy">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">Bachelor in Biotechnology</div>
+                <div class="pub-venue"><a href="https://www.ecust.edu.cn/en/" target="_blank" rel="noopener">East China University of Science and Technology</a></div>
+                <div class="pub-authors">School of Bioengineering<br>Department of Biotechnology</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ CONFERENCES ═══ -->
+    <section id="conferences">
+      <div class="container">
+        <h2 class="section-title reveal">Conference Presentations</h2>
+        <div class="timeline">
+          <div class="timeline-year reveal">2024</div>
+
+          <article class="pub-card reveal">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">Computational Transcriptomic Analysis Reveals MHC-II Expressing Tumor Cells Influence Immune Surveillance and Prognostic Outcomes in the Tumor Microenvironment of Triple-Negative Breast Cancer</div>
+                <div class="pub-venue">1st Asia & Pacific Bioinformatics Joint Conference (APBJC2024)</div>
+                <div class="pub-authors"><strong>Yang Cui</strong>, Weihang Zhang, Xin Zeng, Yitao Yang, Sung-Joon Park, Kenta Nakai · October 22–25, 2024 · Okinawa, Japan · Poster</div>
+              </div>
+            </div>
+          </article>
+
+          <div class="timeline-year reveal">2023</div>
+
+          <article class="pub-card reveal">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">Computational Transcriptomic Analysis Identifies a Novel Immune-Dysregulated TNBC Subtype Regulated by STAT3</div>
+                <div class="pub-venue">The 46th Annual Meeting of the Molecular Biology Society of Japan (MBSJ2023)</div>
+                <div class="pub-authors"><strong>Yang Cui</strong>, Kenta Nakai · December 6–8, 2023 · Kobe, Japan · Poster</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="pub-card reveal">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">Unveiling a Distinct Immunological Characteristic and a Prognostic Prediction Model in Breast Cancer through Integrated Transcriptomic Analysis</div>
+                <div class="pub-venue">The 21st Awaji International Forum on Infection and Immunity</div>
+                <div class="pub-authors"><strong>Yang Cui</strong>, Kenta Nakai · September 3–6, 2023 · Karuizawa, Japan · Poster</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ INSERT COIN / JUKEBOX CAROUSEL ═══ -->
+    <section id="easter" class="coin-section">
+      <h2 class="section-title reveal">Footnotes ♪</h2>
+      <div class="jukebox-carousel-wrap reveal">
+        <button class="jukebox-arrow" id="jbPrev">◀</button>
+        <div class="jukebox-carousel">
+          <!-- Machine 0: City Pop (center at start) -->
+          <div class="coin-machine pos-center" data-genre="citypop">
+            <div class="coin-pixel-border"></div>
+            <div class="coin-header"><span class="coin-pixel-star">◆</span><span class="coin-title-text">City Pop Jukebox</span><span class="coin-pixel-star">◆</span></div>
+            <div class="coin-subtitle">~ I'm Feeling Lucky ~</div>
+            <div class="coin-deco"><div class="coin-deco-line"></div><div class="coin-deco-diamond"></div><div class="coin-deco-diamond"></div><div class="coin-deco-diamond"></div><div class="coin-deco-line"></div></div>
+            <div class="coin-hint">← INSERT COIN →</div>
+            <button class="coin-btn">▶ COIN</button>
+            <div class="coin-counter">64 tracks loaded ♪</div>
+            <div class="coin-result"><div class="coin-result-inner"><div class="coin-vinyl"></div><div class="coin-track-info"></div></div></div>
+            <div class="coin-yt-wrap"></div>
+          </div>
+          <!-- Machine 1: J-Pop Rock -->
+          <div class="coin-machine pos-right" data-genre="jpoprock">
+            <div class="coin-pixel-border"></div>
+            <div class="coin-header"><span class="coin-pixel-star">◆</span><span class="coin-title-text">J-Pop・Rock Jukebox</span><span class="coin-pixel-star">◆</span></div>
+            <div class="coin-subtitle">~ ロックンロール ~</div>
+            <div class="coin-deco"><div class="coin-deco-line"></div><div class="coin-deco-diamond"></div><div class="coin-deco-diamond"></div><div class="coin-deco-diamond"></div><div class="coin-deco-line"></div></div>
+            <div class="coin-hint">← INSERT COIN →</div>
+            <button class="coin-btn">▶ COIN</button>
+            <div class="coin-counter">101 tracks loaded ♪</div>
+            <div class="coin-result"><div class="coin-result-inner"><div class="coin-vinyl"></div><div class="coin-track-info"></div></div></div>
+            <div class="coin-yt-wrap"></div>
+          </div>
+          <!-- Machine 2: Anime Game -->
+          <div class="coin-machine pos-left" data-genre="anime">
+            <div class="coin-pixel-border"></div>
+            <div class="coin-header"><span class="coin-pixel-star">◆</span><span class="coin-title-text">Anime・Game Jukebox</span><span class="coin-pixel-star">◆</span></div>
+            <div class="coin-subtitle">~ Press Start ~</div>
+            <div class="coin-deco"><div class="coin-deco-line"></div><div class="coin-deco-diamond"></div><div class="coin-deco-diamond"></div><div class="coin-deco-diamond"></div><div class="coin-deco-line"></div></div>
+            <div class="coin-hint">← INSERT COIN →</div>
+            <button class="coin-btn">▶ COIN</button>
+            <div class="coin-counter">179 tracks loaded ♪</div>
+            <div class="coin-result"><div class="coin-result-inner"><div class="coin-vinyl"></div><div class="coin-track-info"></div></div></div>
+            <div class="coin-yt-wrap"></div>
+          </div>
+        </div>
+        <button class="jukebox-arrow" id="jbNext">▶</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="footer-content container">
+      <div class="visitor-card">
+        <div class="visitor-counter">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          <span>Views</span>
+          <span class="visitor-counter-num" id="busuanzi_value_page_pv">0</span>
+        </div>
+        <div class="visitor-map-wrap">
+          <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?cl=6bafea&w=400&t=n&d=gB5MK8VPfGZB-Ol1UKim258Aveo7uzWQzGAyBfnOXr8&co=ffffff&ct=000000&cmo=7099bc&cmn=1b69b7"></script>
+        </div>
+      </div>
+      <p class="footer-copy">© 2025 Yang Cui</p>
+    </div>
+    <div class="skyline-wrap" aria-hidden="true">
+      <div class="skyline-sky"></div>
+      <div class="cloud cloud-1"></div>
+      <div class="cloud cloud-2"></div>
+      <div class="cloud cloud-3"></div>
+      <div class="skyline-buildings" id="skylineBuildings"></div>
+    </div>
+  </footer>
+
+  <!-- ═══ JAVASCRIPT ═══ -->
+  <script>
+  (()=>{
+    'use strict';
+
+    /* — Pixel Avatar — */
+    function drawPixelAvatar(){
+      const c=document.getElementById('pixelAvatar');
+      if(!c)return;
+      const ctx=c.getContext('2d');
+      c.width=120;c.height=140;
+      ctx.imageSmoothingEnabled=false;
+      const P=6,ox=3,oy=1;
+      const pal={skin:'#F5D0A9',hair:'#2C2137',eye:'#1A1A2E',shirt:'#5B9A8B',acc:'#E8927C',white:'#FFF',glass:'#7EC8C8'};
+      const d=(x,y,co)=>{ctx.fillStyle=co;ctx.fillRect((ox+x)*P,(oy+y)*P,P,P)};
+      // Hair
+      [3,4,5,6,7,8,9,10].forEach(x=>d(x,0,pal.hair));
+      [2,3,4,5,6,7,8,9,10,11].forEach(x=>d(x,1,pal.hair));
+      [2,3,4,5,6,7,8,9,10,11].forEach(x=>d(x,2,pal.hair));
+      [1,2,3].forEach(x=>d(x,3,pal.hair));
+      [10,11,12].forEach(x=>d(x,3,pal.hair));
+      // Face
+      for(let y=3;y<=9;y++)for(let x=3;x<=10;x++)d(x,y,pal.skin);
+      // Hair sides
+      [1,2].forEach(x=>{for(let y=4;y<=7;y++)d(x,y,pal.hair)});
+      [11,12].forEach(x=>{for(let y=4;y<=6;y++)d(x,y,pal.hair)});
+      // Glasses
+      [3,4,5].forEach(x=>d(x,5,pal.glass));
+      d(6,5,pal.hair);
+      [7,8,9].forEach(x=>d(x,5,pal.glass));
+      d(4,5,pal.eye);d(8,5,pal.eye);
+      d(3,5,pal.white);d(7,5,pal.white);
+      // Mouth
+      [5,6,7].forEach(x=>d(x,8,pal.acc));
+      // Neck
+      [5,6,7].forEach(x=>d(x,10,pal.skin));
+      // Body
+      for(let y=11;y<=15;y++)for(let x=2;x<=11;x++)d(x,y,pal.shirt);
+      [5,6,7].forEach(x=>d(x,11,pal.white));
+      [1].forEach(x=>{for(let y=12;y<=14;y++)d(x,y,pal.shirt)});
+      [12].forEach(x=>{for(let y=12;y<=14;y++)d(x,y,pal.shirt)});
+      for(let x=2;x<=11;x++)d(x,14,pal.acc);
+    }
+
+    /* — Skyline — */
+    function genSkyline(){
+      const el=document.getElementById('skylineBuildings');
+      if(!el)return;
+      const bs=[
+        {w:12,h:35},{w:8,h:50},{w:15,h:40},{w:6,h:25},{w:10,h:60},{w:8,h:30},
+        {w:18,h:45},{w:5,h:70,t:1},{w:14,h:38},{w:7,h:55},{w:12,h:42},
+        {w:9,h:32},{w:16,h:48},{w:6,h:28},{w:11,h:52},{w:8,h:36},{w:13,h:44},
+        {w:7,h:58},{w:10,h:34},{w:15,h:46},{w:8,h:40},{w:12,h:30},{w:6,h:50},
+        {w:14,h:38},{w:9,h:55},{w:10,h:42},{w:7,h:35},{w:16,h:48},{w:8,h:62},
+        {w:12,h:36},{w:11,h:44},{w:6,h:28}
+      ];
+      bs.forEach(b=>{
+        const div=document.createElement('div');
+        div.className=b.t?'bldg tokyo-tower':'bldg';
+        div.style.width=b.w+'px';div.style.height=b.h+'px';
+        if(!b.t&&b.w>8){
+          const cols=Math.floor(b.w/6),rows=Math.floor(b.h/10);
+          for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+            if(Math.random()>0.4){
+              const w=document.createElement('div');
+              w.className='win';
+              w.style.left=(3+c*6)+'px';w.style.top=(4+r*10)+'px';
+              w.style.opacity=String(0.3+Math.random()*0.5);
+              div.appendChild(w);
+            }
+          }
+        }
+        el.appendChild(div);
+      });
+    }
+
+    /* — Theme — */
+    const toggle=document.getElementById('themeToggle');
+    const setTheme=(t,save)=>{document.documentElement.setAttribute('data-theme',t);if(save)localStorage.setItem('neo-showa-theme',t)};
+    toggle.addEventListener('click',()=>{
+      const next=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+      setTheme(next,true);
+    });
+    const saved=localStorage.getItem('neo-showa-theme');
+    if(saved){setTheme(saved,false)}
+    else{
+      /* Auto day/night: 7:00–18:00 = light, else dark */
+      const hour=new Date().getHours();
+      setTheme(hour>=7&&hour<18?'light':'dark',false);
+    }
+
+    /* — Music Player removed — playback is via City Pop Jukebox YouTube links — */
+
+    /* — Scroll Reveal — */
+    const obs=new IntersectionObserver(es=>{
+      es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+    },{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+    /* — Sticky Nav — */
+    const nav=document.getElementById('topNav');
+    window.addEventListener('scroll',()=>{nav.classList.toggle('visible',scrollY>500)},{passive:true});
+
+    /* — Accordion — */
+    document.querySelectorAll('.pub-card').forEach(c=>{
+      c.addEventListener('click',e=>{
+        if(e.target.closest('.pub-action-btn'))return;
+        const exp=c.classList.toggle('expanded');
+        c.setAttribute('aria-expanded',exp);
+      });
+      c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();c.click()}});
+    });
+
+    /* — BibTeX Copy — */
+    document.querySelectorAll('.bibtex-btn').forEach(btn=>{
+      btn.addEventListener('click',async e=>{
+        e.stopPropagation();
+        const bib=btn.getAttribute('data-bibtex').replace(/&#10;/g,'\n');
+        try{await navigator.clipboard.writeText(bib)}catch{
+          const ta=Object.assign(document.createElement('textarea'),{value:bib,style:'position:fixed;opacity:0'});
+          document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();
+        }
+        btn.classList.add('copied');setTimeout(()=>btn.classList.remove('copied'),1500);
+      });
+    });
+
+    /* — Konami — */
+    const seq=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let ki=0;const kov=document.getElementById('konamiOverlay');
+    document.addEventListener('keydown',e=>{
+      if(e.key===seq[ki]||e.key.toLowerCase()===seq[ki]){ki++;if(ki===seq.length){ki=0;activateKonami()}}else{ki=0}
+    });
+    function activateKonami(){
+      kov.classList.add('active');
+      const notes=['♪','♫','♬','♩'];
+      for(let i=0;i<20;i++){
+        const n=document.createElement('div');n.className='music-note';
+        n.textContent=notes[Math.floor(Math.random()*notes.length)];
+        n.style.left=Math.random()*100+'%';
+        n.style.animationDelay=Math.random()*4+'s';
+        n.style.animationDuration=(3+Math.random()*3)+'s';
+        n.style.fontSize=(1+Math.random()*1.5)+'rem';
+        kov.appendChild(n);
+      }
+    }
+    kov.addEventListener('click',()=>{kov.classList.remove('active');kov.querySelectorAll('.music-note').forEach(n=>n.remove())});
+
+    /* — INSERT COIN: Multi-Genre Jukebox — */
+    const jukeboxGenres = {
+      citypop: {
+        name: 'City Pop Jukebox',
+        subtitle: '~ I\'m Feeling Lucky ~',
+        accent: '#E8927C',
+        tracks: [
+        {title:'鏡の中のアクトレス',artist:'中原めいこ'},
+        {title:'夏模様',artist:'柏原芳恵'},
+        {title:'エスケイプ',artist:'EPO'},
+        {title:'青い珊瑚礁',artist:'松田聖子'},
+        {title:'Dance In The Memories',artist:'中原めいこ'},
+        {title:'NIGHT CRUISING',artist:'菊池桃子'},
+        {title:'好・き・好・き SWEET KISS',artist:'山下達郎'},
+        {title:'そして僕は途方に暮れる (feat. 黒川沙良)',artist:'Tokimeki Records / 黒川沙良'},
+        {title:'今夜だけDance・Dance・Dance',artist:'中原めいこ'},
+        {title:'SENTIMENTAL EXPRESS',artist:'杏里'},
+        {title:'JODY',artist:'山下達郎'},
+        {title:'背中ごしにセンチメンタル',artist:'宮里久美'},
+        {title:'ココナッツの片想い',artist:'伊藤智恵理'},
+        {title:'Adventure',artist:'菊池桃子'},
+        {title:'少女A',artist:'中森明菜'},
+        {title:'誘魚灯',artist:'伊藤美奈子'},
+        {title:'今夜はHearty Party (feat. ひかり)',artist:'Tokimeki Records / ひかり'},
+        {title:'一歩ずつの季節',artist:'児島未散'},
+        {title:'バーレスクがお似合い',artist:'大橋純子'},
+        {title:'MORNING HIGHWAY',artist:'杏里'},
+        {title:'悲しみがとまらない I CAN\'T STOP THE LONELINESS',artist:'杏里'},
+        {title:'グッドバイ・デイ',artist:'来生たかお'},
+        {title:'真夜中のドア / Stay With Me (feat. ひかり)',artist:'Tokimeki Records / ひかり'},
+        {title:'Cloudyな午後',artist:'中原めいこ'},
+        {title:'駅',artist:'竹内まりや'},
+        {title:'纯爱ラプソディ',artist:'竹内まりや'},
+        {title:'夢の続き',artist:'竹内まりや'},
+        {title:'ミラクル・ラブ',artist:'竹内まりや'},
+        {title:'シングル・アゲイン(\'07 New Remaster)',artist:'竹内まりや'},
+        {title:'じれったい',artist:'安全地帯'},
+        {title:'月に濡れたふたり',artist:'安全地帯'},
+        {title:'悲しみにさよなら',artist:'安全地帯'},
+        {title:'カメレオン',artist:'八神純子'},
+        {title:'六本木純情派',artist:'荻野目洋子'},
+        {title:'六本木純情派',artist:'Ms.OOJA'},
+        {title:'夢冒険',artist:'酒井法子'},
+        {title:'ボクが傍にいるから…',artist:'今井優子'},
+        {title:'濡れていた瞳',artist:'今井美樹'},
+        {title:'ハーフムーン･セレナーデ',artist:'河合奈保子'},
+        {title:'THROUGH THE WINDOW~月に降る雪~',artist:'河合奈保子'},
+        {title:'空を見上げて',artist:'河合その子'},
+        {title:'最愛',artist:'柏原芳恵'},
+        {title:'新しい一日のために（Rejoicing Version）',artist:'児島未散'},
+        {title:'ドリーム・ボートが出る夜に',artist:'菊池桃子'},
+        {title:'ヴィーナスは泣かない',artist:'石川優子'},
+        {title:'Ooh Baby',artist:'Craig Ruhnke'},
+        {title:'Miracle Love',artist:'牧瀬里穂'},
+        {title:'Sexy dandy',artist:'中原めいこ'},
+        {title:'ジャグラー',artist:'中原めいこ'},
+        {title:'Happy birthday, Love for you',artist:'中原めいこ'},
+        {title:'JOY',artist:'石井明美'},
+        {title:'ハートは戻らない',artist:'早見優'},
+        {title:'Smile for me',artist:'松任谷由実'},
+        {title:'RIDE ON TIME',artist:'Rainych / evening cinema'},
+        {title:'ウェディング・ベル',artist:'Sugar'},
+        {title:'CHA CHA CHA',artist:'一十三十一'},
+        {title:'逢うたび好きになって',artist:'BRIGHT'},
+        {title:'やさしい声で殺して',artist:'门あさ美'},
+        {title:'残り火',artist:'五輪真弓'},
+        {title:'雨の中の二人',artist:'五輪真弓'},
+        {title:'初恋',artist:'村下孝蔵'},
+        {title:'ラブ・ストーリーは突然に',artist:'小田和正'},
+        {title:'最終便',artist:'久保田早紀'},
+        {title:'恋のディスコクイーン',artist:'SEGA Sound Team'}
+        ]
+      },
+      jpoprock: {
+        name: 'J-Pop・Rock Jukebox',
+        subtitle: '~ ロックンロール ~',
+        accent: '#FF6B9D',
+        tracks: [
+        {title:'シュガープリンセス/Sugar Princess',artist:'楓'},
+        {title:'ただ流るるままに',artist:'彩音'},
+        {title:'ホントは、ね',artist:'Uru'},
+        {title:'ネビュラロマンス',artist:'Perfume'},
+        {title:'Bi-Li-Li Emotion',artist:'Superfly'},
+        {title:'LIKE A HARD RAIN',artist:'相川七瀬'},
+        {title:'鯖鯖',artist:'山崎あおい'},
+        {title:'Goodbye Happiness',artist:'宇多田ヒカル'},
+        {title:'心よ原始に戻れ',artist:'高橋洋子'},
+        {title:'バイバイ。',artist:'相川七瀬'},
+        {title:'メモリーグラス',artist:'Ms.OOJA'},
+        {title:'陽のあたる場所',artist:'MISIA'},
+        {title:'薄明',artist:'KIRINJI / Maika Loubté'},
+        {title:'オールナイトレディオ',artist:'Ado'},
+        {title:'花になって - Be a flower',artist:'緑黄色社会'},
+        {title:'救われることり',artist:'菅野祐悟'},
+        {title:'無人の島',artist:'TRUE'},
+        {title:'長距離電話',artist:'岡崎律子'},
+        {title:'ソー・ロング・マイ・ラヴ',artist:'小田和正'},
+        {title:'マスカット',artist:'平原綾香'},
+        {title:'Subject_さようなら',artist:'松浦亜弥'},
+        {title:'Woman～Wの悲劇より～',artist:'Ms.OOJA'},
+        {title:'ロビンソン',artist:'星野みちる'},
+        {title:'ロビンソン',artist:'絢香'},
+        {title:'永遠',artist:'BoA'},
+        {title:'Fox',artist:'BoA'},
+        {title:'ひとり上手 (2024 Stephen Marcussen Remastering)',artist:'中島みゆき'},
+        {title:'最愛',artist:'岡崎律子'},
+        {title:'Prisoner Of Love',artist:'宇多田ヒカル'},
+        {title:'One Last Kiss (Live Version)',artist:'宇多田ヒカル'},
+        {title:'留学生',artist:'MONKEY MAJIK / 岡崎体育'},
+        {title:'もしも',artist:'藤谷美紀'},
+        {title:'行かないで',artist:'玉置浩二'},
+        {title:'夕映えを待ちながら',artist:'因幡晃'},
+        {title:'SLOW DOWN',artist:'向井太一'},
+        {title:'今夜、君の声が聞きたい',artist:'柴田淳'},
+        {title:'夢',artist:'柴田淳'},
+        {title:'おかえりなさい.',artist:'柴田淳'},
+        {title:'長い間',artist:'夏川りみ'},
+        {title:'未来へ',artist:'Kiroro'},
+        {title:'レーザービーム',artist:'Perfume'},
+        {title:'APPLE',artist:'椎名林檎 / TOWA TEI'},
+        {title:'月極姫',artist:'東京事変'},
+        {title:'修羅場 adult ver.',artist:'東京事変'},
+        {title:'恋は幻',artist:'東京事変'},
+        {title:'今夜はから騒ぎ',artist:'東京事変'},
+        {title:'りんごのうた',artist:'椎名林檎'},
+        {title:'Woman"Wの悲劇"より',artist:'薬師丸ひろ子'},
+        {title:'瞬き',artist:'back number'},
+        {title:'ハルジオン',artist:'YOASOBI'},
+        {title:'祝福',artist:'YOASOBI'},
+        {title:'夜中のキスミ',artist:'ずっと真夜中でいいのに。'},
+        {title:'お七',artist:'水曜日のカンパネラ'},
+        {title:'雪の華',artist:'中島美嘉'},
+        {title:'駅',artist:'德永英明'},
+        {title:'にんじゃりばんばん',artist:'きゃりーぱみゅぱみゅ'},
+        {title:'Stay Gold',artist:'大橋トリオ'},
+        {title:'Last Love',artist:'Rihwa'},
+        {title:'Merry Christmas Mr. Lawrence',artist:'坂本龍一'},
+        {title:'おとなの掟',artist:'Doughnuts Hole'},
+        {title:'こんなにも',artist:'Dream'},
+        {title:'僕らの手には何もないけど、',artist:'RAM WIRE'},
+        {title:'Goodbye『さようなら』',artist:'コンシャスTHOUGHTS'},
+        {title:'BEAUTIFUL WORLD',artist:'lasah'},
+        {title:'煙',artist:'まきちゃんぐ'},
+        {title:'やさしくしないで',artist:'杉恵ゆりか'},
+        {title:'sign 0',artist:'Chouchou'},
+        {title:'Sunset',artist:'BLU-SWING'},
+        {title:'蘇州夜曲',artist:'安佐里'},
+        {title:'綱の上の喜劇',artist:'浮森かや子'},
+        {title:'chic',artist:'advantage Lucy'},
+        {title:'蓮',artist:'中島優美'},
+        {title:'イキツクシ',artist:'DADARAY'},
+        {title:'steamroid',artist:'加藤有加利'},
+        {title:'暴走マシーン',artist:'加藤有加利'},
+        {title:'機狂心兵',artist:'加藤有加利'},
+        {title:'かすかなしるし',artist:'藤原ヒロシ'},
+        {title:'The Faintest Sign',artist:'藤原ヒロシ'},
+        {title:'私は雨',artist:'シド'},
+        {title:'君とSOS',artist:'MOSHIMO'},
+        {title:'薄紅',artist:'中田裕二'},
+        {title:'肉屋のように',artist:'ヤプーズ'},
+        {title:'赤紙',artist:'黒木渚'},
+        {title:'呪いは水色',artist:'大森靖子'},
+        {title:'フユノ',artist:'ヒトリエ'},
+        {title:'演者の憂鬱',artist:'鴉'},
+        {title:'どん',artist:'秋山羊子'},
+        {title:'赤橙',artist:'ACIDMAN'},
+        {title:'思ひで',artist:'鈴木常吉'},
+        {title:'EXEC_COSMOFLIPS/.',artist:'KOKIA'},
+        {title:'絶対値',artist:'チリヌルヲワカ'},
+        {title:'ワールド・ワイド・ボクシステム',artist:'Annabel'},
+        {title:'感谢的生活',artist:'倉橋ヨエコ'},
+        {title:'モノクローム',artist:'具島直子'},
+        {title:'Namidairo',artist:'YUI'},
+        {title:'Mirror',artist:'安田レイ'},
+        {title:'桜ロック',artist:'CHERRYBLOSSOM'},
+        {title:'Disco (Bad dance doesn\'t matter)',artist:'chelmico'},
+        {title:'oyasumi',artist:'Shiggy Jr.'},
+        {title:'Sun is coming up',artist:'Shiggy Jr.'},
+        {title:'カサネテク',artist:'中村千尋'}
+        ]
+      },
+      anime: {
+        name: 'Anime・Game Jukebox',
+        subtitle: '~ Press Start ~',
+        accent: '#00B4D8',
+        tracks: [
+        {title:'FREELY TOMORROW',artist:'Mitchie M / 初音ミク'},
+        {title:'魂のルフラン',artist:'高橋洋子'},
+        {title:'TENSIONS - welcome to the stage',artist:'高橋洋子'},
+        {title:'蒼いレジェンド',artist:'三石琴乃'},
+        {title:'僕らの戦場～Freyja Solo Edition～',artist:'鈴木みのり'},
+        {title:'ワルキューレがとまらない',artist:'ワルキューレ'},
+        {title:'いけないボーダーライン',artist:'ワルキューレ'},
+        {title:'君じゃなきゃダメみたい',artist:'オーイシマサヨシ'},
+        {title:'創聖のアクエリオン',artist:'AKINO'},
+        {title:'Brave Shine',artist:'Aimer'},
+        {title:'LAST STARDUST',artist:'Aimer'},
+        {title:'茜さす',artist:'Aimer'},
+        {title:'7月の翼',artist:'Aimer'},
+        {title:'コネクト',artist:'ClariS'},
+        {title:'oath sign',artist:'LiSA'},
+        {title:'crossing field',artist:'LiSA'},
+        {title:'Rally Go Round',artist:'LiSA'},
+        {title:'Rising Hope',artist:'LiSA'},
+        {title:'ideal white',artist:'綾野ましろ'},
+        {title:'IGNITE',artist:'藍井エイル'},
+        {title:'MEMORIA',artist:'藍井エイル'},
+        {title:'aLIEz',artist:'瑞葵(mizuki) / SawanoHiroyuki[nZk]'},
+        {title:'βios',artist:'小林未郁'},
+        {title:'暁の車',artist:'FictionJunction / 南里侑香'},
+        {title:'oblivious',artist:'Kalafina'},
+        {title:'to the beginning',artist:'Kalafina'},
+        {title:'Shangri-La',artist:'angela'},
+        {title:'God only knows',artist:'ELISA'},
+        {title:'HIKARI',artist:'ELISA'},
+        {title:'Dear My Friend -まだ見ぬ未来へ-',artist:'ELISA'},
+        {title:'Brand-new World',artist:'西沢幸奏'},
+        {title:'吹雪',artist:'西沢幸奏'},
+        {title:'海色',artist:'AKINO'},
+        {title:'Let Me Hear',artist:'Fear, and Loathing in Las Vegas'},
+        {title:'CORE PRIDE',artist:'UVERworld'},
+        {title:'COLORS',artist:'FLOW'},
+        {title:'DAYS',artist:'FLOW'},
+        {title:'サムライハート(Some Like It Hot!!)',artist:'SPYAIR'},
+        {title:'サクラミツツキ',artist:'SPYAIR'},
+        {title:'DAY×DAY',artist:'BLUE ENCOUNT'},
+        {title:'狂乱 Hey Kids!!',artist:'THE ORAL CIGARETTES'},
+        {title:'ミカヅキ',artist:'さユり'},
+        {title:'スピードと摩擦',artist:'amazarashi'},
+        {title:'コンプリケイション',artist:'ROOKiEZ is PUNK\'D'},
+        {title:'コンプリケイション -still struggle version-',artist:'ROOKiEZ is PUNK\'D'},
+        {title:'ツキアカリのミチシルベ',artist:'ステレオポニー'},
+        {title:'again',artist:'YUI'},
+        {title:'THE HERO!! ~怒れる拳に火をつけろ',artist:'JAM Project'},
+        {title:'星より先に見つけてあげる',artist:'森口博子'},
+        {title:'ホタルノヒカリ',artist:'いきものがかり'},
+        {title:'ブルーバード',artist:'いきものがかり'},
+        {title:'冒険でしょでしょ?',artist:'平野綾'},
+        {title:'Don\'t say "lazy"',artist:'桜高軽音部'},
+        {title:'夢想歌',artist:'Suara'},
+        {title:'Skyreach',artist:'雨宮天'},
+        {title:'L.L.L.',artist:'MYTH & ROID'},
+        {title:'Clattanoia',artist:'OxT'},
+        {title:'This game',artist:'鈴木このみ'},
+        {title:'only my railgun',artist:'fripSide'},
+        {title:'black bullet',artist:'fripSide'},
+        {title:'I\'m believing you',artist:'fripSide'},
+        {title:'Chase the world',artist:'May\'n'},
+        {title:'My Dearest',artist:'supercell'},
+        {title:'銀色飛行船',artist:'supercell'},
+        {title:'名前のない怪物',artist:'EGOIST'},
+        {title:'桜花爛漫',artist:'KEYTALK'},
+        {title:'光るなら',artist:'Goose house'},
+        {title:'恋はヒラひらり',artist:'Goose house'},
+        {title:'オレンジ',artist:'seven oops'},
+        {title:'ReReハロ〜終われそうにない夏〜',artist:'seven oops'},
+        {title:'Trust Me',artist:'松下優也'},
+        {title:'L.o.L.',artist:'松下優也'},
+        {title:'太陽と向日葵',artist:'Flower'},
+        {title:'輝夜の城で踊りたい',artist:'μ\'s'},
+        {title:'Butter-Fly',artist:'和田光司'},
+        {title:'The Biggest Dreamer',artist:'和田光司'},
+        {title:'鳥の詩',artist:'Lia'},
+        {title:'My Soul, Your Beats!',artist:'Lia'},
+        {title:'brave heart',artist:'宮崎歩'},
+        {title:'ペガサス幻想',artist:'MAKE-UP / 山田信夫'},
+        {title:'おどるポンポコリン',artist:'B.B.クイーンズ'},
+        {title:'keep on',artist:'前田愛'},
+        {title:'For フルーツバスケット',artist:'岡崎律子'},
+        {title:'secret base ~君がくれたもの~ (10 years after Ver.)',artist:'茅野愛衣 / 戸松遥 / 早見沙織'},
+        {title:'一番の宝物 (Yui Ver.)',artist:'VISUAL ARTS / Key'},
+        {title:'小さな手のひら',artist:'茶太'},
+        {title:'白金ディスコ',artist:'井口裕香'},
+        {title:'stand still',artist:'井口裕香'},
+        {title:'月灯りふんわり落ちてくる夜',artist:'やなぎなぎ'},
+        {title:'トコハナ',artist:'やなぎなぎ'},
+        {title:'終わりの世界から',artist:'麻枝准 / やなぎなぎ'},
+        {title:'プレパレード',artist:'釘宮理恵 / 堀江由衣 / 喜多村英梨'},
+        {title:'Suki Kirai ! Suki !!!',artist:'釘宮理恵'},
+        {title:'キスシテ↑アゲナイ↓',artist:'釘宮理恵'},
+        {title:'and I\'m home -Original Master Version.-',artist:'喜多村英梨 / 野中藍'},
+        {title:'Magic∞world',artist:'黒崎真音'},
+        {title:'スカイクラッドの観測者',artist:'いとうかなこ'},
+        {title:'Hacking to the Gate',artist:'いとうかなこ'},
+        {title:'A.R.',artist:'いとうかなこ'},
+        {title:'I SAY YES',artist:'ICHIKO'},
+        {title:'YOU\'RE THE ONE',artist:'ICHIKO'},
+        {title:'Dead END',artist:'Faylan'},
+        {title:'Resuscitated Hope',artist:'コミネリサ'},
+        {title:'扉をあけて',artist:'ANZA'},
+        {title:'星の在り処',artist:'う～み'},
+        {title:'ウラオモテ・フォーチュン',artist:'小澤亜李'},
+        {title:'ふたりのきもちのほんとのひみつ',artist:'赤﨑千夏 / 田村睦心'},
+        {title:'ザ　ドールハウス！',artist:'kanon×kanon'},
+        {title:'君のとなりに',artist:'ZAQ'},
+        {title:'Alteration',artist:'ZAQ'},
+        {title:'I\'ll believe',artist:'ALTIMA'},
+        {title:'希望の唄',artist:'ULTRA TOWER'},
+        {title:'ライジングレインボウ',artist:'ミソッカス'},
+        {title:'Day you laugh',artist:'豊永利行'},
+        {title:'人生リセットボタン',artist:'鋼兵'},
+        {title:'太陽曰く燃えよカオス',artist:'後ろから這いより隊G'},
+        {title:'恋は渾沌の隷也',artist:'後ろから這いより隊G'},
+        {title:'ゆりゆららららゆるゆり大事件',artist:'七森中☆ごらく部'},
+        {title:'なきむし。 Acoustic Ver.',artist:'沢井美空'},
+        {title:'カラフル。',artist:'沢井美空'},
+        {title:'極楽浄土',artist:'GARNiDELiA'},
+        {title:'daze',artist:'じん / MARiA'},
+        {title:'Honolulu City Lights【Full Spec Edition】',artist:'不二宮千歳(伊波杏樹)'},
+        {title:'神女劈観·唤情 Devastation and Redemption',artist:'HOYO-MiX'},
+        {title:'Driftveil City Toothless Meme',artist:'Music Trending'},
+        {title:'Telephone Juice',artist:'みきとP'},
+        {title:'オノマトペ',artist:'羽生まゐご / りりあ。'},
+        {title:'エアーマンが倒せない',artist:'SOUND HOLIC / 花たん'},
+        {title:'エアーマンが倒せない',artist:'花たん'},
+        {title:'Wave',artist:'花たん'},
+        {title:'ECHO',artist:'+α/あるふぁきゅん。'},
+        {title:'ハイファイレイヴァー',artist:'96猫'},
+        {title:'ヒビカセ',artist:'Reol'},
+        {title:'No title',artist:'Reol / Giga'},
+        {title:'チルノのパーフェクトさんすう教室',artist:'miko'},
+        {title:'スイートマジック',artist:'Junky'},
+        {title:'sweets parade',artist:'花澤香菜'},
+        {title:'おこちゃま戦争',artist:'kradness / Reol'},
+        {title:'メランコリック',artist:'山根万理奈'},
+        {title:'インタビュア',artist:'鹿乃'},
+        {title:'センチメンタルな愛慕心',artist:'鹿乃'},
+        {title:'メグメグ☆ファイアーエンドレスナイト',artist:'花たん / プリコ / ヲタみん / ChouCho / 転少女'},
+        {title:'CARAMELLDANSEN',artist:'キャラメル / Caramella Girls'},
+        {title:'ニコニコ动画流星娘',artist:'歌ってみた'},
+        {title:'Rainbow Girl',artist:'バラード'},
+        {title:'Blessing(World Edition)',artist:'チューン / Sumashu 等'},
+        {title:'RED Signal',artist:'cordelia / 花たん'},
+        {title:'イカサマ サカサ セカイ',artist:'綾倉盟'},
+        {title:'松下',artist:'月光潤色ガール(カバー)'},
+        {title:'fairy stage',artist:'K2 SOUND'},
+        {title:'泡になった',artist:'Monolog / 市川愛'},
+        {title:'ORION',artist:'柊優花'},
+        {title:'黒猫のタンゴ',artist:'みとせのりこ'},
+        {title:'沈んだ歌姫',artist:'Sound Horizon'},
+        {title:'緋色月下、狂咲ノ絶 -1st Anniversary Remix-',artist:'nayuta'},
+        {title:'・－・・ －－－ ・・・－ ・(signum/ii remix)',artist:'3L'},
+        {title:'Flower of Life',artist:'陽花'},
+        {title:'Dreamer',artist:'Stack'},
+        {title:'カゲロウ',artist:'Stack'},
+        {title:'Libertus',artist:'Chen-U'},
+        {title:'ZOU+',artist:'AVTechNO! / Lily / Cranky'},
+        {title:'甲賀忍法帖',artist:'陰陽座'},
+        {title:'その声消えないよ',artist:'fumika / Sunya'},
+        {title:'絆',artist:'miu-clips'},
+        {title:'約束の絆',artist:'種田梨沙 / 茅原実里 / 山岡ゆり'},
+        {title:'Never Say Never',artist:'TKDz2b'},
+        {title:'1年2ヶ月20日 泣いちゃう前にver',artist:'BRIGHT'},
+        {title:'ツナグキズナ',artist:'Team.ねこかん[猫] / 天乙准花'},
+        {title:'Mirror',artist:'安田レイ'},
+        {title:'Lil\' Goldfish',artist:'Marika / Nao\'ymt'},
+        {title:'Keep On Fighting',artist:'祈Inory'},
+        {title:'Keep On Fighting (日文版)',artist:'祈Inory'},
+        {title:'奇迹再现',artist:'毛华锋'},
+        {title:'蹈火涅槃',artist:'群星'},
+        {title:'灵魂的号哭',artist:'祈Inory'},
+        {title:'権御天下',artist:'凑诗'},
+        {title:'啥啊',artist:'星葵77 / 洛天依Official'},
+        {title:'暗恋人类日记',artist:'Bo Peep / 洛天依Official'},
+        {title:'ロストワンの号哭 (refine)',artist:'Neru'}
+        ]
+      }
+    };
+    
+    /* ── Jukebox Carousel (CoverFlow) ── */
+    const carouselEl = document.querySelector('.jukebox-carousel');
+    const allMachines = document.querySelectorAll('.coin-machine');
+    let activeIdx = 0;
+    let isRotating = false;
+    let currentVideoId = null;
+
+    function setPositions() {
+      const left = (activeIdx - 1 + 3) % 3;
+      const right = (activeIdx + 1) % 3;
+      allMachines.forEach((m, i) => {
+        m.classList.remove('pos-left', 'pos-center', 'pos-right');
+        if (i === activeIdx) m.classList.add('pos-center');
+        else if (i === left) m.classList.add('pos-left');
+        else m.classList.add('pos-right');
+      });
+    }
+
+    function rotateCarousel(direction) {
+      if (isRotating) return;
+      isRotating = true;
+      /* Stop video on the machine leaving center */
+      const oldActive = allMachines[activeIdx];
+      const yt = oldActive.querySelector('.coin-yt-wrap');
+      if (yt && yt.classList.contains('active')) { yt.classList.remove('active'); yt.innerHTML = ''; }
+
+      activeIdx = direction === 'next'
+        ? (activeIdx + 1) % 3
+        : (activeIdx - 1 + 3) % 3;
+      setPositions();
+
+      const newCenter = allMachines[activeIdx];
+      newCenter.addEventListener('transitionend', function onEnd(e) {
+        if (e.propertyName !== 'transform') return;
+        newCenter.removeEventListener('transitionend', onEnd);
+        isRotating = false;
+      });
+    }
+
+    /* Arrow buttons */
+    document.getElementById('jbNext')?.addEventListener('click', () => rotateCarousel('next'));
+    document.getElementById('jbPrev')?.addEventListener('click', () => rotateCarousel('prev'));
+
+    /* Click on side machine → rotate to it */
+    allMachines.forEach((m, i) => {
+      m.addEventListener('click', (e) => {
+        if (i === activeIdx || isRotating) return;
+        if (e.target.closest('.coin-btn')) return;
+        const diff = (i - activeIdx + 3) % 3;
+        rotateCarousel(diff === 1 ? 'next' : 'prev');
+      });
+    });
+
+    /* Initialize positions */
+    setPositions();
+
+    /* ── COIN handler (event delegation) ── */
+    async function fetchAlbumArt(title, artist) {
+      try {
+        const q = encodeURIComponent(title + ' ' + artist);
+        const res = await fetch(`https://itunes.apple.com/search?term=${q}&media=music&limit=1`);
+        const data = await res.json();
+        if (data.results && data.results.length > 0) {
+          return data.results[0].artworkUrl100.replace('100x100', '300x300');
+        }
+      } catch(e) {}
+      return null;
+    }
+
+    async function searchYouTube(title, artist) {
+      const q = encodeURIComponent(title + ' ' + artist);
+      const apis = ['https://pipedapi.kavin.rocks', 'https://pipedapi.adminforge.de', 'https://pipedapi.in.projectsegfau.lt'];
+      for (const api of apis) {
+        try {
+          const res = await fetch(`${api}/search?q=${q}&filter=music_songs`, { signal: AbortSignal.timeout(5000) });
+          const data = await res.json();
+          if (data.items && data.items.length > 0) {
+            return data.items[0].url.replace('/watch?v=', '');
+          }
+        } catch(e) { continue }
+      }
+      return null;
+    }
+
+    function playInPage(videoId) {
+      if (!videoId) return;
+      const m = allMachines[activeIdx];
+      const yt = m.querySelector('.coin-yt-wrap');
+      if (!yt) return;
+      yt.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0" allow="autoplay;encrypted-media" allowfullscreen></iframe>`;
+      yt.classList.add('active');
+      yt.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    document.querySelector('.jukebox-carousel').addEventListener('click', (e) => {
+      /* Play button */
+      const playBtn = e.target.closest('.coin-play-btn');
+      if (playBtn && currentVideoId) { playInPage(currentVideoId); return; }
+
+      /* COIN button */
+      const btn = e.target.closest('.coin-btn');
+      if (!btn) return;
+      const machine = btn.closest('.coin-machine');
+      if (!machine) return;
+      const machineIdx = Array.from(allMachines).indexOf(machine);
+      if (machineIdx !== activeIdx) return;
+
+      const genre = machine.dataset.genre;
+      const result = machine.querySelector('.coin-result');
+      const vinyl = machine.querySelector('.coin-vinyl');
+      const trackInfo = machine.querySelector('.coin-track-info');
+      const ytWrap = machine.querySelector('.coin-yt-wrap');
+      const counter = machine.querySelector('.coin-counter');
+      const tracks = jukeboxGenres[genre].tracks;
+
+      btn.classList.add('has-played');
+      machine.classList.add('has-played');
+
+      const lastIdx = parseInt(machine.dataset.lastIdx || '-1');
+      let idx;
+      do { idx = Math.floor(Math.random() * tracks.length) } while (idx === lastIdx && tracks.length > 1);
+      machine.dataset.lastIdx = idx;
+      const spins = (parseInt(machine.dataset.spins || '0') + 1);
+      machine.dataset.spins = spins;
+
+      const s = tracks[idx];
+      result.classList.remove('show');
+      if (vinyl) { vinyl.classList.remove('spinning'); vinyl.style.backgroundImage = ''; vinyl.classList.remove('has-art'); }
+      if (ytWrap) { ytWrap.classList.remove('active'); ytWrap.innerHTML = ''; }
+      btn.style.pointerEvents = 'none';
+      currentVideoId = null;
+
+      setTimeout(() => {
+        const ytQuery = encodeURIComponent(s.title + ' ' + s.artist);
+        const ytUrl = `https://www.youtube.com/results?search_query=${ytQuery}`;
+        if (trackInfo) {
+          trackInfo.innerHTML = `<span class="song-title">♪ ${s.title}</span><span class="song-artist">${s.artist}</span><span class="song-number">TRACK #${idx+1} of ${tracks.length}</span><div class="coin-actions"><span class="coin-loading-hint">♪ loading...</span><a href="${ytUrl}" target="_blank" rel="noopener" class="coin-open-link">↗ YouTube</a></div>`;
+        }
+        if (vinyl) vinyl.classList.add('spinning');
+        result.classList.add('show');
+        btn.style.pointerEvents = '';
+        if (counter) counter.textContent = `coins inserted: ${spins} ♪`;
+
+        Promise.all([
+          fetchAlbumArt(s.title, s.artist),
+          searchYouTube(s.title, s.artist)
+        ]).then(([artUrl, videoId]) => {
+          if (artUrl && vinyl) {
+            vinyl.style.backgroundImage = `url(${artUrl})`;
+            vinyl.classList.add('has-art');
+          }
+          currentVideoId = videoId;
+          const loadHint = trackInfo?.querySelector('.coin-loading-hint');
+          if (loadHint && videoId) {
+            loadHint.outerHTML = `<button class="coin-play-btn">▶ Play</button>`;
+          } else if (loadHint) {
+            loadHint.remove();
+          }
+        });
+      }, 250);
+    });
+
+    /* — Parallax Stars — */
+    const stars=document.querySelectorAll('.parallax-star');
+    window.addEventListener('scroll',()=>{
+      stars.forEach((s,i)=>{s.style.transform=`translateY(${scrollY*(0.03+i*0.015)}px)`});
+    },{passive:true});
+
+    /* — Init — */
+    drawPixelAvatar();
+    genSkyline();
+  })();
+  </script>
+</body>
+</html>
