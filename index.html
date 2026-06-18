@@ -336,9 +336,9 @@
     @keyframes pixelPop{0%{transform:scale(0)}60%{transform:scale(1.4)}100%{transform:scale(1)}}
 
     /* ═══════════════════════════════════════
-       EDUCATION
+       EXPERIENCE
        ═══════════════════════════════════════ */
-    #education{background:var(--gradient-sunset-soft)}
+    #experience{background:var(--gradient-sunset-soft)}
     .edu-logo-watermark{
       position:absolute;right:12px;top:50%;transform:translateY(-50%);
       width:50%;height:auto;opacity:0.18;pointer-events:none;
@@ -608,7 +608,7 @@
     }
     .coin-yt-wrap.active{display:block}
     .coin-yt-wrap iframe{width:100%;height:100%;border:none;border-radius:8px}
-    /* ClustrMaps & Visitor Stats */
+    /* Visitor Map & Stats */
     .visitor-card{
       max-width:440px;margin:0 auto 2rem;padding:1.5rem;
       background:var(--bg-card);border:1px solid var(--border);
@@ -628,7 +628,12 @@
       border-radius:var(--radius-sm);overflow:hidden;
       border:1px solid var(--border);background:var(--bg);
     }
-    #clustrmaps-map canvas,#clustrmaps-widget canvas{max-width:100%!important;height:auto!important;display:block}
+    .visitor-map-wrap iframe,
+    .visitor-map-wrap img,
+    .visitor-map-wrap canvas,
+    .visitor-map-wrap object{
+      max-width:100%!important;height:auto!important;display:block;margin:0 auto;
+    }
 
     /* ═══════════════════════════════════════
        FOOTER
@@ -711,7 +716,7 @@
       <span class="nav-name">Yang Cui</span>
       <ul class="nav-links">
         <li><a href="#publications">Publications</a></li>
-        <li><a href="#education">Education</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#conferences">Conferences</a></li>
       </ul>
     </div>
@@ -725,8 +730,8 @@
           <p class="hero-greeting">// hello world</p>
           <h1 class="hero-name">Yang Cui</h1>
           <p class="hero-title">Ph.D. in Bioinformatics</p>
-          <p class="hero-affiliation"><a href="https://www.cbms.k.u-tokyo.ac.jp/">Department of Computational Biology and Medical Sciences</a> · University of Tokyo</p>
-          <p class="hero-bio">I obtained my Ph.D. in Bioinformatics from the University of Tokyo under the supervision of <a href="https://fais.hgc.jp/" target="_blank" rel="noopener">Professor Kenta Nakai</a>. My research interests lie in cancer biology and computational biology, with a particular focus on the tumor microenvironment and spatial omics. My current work centers on building computational frameworks for spatial transcriptomics analysis and identifying precancerous regions from spatial omics data.</p>
+          <p class="hero-affiliation"><a href="https://medicine.yale.edu/" target="_blank" rel="noopener">School of Medicine</a> · <a href="https://www.yale.edu/" target="_blank" rel="noopener">Yale University</a></p>
+          <p class="hero-bio">I am currently a postdoctoral associate at Yale University under the mentorship of <a href="https://medicine.yale.edu/lab/mu/" target="_blank" rel="noopener">Prof. Ping Mu</a>. My research interests lie in cancer biology and computational biology, with a particular focus on the tumor microenvironment and spatial omics. My current work centers on investigating lineage plasticity in prostate cancer.</p>
           <div class="hero-links">
             <a href="https://orcid.org/0009-0000-2110-6099" class="hero-link" target="_blank" rel="noopener">
               <svg viewBox="0 0 256 256" fill="currentColor"><path fill-rule="evenodd" d="M256 128c0 70.7-57.3 128-128 128S0 198.7 0 128 57.3 0 128 0s128 57.3 128 128zM70.9 186.2h15.4V79.1H70.9v107.1zM78.3 64.6c5.5 0 9.9 4.5 9.9 9.9 0 5.5-4.4 9.9-9.9 9.9-5.5 0-9.9-4.4-9.9-9.9 0-5.5 4.4-9.9 9.9-9.9zM108.9 79.1h42.6c39.8 0 57.6 28.7 57.6 53.9 0 25.5-17.8 53.2-57.6 53.2h-42.6V79.1zm15.4 93.3h24.5c34.9 0 44.3-22.6 44.3-39.7 0-17.7-9.4-39.8-44.3-39.8h-24.5v79.5z"/></svg>
@@ -735,6 +740,10 @@
             <a href="https://scholar.google.com/citations?user=pcom3IEAAAAJ" class="hero-link" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="currentColor"><defs><mask id="sM"><circle cx="12" cy="12" r="12" fill="white"/><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="black" transform="translate(3.6,3.6) scale(0.7)"/></mask></defs><circle cx="12" cy="12" r="12" mask="url(#sM)"/></svg>
               Google Scholar
+            </a>
+            <a href="https://github.com/YANGCUI0612" class="hero-link" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0.5C5.65 0.5 0.5 5.65 0.5 12c0 5.08 3.29 9.38 7.86 10.9 0.58 0.11 0.79-0.25 0.79-0.56 0-0.28-0.01-1.2-0.02-2.18-3.2 0.7-3.88-1.36-3.88-1.36-0.52-1.33-1.28-1.68-1.28-1.68-1.05-0.72 0.08-0.7 0.08-0.7 1.16 0.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36 0.96 0.1-0.75 0.4-1.25 0.73-1.54-2.55-0.29-5.23-1.27-5.23-5.67 0-1.25 0.45-2.28 1.18-3.08-0.12-0.29-0.51-1.46 0.11-3.04 0 0 0.96-0.31 3.16 1.18 0.92-0.26 1.9-0.38 2.87-0.39 0.97 0 1.96 0.13 2.88 0.39 2.19-1.49 3.15-1.18 3.15-1.18 0.62 1.58 0.23 2.75 0.11 3.04 0.74 0.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.66 0.42 0.36 0.78 1.06 0.78 2.14 0 1.55-0.01 2.79-0.01 3.17 0 0.31 0.21 0.67 0.8 0.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35 0.5 12 0.5z"/></svg>
+              GitHub
             </a>
             <a href="mailto:yangcui0612@gmail.com" class="hero-link">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" fill="none"/><path d="M22 7l-10 7L2 7" fill="none"/></svg>
@@ -765,6 +774,26 @@
       <div class="container">
         <h2 class="section-title reveal">Publications</h2>
         <div class="timeline">
+          <div class="timeline-year reveal">2026</div>
+
+          <article class="pub-card reveal" tabindex="0" role="button" aria-expanded="false">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">An Integrated and Robust Deep Learning Framework for Denoising and Analyzing Single-Cell Spatial Transcriptomics</div>
+                <div class="pub-venue">Advanced Intelligent Systems, e70429, 2026</div>
+                <div class="pub-authors">Yaxuan Cui*, <strong>Yang Cui</strong>*, Ruheng Wang*, Xin Zeng, Zheyong Zhu, Yi Ding, Ruihua Guo, Tetsuya Sakurai, Kenta Nakai, Xiucai Ye, Leyi Wei, Yong Chen<span class="author-note">* Equal contribution</span></div>
+              </div>
+              <div class="pub-expand-icon" aria-hidden="true">▼</div>
+            </div>
+            <div class="pub-details">
+              <p class="pub-abstract">An unsupervised deep-learning framework (scSTADE) for simultaneous denoising, clustering, and identification of functionally variable genes in single-cell spatial transcriptomics, using a dual-channel architecture that couples a linear denoising module with a graph convolutional network to capture both linear and nonlinear representations across spatial domains.</p>
+              <div class="pub-actions">
+                <a href="https://doi.org/10.1002/aisy.70429" class="pub-action-btn" target="_blank" rel="noopener">Paper</a>
+                <button class="pub-action-btn bibtex-btn" data-bibtex="@article{cui2026scstade,&#10;  title={An Integrated and Robust Deep Learning Framework for Denoising and Analyzing Single-Cell Spatial Transcriptomics},&#10;  author={Cui, Yaxuan and Cui, Yang and Wang, Ruheng and Zeng, Xin and Zhu, Zheyong and Ding, Yi and Guo, Ruihua and Sakurai, Tetsuya and Nakai, Kenta and Ye, Xiucai and Wei, Leyi and Chen, Yong},&#10;  journal={Advanced Intelligent Systems},&#10;  pages={e70429},&#10;  year={2026},&#10;  doi={10.1002/aisy.70429}&#10;}"><span class="copy-icon">BibTeX</span><span class="copy-check">✓ copied</span></button>
+              </div>
+            </div>
+          </article>
+
           <div class="timeline-year reveal">2025</div>
 
           <article class="pub-card reveal" tabindex="0" role="button" aria-expanded="false">
@@ -942,11 +971,23 @@
 
     <div class="section-divider"></div>
 
-    <!-- ═══ EDUCATION ═══ -->
-    <section id="education">
+    <!-- ═══ EXPERIENCE ═══ -->
+    <section id="experience">
       <div class="container">
-        <h2 class="section-title reveal">Education</h2>
+        <h2 class="section-title reveal">Experience</h2>
         <div class="timeline">
+          <div class="timeline-year reveal">2026 – Present</div>
+          <article class="pub-card reveal" style="overflow:hidden;position:relative">
+            <img src="images/Yale.png" alt="" class="edu-logo-watermark" loading="lazy">
+            <div class="pub-header">
+              <div>
+                <div class="pub-title">Postdoctoral Associate</div>
+                <div class="pub-venue"><a href="https://www.yale.edu/" target="_blank" rel="noopener">Yale University</a></div>
+                <div class="pub-authors">School of Medicine<br><a href="https://medicine.yale.edu/lab/mu/" target="_blank" rel="noopener">Mu Lab</a><br>Supervisor: Prof. Ping Mu</div>
+              </div>
+            </div>
+          </article>
+
           <div class="timeline-year reveal">2022 – 2025</div>
           <article class="pub-card reveal" style="overflow:hidden;position:relative">
             <img src="images/UT.png" alt="" class="edu-logo-watermark" loading="lazy">
@@ -1094,7 +1135,7 @@
           <span class="visitor-counter-num" id="busuanzi_value_page_pv">0</span>
         </div>
         <div class="visitor-map-wrap">
-          <script type="text/javascript" id="clustrmaps" src="//cdn.clustrmaps.com/map_v2.js?cl=6bafea&w=400&t=n&d=gB5MK8VPfGZB-Ol1UKim258Aveo7uzWQzGAyBfnOXr8&co=ffffff&ct=000000&cmo=7099bc&cmn=1b69b7"></script>
+          <script type="text/javascript" id="mapmyvisitors" src="https://mapmyvisitors.com/map.js?cl=ffffff&w=a&t=n&d=eL8KfjHilp8umOZjqzdzXSjblD6vmRtJbAtwi4d9sOc"></script>
         </div>
       </div>
       <p class="footer-copy">© 2025 Yang Cui</p>
