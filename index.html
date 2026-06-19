@@ -230,10 +230,19 @@
     .avatar-frame{
       width:220px;height:260px;border-radius:var(--radius);overflow:hidden;position:relative;
       background:var(--gradient-sunset-soft);border:2px solid rgba(26,26,46,0.08);box-shadow:var(--shadow-lg);
+      cursor:crosshair;touch-action:none;
     }
     .pixel-portrait{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
     .pixel-grid{width:120px;height:140px;image-rendering:pixelated}
-    .avatar-photo{width:68%;height:auto;object-fit:contain;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;image-rendering:pixelated}
+    .avatar-photo{width:68%;height:auto;object-fit:contain;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;image-rendering:pixelated;transition:opacity 0.22s ease,filter 0.22s ease}
+    .avatar-frame.avatar-particles-ready .avatar-photo{opacity:0.96}
+    .avatar-frame.avatar-particles-active .avatar-photo{opacity:0.96;filter:none}
+    .avatar-particle-canvas{
+      position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;
+      image-rendering:pixelated;touch-action:none;opacity:0;transition:opacity 0.18s ease;
+    }
+    .avatar-frame.avatar-particles-ready .avatar-particle-canvas,
+    .avatar-frame.avatar-particles-active .avatar-particle-canvas{opacity:1}
     /* CRT scanlines */
     .avatar-frame::after{
       content:'';position:absolute;inset:0;
@@ -351,33 +360,45 @@
     [data-theme="dark"] .pub-card:hover .edu-logo-watermark{opacity:0.16}
 
     /* ═══════════════════════════════════════
-       PROJECTS
+       TOOLS
        ═══════════════════════════════════════ */
-    .project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
-    .project-card{
-      background:var(--bg-card);border-radius:var(--radius);padding:1.5rem;
-      box-shadow:var(--shadow-sm);transition:all var(--ease);position:relative;
-      overflow:hidden;cursor:default;border:1.5px solid transparent;
+    #tools{background:var(--gradient-sunset-soft)}
+    .tools-intro{font-size:0.95rem;color:var(--text-muted);max-width:620px;margin:-1.5rem 0 2.5rem;line-height:1.75}
+    .tools-list{display:flex;flex-direction:column;gap:1rem}
+    .tool-card{
+      display:flex;align-items:flex-start;gap:1.1rem;
+      background:var(--bg-card);border-radius:var(--radius);padding:1.25rem 1.5rem;
+      box-shadow:var(--shadow-sm);transition:all var(--ease);position:relative;overflow:hidden;
+      border:1px solid rgba(232,146,124,0.12);
     }
-    .project-card:hover{box-shadow:var(--shadow-lg);border-color:var(--neon-cyan);transform:translateY(-4px)}
-    .project-card:hover .card-glow{opacity:1}
-    .card-glow{
-      position:absolute;inset:-1px;border-radius:var(--radius);background:var(--gradient-sunset);
-      opacity:0;z-index:-1;filter:blur(12px);transition:opacity var(--ease);
+    .tool-card::before{
+      content:'';position:absolute;inset:0;opacity:0.015;pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
     }
-    .project-icon{
-      width:48px;height:48px;border-radius:var(--radius-sm);background:var(--gradient-sunset-soft);
-      display:flex;align-items:center;justify-content:center;font-size:1.5rem;
-      margin-bottom:1rem;border:1.5px solid rgba(26,26,46,0.06);
+    .tool-card:hover{box-shadow:var(--shadow-md);transform:translateX(4px);border-color:rgba(232,146,124,0.3)}
+    .tool-icon{
+      font-size:1.4rem;width:48px;height:48px;flex-shrink:0;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--gradient-sunset-soft);border:1px solid rgba(232,146,124,0.2);
     }
-    .project-name{font-weight:600;font-size:1.05rem;margin-bottom:0.5rem;color:var(--text)}
-    .project-desc{font-size:0.88rem;color:var(--text-muted);line-height:1.6;margin-bottom:1rem}
-    .project-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
-    .tag{
-      font-family:var(--font-mono);font-size:0.68rem;padding:0.25rem 0.55rem;
-      background:rgba(91,154,139,0.1);color:var(--teal);border-radius:4px;
-      border:1px solid rgba(91,154,139,0.2);font-weight:500;
+    .tool-main{flex:1;min-width:0}
+    .tool-name{font-family:var(--font-display);font-weight:700;font-size:1.08rem;color:var(--text);line-height:1.35;margin-bottom:0.5rem}
+    .tool-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:0.6rem}
+    .tool-tag{
+      font-family:var(--font-mono);font-size:0.62rem;padding:0.12rem 0.5rem;
+      background:rgba(91,154,139,0.12);color:var(--teal);border-radius:3px;
+      border:1px solid rgba(91,154,139,0.22);letter-spacing:0.03em;
     }
+    .tool-desc{font-size:0.88rem;color:var(--text-muted);line-height:1.65;margin-bottom:1rem}
+    .tool-actions{display:flex;gap:0.5rem;flex-wrap:wrap}
+    .tool-btn{
+      font-family:var(--font-mono);font-size:0.74rem;padding:0.42rem 0.95rem;
+      border:1.5px solid var(--text-light);border-radius:99px;color:var(--text-muted);
+      transition:all var(--ease);display:inline-flex;align-items:center;gap:0.35rem;cursor:pointer;
+    }
+    .tool-btn:hover{border-color:var(--teal);color:var(--teal);background:rgba(91,154,139,0.08)}
+    .tool-btn--primary{border-color:var(--coral);color:var(--coral);background:rgba(232,146,124,0.08)}
+    .tool-btn--primary:hover{background:var(--coral);color:var(--bg);border-color:var(--coral);box-shadow:var(--shadow-glow-pink)}
 
     /* ═══════════════════════════════════════
        BLOG
@@ -677,7 +698,6 @@
       .hero-links{justify-content:center}
       .avatar-frame{width:180px;height:210px}
       .cassette{right:-20px;bottom:-25px;width:80px;height:52px}
-      .project-grid{grid-template-columns:1fr}
       .section-title{font-size:1.6rem}
       .now-playing{bottom:1rem;right:1rem;max-width:220px;padding:0.5rem 0.75rem}
       .theme-toggle{top:1rem;right:1rem;width:42px;height:42px}
@@ -720,6 +740,7 @@
         <li><a href="#publications">Publications</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#conferences">Conferences</a></li>
+        <li><a href="#tools">Tools</a></li>
       </ul>
     </div>
   </nav>
@@ -755,6 +776,7 @@
         </div>
         <div class="hero-avatar reveal">
           <div class="avatar-frame">
+            <canvas id="avatarParticleCanvas" class="avatar-particle-canvas" aria-label="Interactive particle portrait"></canvas>
             <img src="images/avatar.png" alt="Yang Cui" class="avatar-photo">
           </div>
           <div class="cassette" aria-hidden="true">
@@ -1073,6 +1095,16 @@
       </div>
     </section>
 
+    <!-- ═══ TOOLS ═══ -->
+    <section id="tools">
+      <div class="container">
+        <h2 class="section-title reveal">Tools</h2>
+        <!-- Cards are rendered from the TOOLS array in the script below.
+             To add a tool, just add one entry to that array. -->
+        <div class="tools-list" id="toolsList"></div>
+      </div>
+    </section>
+
     <div class="section-divider"></div>
 
     <!-- ═══ INSERT COIN / JUKEBOX CAROUSEL ═══ -->
@@ -1155,6 +1187,570 @@
   <script>
   (()=>{
     'use strict';
+
+    /* — Interactive particle avatar — */
+    function initAvatarParticles(){
+      const canvas=document.getElementById('avatarParticleCanvas');
+      if(!canvas)return;
+
+      const frame=canvas.closest('.avatar-frame');
+      const fallback=frame?.querySelector('.avatar-photo');
+      const imageSrc=fallback?.getAttribute('src')||'images/avatar.png';
+      const ctx=canvas.getContext('2d',{alpha:true});
+      const particleCanvas=document.createElement('canvas');
+      const particleCtx=particleCanvas.getContext('2d',{alpha:true});
+      const sampler=document.createElement('canvas');
+      const samplerCtx=sampler.getContext('2d',{willReadFrequently:true});
+      const reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const ALPHA_THRESHOLD=26;
+      const DARK_THRESHOLD=5;
+      const DISTORT_RADIUS=52;
+      const DISTORT_LIFETIME=0.52;
+      const MAX_DISTORTIONS=14;
+      const MAX_DPR=1.5;
+
+      const pointer={x:0,y:0,px:0,py:0,dirX:1,dirY:0,active:false,speed:0,lastWakeTime:0};
+      let dpr=1,width=0,height=0,source=null,particles=[],distortions=[];
+      let particleSize=4.8,sourceStep=12,animationId=0,lastInputTime=0,lastInputX=-999,lastInputY=-999;
+
+      const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
+      const fract=v=>v-Math.floor(v);
+      const luma=(r,g,b)=>0.2126*r+0.7152*g+0.0722*b;
+      const hashPair=(x,y)=>fract(Math.sin(x*127.1+y*311.7)*43758.5453123);
+      const randomRange=(min,max)=>min+Math.random()*(max-min);
+
+      function resizeLayer(layer,context){
+        layer.width=Math.max(1,Math.floor(width*dpr));
+        layer.height=Math.max(1,Math.floor(height*dpr));
+        context.setTransform(dpr,0,0,dpr,0,0);
+        context.imageSmoothingEnabled=false;
+      }
+
+      function resize(){
+        const rect=canvas.getBoundingClientRect();
+        width=rect.width;
+        height=rect.height;
+        if(width<=0||height<=0)return;
+        dpr=Math.min(window.devicePixelRatio||1,MAX_DPR);
+        resizeLayer(canvas,ctx);
+        resizeLayer(particleCanvas,particleCtx);
+        rebuildParticles();
+      }
+
+      function prepareSource(image){
+        sampler.width=image.naturalWidth;
+        sampler.height=image.naturalHeight;
+        samplerCtx.clearRect(0,0,sampler.width,sampler.height);
+        samplerCtx.drawImage(image,0,0);
+
+        const raw=samplerCtx.getImageData(0,0,sampler.width,sampler.height);
+        const data=raw.data;
+        let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity;
+
+        for(let y=0;y<sampler.height;y+=1){
+          for(let x=0;x<sampler.width;x+=1){
+            const i=(y*sampler.width+x)*4;
+            const a=data[i+3];
+            const brightness=luma(data[i],data[i+1],data[i+2]);
+            if(a>=ALPHA_THRESHOLD&&brightness>=DARK_THRESHOLD){
+              minX=Math.min(minX,x);minY=Math.min(minY,y);
+              maxX=Math.max(maxX,x);maxY=Math.max(maxY,y);
+            }
+          }
+        }
+
+        if(!Number.isFinite(minX)){
+          minX=0;minY=0;maxX=sampler.width-1;maxY=sampler.height-1;
+        }
+
+        source={data,width:sampler.width,height:sampler.height,minX,minY,maxX,maxY,contentW:maxX-minX+1,contentH:maxY-minY+1};
+      }
+
+      function rebuildParticles(){
+        if(!source||width<=0||height<=0)return;
+
+        const targetW=width*0.68;
+        const targetH=height*0.72;
+        const scale=Math.min(targetW/source.width,targetH/source.height);
+        const usedW=source.width*scale;
+        const usedH=source.height*scale;
+        const imageX=(width-usedW)/2;
+        const imageY=(height-usedH)/2;
+
+        particleSize=clamp(Math.min(width,height)/43,3.7,5.7);
+        sourceStep=Math.max(6,Math.round((particleSize/scale)*0.9));
+        particles=[];
+
+        const backdropGap=particleSize*1.85;
+        for(let by=backdropGap*0.7;by<height;by+=backdropGap){
+          for(let bx=backdropGap*0.7;bx<width;bx+=backdropGap){
+            const gx=Math.floor(bx/backdropGap);
+            const gy=Math.floor(by/backdropGap);
+            const noise=hashPair(gx,gy);
+            if(noise<0.66)continue;
+
+            const nx=bx/width;
+            const ny=by/height;
+            const warm=hashPair(gx+13.7,gy-8.4);
+            const r=clamp(66+warm*54+nx*30,0,255);
+            const g=clamp(52+warm*38+ny*22,0,255);
+            const b=clamp(78+warm*48+(1-nx)*36,0,255);
+
+            particles.push({
+              homeX:bx+(noise-0.5)*backdropGap*0.42,
+              homeY:by+(hashPair(gy,gx)-0.5)*backdropGap*0.42,
+              srcX:source.minX,
+              srcY:source.minY,
+              scale,
+              r,
+              g,
+              b,
+              alpha:0.05+noise*0.055,
+              brightness:0.22+noise*0.18,
+              phase:randomRange(0,Math.PI*2),
+              pulseSpeed:randomRange(0.8,1.9),
+              noise:randomRange(0,Math.PI*2),
+              offsetX:0,
+              offsetY:0,
+              sampleOffsetX:0,
+              sampleOffsetY:0,
+              returnEase:randomRange(0.07,0.13),
+              followEase:randomRange(0.3,0.44),
+              isBackdrop:true,
+              sizeScale:0.58
+            });
+          }
+        }
+
+        for(let y=source.minY;y<=source.maxY;y+=sourceStep){
+          for(let x=source.minX;x<=source.maxX;x+=sourceStep){
+            const i=(Math.round(y)*source.width+Math.round(x))*4;
+            const a=source.data[i+3];
+            const brightness=luma(source.data[i],source.data[i+1],source.data[i+2]);
+            if(a<ALPHA_THRESHOLD||brightness<DARK_THRESHOLD)continue;
+
+            particles.push({
+              homeX:imageX+x*scale,
+              homeY:imageY+y*scale,
+              srcX:x,
+              srcY:y,
+              scale,
+              r:source.data[i],
+              g:source.data[i+1],
+              b:source.data[i+2],
+              alpha:clamp(a/255,0.34,0.92),
+              brightness:brightness/255,
+              phase:randomRange(0,Math.PI*2),
+              pulseSpeed:randomRange(1.05,2.55),
+              noise:randomRange(0,Math.PI*2),
+              offsetX:0,
+              offsetY:0,
+              sampleOffsetX:0,
+              sampleOffsetY:0,
+              returnEase:randomRange(0.07,0.13),
+              followEase:randomRange(0.34,0.48)
+            });
+          }
+        }
+      }
+
+      function colorAt(x,y){
+        if(!source)return{valid:false};
+        const ix=Math.round(x);
+        const iy=Math.round(y);
+        if(ix<0||iy<0||ix>=source.width||iy>=source.height)return{valid:false};
+        const i=(iy*source.width+ix)*4;
+        const a=source.data[i+3];
+        const brightness=luma(source.data[i],source.data[i+1],source.data[i+2]);
+        if(a<ALPHA_THRESHOLD||brightness<DARK_THRESHOLD)return{valid:false};
+        return{r:source.data[i],g:source.data[i+1],b:source.data[i+2],a,brightness:brightness/255,valid:true};
+      }
+
+      function isInside(x,y){
+        return x>=0&&x<=width&&y>=0&&y<=height;
+      }
+
+      function addDistortion(x,y,dx,dy,options={}){
+        const speed=Math.sqrt(dx*dx+dy*dy);
+        if(!options.force&&speed<0.35)return;
+        distortions.push({
+          x,y,dx,dy,
+          born:performance.now()*0.001,
+          seed:randomRange(0,1000),
+          strength:options.strength??clamp(16+speed*0.72,18,54),
+          colorScale:options.colorScale??1,
+          lightScale:options.lightScale??1
+        });
+        if(distortions.length>MAX_DISTORTIONS)distortions.shift();
+      }
+
+      function movePointerTo(x,y){
+        const wasActive=pointer.active;
+        const dx=wasActive?x-pointer.x:0;
+        const dy=wasActive?y-pointer.y:0;
+        const distance=Math.sqrt(dx*dx+dy*dy);
+
+        pointer.px=wasActive?pointer.x:x;
+        pointer.py=wasActive?pointer.y:y;
+        pointer.x=x;pointer.y=y;pointer.speed=distance;pointer.active=true;
+
+        if(distance>0.5){
+          pointer.dirX=dx/distance;
+          pointer.dirY=dy/distance;
+        }
+
+        if(!wasActive||distance<8){
+          addDistortion(x,y,dx,dy);
+          return;
+        }
+
+        const steps=Math.min(4,Math.ceil(distance/12));
+        for(let i=1;i<=steps;i+=1){
+          const t=i/steps;
+          addDistortion(pointer.px+dx*t,pointer.py+dy*t,dx,dy);
+        }
+      }
+
+      function setPointer(event){
+        const rect=canvas.getBoundingClientRect();
+        const x=event.clientX-rect.left;
+        const y=event.clientY-rect.top;
+        const now=performance.now();
+        if(now-lastInputTime<8&&Math.abs(x-lastInputX)<0.2&&Math.abs(y-lastInputY)<0.2)return;
+        lastInputTime=now;lastInputX=x;lastInputY=y;
+        movePointerTo(x,y);
+      }
+
+      function releasePointer(){
+        pointer.active=false;
+        pointer.speed=0;
+        pointer.lastWakeTime=0;
+      }
+
+      function distortedColor(p,time){
+        let sampleX=0,sampleY=0,influence=0,displayX=0,displayY=0;
+
+        for(const stamp of distortions){
+          const age=time-stamp.born;
+          if(age<0||age>DISTORT_LIFETIME)continue;
+
+          const life=1-age/DISTORT_LIFETIME;
+          const dx=p.homeX-stamp.x;
+          const dy=p.homeY-stamp.y;
+          const distanceSq=dx*dx+dy*dy;
+          const distance=Math.sqrt(distanceSq)||1;
+          const motionLength=Math.sqrt(stamp.dx*stamp.dx+stamp.dy*stamp.dy)||1;
+          const motionX=stamp.dx/motionLength;
+          const motionY=stamp.dy/motionLength;
+          const tangentX=-motionY;
+          const tangentY=motionX;
+          const along=dx*motionX+dy*motionY;
+          const across=dx*tangentX+dy*tangentY;
+          const flatDistance=Math.sqrt((along*along)/1.85+(across*across)/3.15);
+          const maxInfluence=DISTORT_RADIUS*1.18;
+
+          if(flatDistance>maxInfluence)continue;
+
+          const falloff=1-flatDistance/maxInfluence;
+          const softEdge=falloff*falloff*(3-2*falloff);
+          const bandBias=0.74+0.26*Math.min(1,Math.abs(across)/(DISTORT_RADIUS*1.1));
+          const soft=softEdge*bandBias*Math.pow(life,1.48)*stamp.colorScale;
+          const cellSize=Math.max(5.5,particleSize*2.15);
+          const row=Math.floor((p.homeY-stamp.y)/cellSize+stamp.seed*0.19);
+          const col=Math.floor((p.homeX-stamp.x)/cellSize+stamp.seed*0.11);
+          const rowNoise=hashPair(row,stamp.seed);
+          const blockNoise=hashPair(col+stamp.seed*0.07,row-stamp.seed*0.03);
+          const trailNoise=hashPair(row*1.9,col*0.73+stamp.seed);
+          const shear=stamp.strength*soft*(1.35+blockNoise*1.05);
+          const rowDrag=(rowNoise-0.5)*52*soft;
+          const blockJitter=(trailNoise-0.5)*31*soft;
+          const swirl=Math.sin(distance*0.13+stamp.seed)*stamp.strength*0.22*soft;
+
+          sampleX+=(motionX*shear+tangentX*rowDrag+motionX*blockJitter+tangentX*swirl)/p.scale;
+          sampleY+=(motionY*shear*0.66+tangentY*rowDrag*0.56+motionY*blockJitter*0.72+tangentY*swirl*0.72)/p.scale;
+          displayX+=(motionX*stamp.strength*0.1+tangentX*(rowNoise-0.5)*6+motionX*(trailNoise-0.5)*4)*soft;
+          displayY+=(motionY*stamp.strength*0.06+tangentY*(rowNoise-0.5)*4.5+motionY*(trailNoise-0.5)*3)*soft;
+          influence+=soft*1.25;
+        }
+
+        const ease=influence>0.01?p.followEase:p.returnEase;
+        p.sampleOffsetX+=(sampleX-p.sampleOffsetX)*ease;
+        p.sampleOffsetY+=(sampleY-p.sampleOffsetY)*ease;
+        if(Math.abs(p.sampleOffsetX)<0.01&&Math.abs(p.sampleOffsetY)<0.01&&influence<=0.01){
+          p.sampleOffsetX=0;p.sampleOffsetY=0;
+        }
+
+        const residualInfluence=Math.max(influence,Math.min(1,(Math.abs(p.sampleOffsetX)+Math.abs(p.sampleOffsetY))/18));
+        if(residualInfluence<=0.01){
+          return{r:p.r,g:p.g,b:p.b,brightness:p.brightness,influence:0};
+        }
+
+        if(p.isBackdrop){
+          const localPulse=1+(fract(p.noise*1.17+time*1.8)-0.5)*residualInfluence*0.34;
+          const lift=residualInfluence*34*(0.55+p.brightness);
+          return{
+            r:clamp(p.r*localPulse+lift*0.78,0,255),
+            g:clamp(p.g*localPulse+lift*0.72,0,255),
+            b:clamp(p.b*localPulse+lift,0,255),
+            brightness:p.brightness,
+            influence:residualInfluence,
+            offsetX:clamp(displayX,-particleSize*0.42,particleSize*0.42),
+            offsetY:clamp(displayY,-particleSize*0.34,particleSize*0.34)
+          };
+        }
+
+        const quantize=sourceStep*(1+Math.floor(clamp(residualInfluence*3.9,0,3)));
+        let sampled=colorAt(
+          Math.round((p.srcX+p.sampleOffsetX)/quantize)*quantize,
+          Math.round((p.srcY+p.sampleOffsetY)/quantize)*quantize
+        );
+        if(!sampled.valid){
+          sampled=colorAt(
+            Math.round((p.srcX+p.sampleOffsetX*0.24)/sourceStep)*sourceStep,
+            Math.round((p.srcY+p.sampleOffsetY*0.24)/sourceStep)*sourceStep
+          );
+        }
+        if(!sampled.valid){
+          sampled={r:p.r,g:p.g,b:p.b,a:p.alpha*255,brightness:p.brightness,valid:true};
+        }
+
+        let mix=clamp(residualInfluence*0.88,0,0.68);
+        if(sampled.brightness-p.brightness>0.36&&p.brightness<0.56)mix*=0.16;
+        if(sampled.brightness<p.brightness-0.28)mix*=0.42;
+
+        const pulse=1+(fract(p.noise*1.713+time*2.1)-0.5)*residualInfluence*0.38;
+        const cellFlicker=hashPair(Math.floor(p.homeX/(particleSize*2.35))+Math.floor(time*5.2),Math.floor(p.homeY/(particleSize*2.35))+p.noise*0.23)-0.5;
+        const localTint=residualInfluence*(p.brightness>0.72?0.28:1);
+        const baseR=(p.r*(1-mix)+sampled.r*mix)*pulse;
+        const baseG=(p.g*(1-mix)+sampled.g*mix)*pulse;
+        const baseB=(p.b*(1-mix)+sampled.b*mix)*(1+(pulse-1)*1.1);
+        const glint=Math.max(0,cellFlicker)*22*localTint*(0.45+p.brightness);
+        const shade=Math.min(0,cellFlicker)*16*localTint;
+
+        return{
+          r:clamp(baseR+glint+shade,0,255),
+          g:clamp(baseG+glint+shade,0,255),
+          b:clamp(baseB+glint+shade,0,255),
+          brightness:p.brightness*(1-mix)+sampled.brightness*mix,
+          influence:residualInfluence,
+          offsetX:clamp(displayX,-particleSize*0.62,particleSize*0.62)+(fract(p.noise*2.31+time*1.7)-0.5)*residualInfluence*particleSize*0.07,
+          offsetY:clamp(displayY,-particleSize*0.48,particleSize*0.48)+(fract(p.noise*3.17+time*1.3)-0.5)*residualInfluence*particleSize*0.06
+        };
+      }
+
+      function drawParticles(time){
+        particleCtx.clearRect(0,0,width,height);
+        for(const p of particles){
+          const color=distortedColor(p,time);
+          const shimmer=1+0.12*Math.sin(time*p.pulseSpeed+p.phase);
+          const basePresence=p.isBackdrop?0.38:0.16;
+          const effectPresence=clamp(basePresence+color.influence*0.82,0,1);
+          const alpha=clamp(p.alpha*shimmer*(0.68+color.brightness*0.34+color.influence*0.22)*effectPresence,0,p.isBackdrop?0.28:0.96);
+          const sizePulse=particleSize*(p.sizeScale||1)*(0.94+0.04*shimmer+color.influence*0.018);
+          const maxChannel=Math.max(color.r,color.g,color.b);
+          const minChannel=Math.min(color.r,color.g,color.b);
+          const saturation=(maxChannel-minChannel)/255;
+          const vividHighlight=clamp((saturation-0.12)*1.8,0,1)*clamp((color.brightness-0.28)*1.75,0,1);
+          const whiteGuard=1-clamp((color.brightness-0.78)*0.18,0,0.08)*(1-vividHighlight*0.5);
+          const renderR=clamp(color.r*whiteGuard+vividHighlight*30*(0.6+color.influence),0,255);
+          const renderG=clamp(color.g*whiteGuard+vividHighlight*24*(0.6+color.influence),0,255);
+          const renderB=clamp(color.b*whiteGuard+vividHighlight*36*(0.6+color.influence),0,255);
+          const targetX=color.offsetX||0;
+          const targetY=color.offsetY||0;
+          const ease=color.influence>0.01?p.followEase:p.returnEase;
+
+          p.offsetX+=(targetX-p.offsetX)*ease;
+          p.offsetY+=(targetY-p.offsetY)*ease;
+          if(Math.abs(p.offsetX)<0.01&&Math.abs(p.offsetY)<0.01&&color.influence<=0.01){
+            p.offsetX=0;p.offsetY=0;
+          }
+
+          particleCtx.fillStyle=`rgba(${renderR}, ${renderG}, ${renderB}, ${alpha})`;
+          particleCtx.fillRect(p.homeX+p.offsetX,p.homeY+p.offsetY,sizePulse,sizePulse);
+
+          if(!p.isBackdrop&&vividHighlight>0.32&&fract(p.noise*3.7+time*4.1)>0.78){
+            particleCtx.fillStyle=`rgba(255, 245, 235, ${0.13*vividHighlight*(0.25+color.influence)})`;
+            particleCtx.fillRect(p.homeX+p.offsetX+sizePulse*0.18,p.homeY+p.offsetY+sizePulse*0.18,sizePulse*0.38,sizePulse*0.38);
+          }
+        }
+
+        ctx.save();
+        ctx.globalCompositeOperation='screen';
+        ctx.globalAlpha=0.34;
+        ctx.filter='blur(2.4px)';
+        ctx.drawImage(particleCanvas,0,0,width,height);
+        ctx.filter='none';
+        ctx.globalAlpha=1;
+        ctx.drawImage(particleCanvas,0,0,width,height);
+        ctx.globalCompositeOperation='source-over';
+        ctx.restore();
+      }
+
+      function drawMosaicSmear(time){
+        if(!distortions.length)return;
+        ctx.save();
+        ctx.imageSmoothingEnabled=false;
+
+        for(const stamp of distortions){
+          const age=time-stamp.born;
+          if(age<0||age>DISTORT_LIFETIME)continue;
+
+          const life=1-age/DISTORT_LIFETIME;
+          const motionLength=Math.sqrt(stamp.dx*stamp.dx+stamp.dy*stamp.dy)||1;
+          const motionX=stamp.dx/motionLength;
+          const motionY=stamp.dy/motionLength;
+          const tangentX=-motionY;
+          const tangentY=motionX;
+          const radius=DISTORT_RADIUS*(0.46+life*0.16);
+          const strips=7;
+
+          ctx.globalCompositeOperation='screen';
+          for(let i=0;i<strips;i+=1){
+            const t=strips===1?0:i/(strips-1)*2-1;
+            const band=Math.max(0,1-Math.abs(t));
+            const rowNoise=hashPair(i+stamp.seed,stamp.seed*0.37);
+            const y=stamp.y+t*radius+(rowNoise-0.5)*3.5;
+            const stripH=Math.max(1.6,particleSize*(0.42+hashPair(i,stamp.seed)*0.38));
+            const span=radius*(0.48+band*1.12);
+            const pull=stamp.strength*life*(0.18+band*0.38);
+            const rowShift=(rowNoise-0.5)*radius*0.42*life;
+            const destX=stamp.x-span+tangentX*rowShift-motionX*pull*0.08;
+            const destY=y+tangentY*rowShift-motionY*pull*0.08;
+            const srcX=destX-motionX*(pull*1.18+5)-tangentX*rowShift*0.3;
+            const srcY=destY-motionY*(pull*0.78+2)-tangentY*rowShift*0.3;
+            const srcW=span*2;
+
+            if(srcW<=0)continue;
+            ctx.globalAlpha=clamp(Math.pow(life,1.35)*(0.012+band*0.034)*stamp.lightScale,0,0.055);
+            ctx.drawImage(
+              particleCanvas,
+              clamp(srcX,0,width)*dpr,
+              clamp(srcY,0,height)*dpr,
+              clamp(srcW,1,width)*dpr,
+              clamp(stripH,1,height)*dpr,
+              destX,
+              destY,
+              srcW,
+              stripH
+            );
+          }
+
+          const glowSpan=radius*(1.05+life*0.36);
+          const glowH=Math.max(2.8,particleSize*1.1);
+          const glow=ctx.createLinearGradient(stamp.x-glowSpan,stamp.y,stamp.x+glowSpan,stamp.y);
+          glow.addColorStop(0,'rgba(104, 141, 210, 0)');
+          glow.addColorStop(0.48,`rgba(138, 185, 255, ${0.024*Math.pow(life,1.34)*stamp.lightScale})`);
+          glow.addColorStop(0.53,`rgba(232, 242, 255, ${0.04*Math.pow(life,1.42)*stamp.lightScale})`);
+          glow.addColorStop(1,'rgba(104, 141, 210, 0)');
+          ctx.globalAlpha=1;
+          ctx.fillStyle=glow;
+          ctx.fillRect(stamp.x-glowSpan,stamp.y-glowH/2,glowSpan*2,glowH);
+        }
+
+        ctx.globalAlpha=1;
+        ctx.globalCompositeOperation='source-over';
+        ctx.restore();
+      }
+
+      function drawStreaks(time){
+        if(!distortions.length)return;
+        ctx.save();
+        ctx.globalCompositeOperation='screen';
+
+        for(const stamp of distortions){
+          const age=time-stamp.born;
+          if(age<0||age>DISTORT_LIFETIME)continue;
+
+          const life=1-age/DISTORT_LIFETIME;
+          const motionLength=Math.sqrt(stamp.dx*stamp.dx+stamp.dy*stamp.dy)||1;
+          const motionX=stamp.dx/motionLength;
+          const motionY=stamp.dy/motionLength;
+          const radius=DISTORT_RADIUS*(0.72+life*0.34);
+          const alpha=0.018*Math.pow(life,1.42)*stamp.lightScale;
+          const shift=Math.sin(stamp.seed)*6;
+
+          for(let i=-2;i<=2;i+=1){
+            const y=stamp.y+i*4.6+shift-motionY*radius*0.12;
+            const span=radius*(1.72-Math.abs(i)*0.18);
+            const tail=span*(1.28+life*0.48);
+            const lead=span*(0.42+life*0.16);
+            const startX=stamp.x-motionX*tail-span*0.36;
+            const endX=stamp.x+motionX*lead+span*0.36;
+            const gradient=ctx.createLinearGradient(startX,y,endX,y);
+            gradient.addColorStop(0,'rgba(120, 150, 210, 0)');
+            gradient.addColorStop(0.36,`rgba(112, 143, 205, ${alpha*0.42})`);
+            gradient.addColorStop(0.6,`rgba(150, 190, 255, ${alpha})`);
+            gradient.addColorStop(0.68,`rgba(230, 240, 255, ${alpha*1.3})`);
+            gradient.addColorStop(1,'rgba(120, 150, 210, 0)');
+            ctx.strokeStyle=gradient;
+            ctx.lineWidth=i===0?0.8:0.38;
+            ctx.beginPath();
+            ctx.moveTo(startX,y);
+            ctx.lineTo(endX,y);
+            ctx.stroke();
+          }
+        }
+
+        ctx.globalCompositeOperation='source-over';
+        ctx.restore();
+      }
+
+      function render(timeMs){
+        const time=timeMs*0.001;
+        if(pointer.active&&pointer.speed>0.75&&isInside(pointer.x,pointer.y)&&time-pointer.lastWakeTime>0.075){
+          pointer.lastWakeTime=time;
+          addDistortion(pointer.x,pointer.y,pointer.dirX*6,pointer.dirY*6,{
+            force:true,
+            strength:12+Math.min(pointer.speed,12)*0.22,
+            colorScale:0.08,
+            lightScale:1.05
+          });
+        }
+
+        distortions=distortions.filter(stamp=>time-stamp.born<=DISTORT_LIFETIME);
+        frame?.classList.toggle('avatar-particles-active',distortions.length>0);
+        ctx.clearRect(0,0,width,height);
+        drawParticles(time);
+        drawMosaicSmear(time);
+        drawStreaks(time);
+        pointer.speed*=0.86;
+        animationId=requestAnimationFrame(render);
+      }
+
+      function drawStatic(){
+        ctx.clearRect(0,0,width,height);
+        particleCtx.clearRect(0,0,width,height);
+        for(const p of particles){
+          particleCtx.fillStyle=`rgba(${p.r}, ${p.g}, ${p.b}, ${p.alpha})`;
+          particleCtx.fillRect(p.homeX,p.homeY,particleSize,particleSize);
+        }
+        ctx.drawImage(particleCanvas,0,0,width,height);
+      }
+
+      const image=new Image();
+      image.onload=()=>{
+        prepareSource(image);
+        resize();
+        frame?.classList.add('avatar-particles-ready');
+        if(reduceMotion){
+          drawStatic();
+          return;
+        }
+        canvas.addEventListener('pointermove',setPointer,{passive:true});
+        canvas.addEventListener('pointerleave',releasePointer);
+        canvas.addEventListener('pointercancel',releasePointer);
+        canvas.addEventListener('pointerdown',setPointer,{passive:true});
+        window.addEventListener('resize',resize,{passive:true});
+        if('ResizeObserver'in window){
+          new ResizeObserver(resize).observe(canvas);
+        }
+        cancelAnimationFrame(animationId);
+        animationId=requestAnimationFrame(render);
+      };
+      image.onerror=()=>frame?.classList.remove('avatar-particles-ready');
+      image.src=imageSrc;
+    }
 
     /* — Pixel Avatar — */
     function drawPixelAvatar(){
@@ -1244,6 +1840,38 @@
 
     /* — Music Player removed — playback is via City Pop Jukebox YouTube links — */
 
+    /* — Tools (data-driven) —
+       To add a new tool, add one object to this array. Everything else is automatic.
+       Fields: icon (emoji), name, tags (array), desc, demo (URL or ''), repo (URL or '') */
+    const TOOLS=[
+      {
+        icon:'🧬',
+        name:'Prostate Cell Line Expression Explorer',
+        tags:['Web Tool'],
+        desc:'A lightweight, quick tool for comparing gene expression across common prostate-cancer cell lines.',
+        demo:'https://yangcui0612.github.io/prostate-cell-line-expression/',
+        repo:'https://github.com/YANGCUI0612/prostate-cell-line-expression'
+      }
+      // ,{ icon:'🗺️', name:'Atlas Browser', tags:['…'], desc:'…', demo:'', repo:'' }
+    ];
+    const GH_ICON='<svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13" style="flex-shrink:0"><path d="M12 0.5C5.65 0.5 0.5 5.65 0.5 12c0 5.08 3.29 9.38 7.86 10.9 0.58 0.11 0.79-0.25 0.79-0.56 0-0.28-0.01-1.2-0.02-2.18-3.2 0.7-3.88-1.36-3.88-1.36-0.52-1.33-1.28-1.68-1.28-1.68-1.05-0.72 0.08-0.7 0.08-0.7 1.16 0.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36 0.96 0.1-0.75 0.4-1.25 0.73-1.54-2.55-0.29-5.23-1.27-5.23-5.67 0-1.25 0.45-2.28 1.18-3.08-0.12-0.29-0.51-1.46 0.11-3.04 0 0 0.96-0.31 3.16 1.18 0.92-0.26 1.9-0.38 2.87-0.39 0.97 0 1.96 0.13 2.88 0.39 2.19-1.49 3.15-1.18 3.15-1.18 0.62 1.58 0.23 2.75 0.11 3.04 0.74 0.8 1.18 1.83 1.18 3.08 0 4.41-2.69 5.38-5.25 5.66 0.42 0.36 0.78 1.06 0.78 2.14 0 1.55-0.01 2.79-0.01 3.17 0 0.31 0.21 0.67 0.8 0.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35 0.5 12 0.5z"/></svg>';
+    const toolsList=document.getElementById('toolsList');
+    if(toolsList){
+      toolsList.innerHTML=TOOLS.map(t=>`
+        <article class="tool-card reveal">
+          <div class="tool-icon" aria-hidden="true">${t.icon}</div>
+          <div class="tool-main">
+            <h3 class="tool-name">${t.name}</h3>
+            ${t.tags&&t.tags.length?`<div class="tool-tags">${t.tags.map(g=>`<span class="tool-tag">${g}</span>`).join('')}</div>`:''}
+            <p class="tool-desc">${t.desc}</p>
+            <div class="tool-actions">
+              ${t.demo?`<a class="tool-btn tool-btn--primary" href="${t.demo}" target="_blank" rel="noopener">▶ Live Demo</a>`:''}
+              ${t.repo?`<a class="tool-btn" href="${t.repo}" target="_blank" rel="noopener">${GH_ICON} GitHub</a>`:''}
+            </div>
+          </div>
+        </article>`).join('');
+    }
+
     /* — Scroll Reveal — */
     const obs=new IntersectionObserver(es=>{
       es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
@@ -1255,7 +1883,7 @@
     window.addEventListener('scroll',()=>{nav.classList.toggle('visible',scrollY>500)},{passive:true});
 
     /* — Accordion — */
-    document.querySelectorAll('.pub-card').forEach(c=>{
+    document.querySelectorAll('.pub-card[role="button"]').forEach(c=>{
       c.addEventListener('click',e=>{
         if(e.target.closest('.pub-action-btn'))return;
         const exp=c.classList.toggle('expanded');
@@ -1836,6 +2464,7 @@
     },{passive:true});
 
     /* — Init — */
+    initAvatarParticles();
     drawPixelAvatar();
     genSkyline();
   })();
