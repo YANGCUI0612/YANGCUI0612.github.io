@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yangcui0612.github.io/sitemap.xml
+Sitemap: https://yangcui.org/sitemap.xml
